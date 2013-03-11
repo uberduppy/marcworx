@@ -1,9 +1,10 @@
 package org.talwood.marcworx.locparser;
 
-import java.util.Vector;
+import java.util.List;
 import org.talwood.marcworx.exception.ConstraintException;
 import org.talwood.marcworx.locparser.constants.MarcTransformerSpecs;
 import org.talwood.marcworx.locparser.containers.MarcTransformerStats;
+import org.talwood.marcworx.locparser.elements.CodeElement;
 
 public class MarcCharacterTransformer {
 
@@ -61,8 +62,58 @@ public class MarcCharacterTransformer {
                             newAddon = 3;
                         }
                         break;
-                    case 0x45:
+                    case 0x45: // Extended ANSEL
                         stats.setWorkingG0Set(MarcTransformerSpecs.EXTENDED_LATIN_ANSEL);
+                        stats.setMultibyte(true);
+                        newAddon = 2;
+                        break;
+                    case 0x67: // Greek Symbols
+                        stats.setWorkingG0Set(MarcTransformerSpecs.GREEK_SYMBOLS);
+                        stats.setMultibyte(false);
+                        newAddon = 2;
+                        break;
+                    case 0x62: // Subscripts
+                        stats.setWorkingG0Set(MarcTransformerSpecs.SUBSCRIPTS);
+                        stats.setMultibyte(false);
+                        newAddon = 2;
+                        break;
+                    case 0x70: // Superscripts
+                        stats.setWorkingG0Set(MarcTransformerSpecs.SUPERSCRIPTS);
+                        stats.setMultibyte(false);
+                        newAddon = 2;
+                        break;
+                    case 0x32: // Hebrew
+                        stats.setWorkingG0Set(MarcTransformerSpecs.BASIC_HEBREW);
+                        stats.setMultibyte(true);
+                        newAddon = 2;
+                        break;
+                    case 0x4e: // Cyrillic
+                        stats.setWorkingG0Set(MarcTransformerSpecs.BASIC_CYRILLIC);
+                        stats.setMultibyte(true);
+                        newAddon = 2;
+                        break;
+                    case 0x51: // Extended Cyrillic
+                        stats.setWorkingG0Set(MarcTransformerSpecs.EXTENDED_CYRILLIC);
+                        stats.setMultibyte(true);
+                        newAddon = 2;
+                        break;
+                    case 0x33: // Basic Arabic
+                        stats.setWorkingG0Set(MarcTransformerSpecs.BASIC_ARABIC);
+                        stats.setMultibyte(true);
+                        newAddon = 2;
+                        break;
+                    case 0x34: // Extended Arabic
+                        stats.setWorkingG0Set(MarcTransformerSpecs.EXTENDED_ARABIC);
+                        stats.setMultibyte(true);
+                        newAddon = 2;
+                        break;
+                    case 0x53: // Basic Greek
+                        stats.setWorkingG0Set(MarcTransformerSpecs.BASIC_GREEK);
+                        stats.setMultibyte(true);
+                        newAddon = 2;
+                        break;
+                    case 0x31: // Asian
+                        stats.setWorkingG0Set(MarcTransformerSpecs.EAST_ASIAN);
                         stats.setMultibyte(true);
                         newAddon = 2;
                         break;
@@ -80,17 +131,21 @@ public class MarcCharacterTransformer {
 //        CodeTracker cdt = new CodeTracker();
         MarcTransformerStats stats = new MarcTransformerStats();
         
-        Vector<Character> multiChars = new Vector<Character>();
+//        Vector<Character> multiChars = new Vector<Character>();
         
         // OK, each character is either "in or it's "out".
         int workingPosition = 0;
         int workingSet = MarcTransformerSpecs.DEFAULT_G0_SET;
+        List<CodeElement> codeList = parser.findListForCodeTable(workingSet);
         while(workingPosition < data.length) {
             if(data[workingPosition] == MarcTransformerSpecs.ESCAPE) {
                 // OK, starting new character set
                 workingPosition = determineCharacterSet(data, workingPosition, stats);
+                codeList = parser.findListForCodeTable(stats.getWorkingG0Set());
             } else {
                 // This is a character in my current working set.
+                // Rifle all possible characters...
+                
             }
         }
         

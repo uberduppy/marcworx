@@ -39,6 +39,10 @@ public class CodeTableParser {
         }
         return internalParser;
     }
+    
+    public List<CodeElement> findListForCodeTable(int codeTable) {
+        return codeMap.get(new Integer(codeTable));
+    }
 
     private void populateCodeMap() {
         for(CodeTableElement cte : container.getCodeTables()) {
