@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules>
+    <headingtypes>
+        <type value="0" name="Standard Number"></type>
+        <type value="1" name="Title"></type>
+        <type value="2" name="Author"></type>
+        <type value="3" name="Subject"></type>
+        <type value="4" name="Series"></type>
+        <type value="6" name="Language"></type>
+        <type value="9" name="System Control"></type>
+    </headingtypes>
+    <tagdefs>
+        <tag tagnumber="10" type="0" numeric="true"></tag>
+        <tag tagnumber="20" type="0" numeric="true"></tag>
+        <tag tagnumber="22" type="0" numeric="true"></tag>
+        <tag tagnumber="35" type="9" indexed="" repeatable=""></tag>
+        <tag tagnumber="41" type="6" indexed="a" repeatable="a"></tag>
+        <tag tagnumber="100" type="2" indexed="abcdejq" repeatable="cej"></tag>
+        <tag tagnumber="110" type="2" indexed="abcdn" repeatable="bdn"></tag>
+        <tag tagnumber="111" type="2" indexed="acden" repeatable="en"></tag>
+        <tag tagnumber="130" type="1" indexed="adklmnps" repeatable="dkmnp"></tag>
+        <tag tagnumber="222" type="1" indexed="ab" repeatable=""></tag>
+        <tag tagnumber="240" type="1" indexed="adklmnps" repeatable="dkmnp"></tag>
+        <tag tagnumber="245" type="1" indexed="abnp" repeatable="np"></tag>
+        <tag tagnumber="246" type="1" indexed="abnp" repeatable="np"></tag>
+        <tag tagnumber="247" type="1" indexed="abnp" repeatable="np"></tag>
+        <tag tagnumber="400" type="4" indexed="abcdklnpt" repeatable="cknp"></tag>
+        <tag tagnumber="410" type="4" indexed="abcdklnpt" repeatable="bdknp"></tag>
+        <tag tagnumber="411" type="4" indexed="acdklnpt" repeatable="knp"></tag>
+        <tag tagnumber="440" type="4" indexed="anp" repeatable="np"></tag>
+        <tag tagnumber="490" type="4" indexed="a" repeatable="a"></tag>
+        <tag tagnumber="600" type="3" indexed="abcdejklmnpqtvxyz" repeatable="cejkmnpvxyz"></tag>
+        <tag tagnumber="610" type="3" indexed="abcdklmnptvxyz" repeatable="bdkmnpvxyz"></tag>
+        <tag tagnumber="611" type="3" indexed="acdeklnptvxyz" repeatable="eknpvxyz"></tag>
+        <tag tagnumber="630" type="3" indexed="adklmnpsvxyz" repeatable="dkmnpvxyz"></tag>
+        <tag tagnumber="648" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="650" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="651" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="653" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="654" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="655" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="656" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="657" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="658" type="3" indexed="ab" repeatable="a"></tag>
+        <tag tagnumber="662" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="690" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="691" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="692" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="693" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="694" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="695" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="696" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="697" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="698" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="699" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="700" type="2" indexed="abcdejq" repeatable="cej"></tag>
+        <tag tagnumber="710" type="2" indexed="abcdn" repeatable="bdn"></tag>
+        <tag tagnumber="711" type="2" indexed="acden" repeatable="en"></tag>
+        <tag tagnumber="730" type="1" indexed="adklmnps" repeatable="dkmnp"></tag>
+        <tag tagnumber="740" type="1" indexed="anp" repeatable="np"></tag>
+        <tag tagnumber="800" type="4" indexed="abcdjklmnpqt" repeatable="bdknp"></tag>
+        <tag tagnumber="810" type="4" indexed="abcdklnpt" repeatable="bdknp"></tag>
+        <tag tagnumber="811" type="4" indexed="acdeklnpt" repeatable="eknp"></tag>
+        <tag tagnumber="830" type="4" indexed="adklnp" repeatable="dknp"></tag>
+    </tagdefs>
+</rules>

@@ -1,0 +1,1151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MARC_RULES>
+   <MARC_TYPE code="Classification">
+      <LDR types="all" datalength="0">
+         <COMMENT>Leader</COMMENT>
+         <OFFSET position="5" length="1" defaultvalue="n" display="Check" validator="CheckBoxValidator">
+            <DESC>Record status</DESC>
+            <CODE code="a" text="Increase in encoding level"/>
+            <CODE code="c" text="Corrected or revised"/>
+            <CODE code="d" text="Deleted"/>
+            <CODE code="n" text="New"/>
+         </OFFSET>
+         <OFFSET position="6" length="1" defaultvalue="z" display="Check" validator="CheckBoxValidator">
+            <DESC>Type of record</DESC>
+            <CODE code="w" text="Classification data"/>
+         </OFFSET>
+         <OFFSET position="9" length="1" defaultvalue=" " display="Check" validator="CheckBoxValidator">
+            <DESC>Character coding scheme</DESC>
+            <CODE code=" " text="MARC-8"/>
+            <CODE code="a" text="UCS/Unicode"/>
+         </OFFSET>
+         <OFFSET position="17" length="1" defaultvalue="n" display="Check" validator="CheckBoxValidator">
+            <DESC>Encoding level</DESC>
+            <CODE code="n" text="Complete classification record"/>
+            <CODE code="o" text="Incomplete classification record"/>
+         </OFFSET>
+      </LDR>
+      <CONTROL tagnumber="001" nonrepeatable="true">
+         <NAME>Control Number</NAME>
+         <SHORTNAME>Control Number</SHORTNAME>
+      </CONTROL>
+      <CONTROL tagnumber="003" nonrepeatable="true">
+         <NAME>Control Number Identifier</NAME>
+         <SHORTNAME>Control Number Identifier</SHORTNAME>
+      </CONTROL>
+      <CONTROL tagnumber="005" nonrepeatable="true">
+         <NAME>Date and Time of Latest Transaction</NAME>
+         <SHORTNAME>Date and Time of Latest Transaction</SHORTNAME>
+      </CONTROL>
+      <TAG tagnumber="010" nonrepeatable="true">
+         <NAME>Library of Congress Control Number</NAME>
+         <SHORTNAME>Library of Congress Control Number</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="LC control number"/>
+            <ENTRY code="z" text="Canceled/invalid LC control number"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="016">
+         <NAME>National Bibliographic Agency Control Number</NAME>
+         <SHORTNAME>National Bibliographic Agency Control Number</SHORTNAME>
+         <IND position="0">
+            <NAME>National bibliographic agency</NAME>
+            <ENTRY code=" " text="Library and Archives Canada" defval="true"/>
+            <ENTRY code="7" text="Agency identified in subfield $2"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Record control number"/>
+            <ENTRY code="z" text="Canceled or invalid control number"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="035">
+         <NAME>System Control Number</NAME>
+         <SHORTNAME>System Control Number</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="System control number"/>
+            <ENTRY code="z" text="Canceled/invalid control number"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="040" nonrepeatable="true">
+         <NAME>Record Source</NAME>
+         <SHORTNAME>Record Source</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Original classification agency"/>
+            <ENTRY code="b" nonrepeatable="true" text="Language code"/>
+            <ENTRY code="c" nonrepeatable="true" text="Transcribing agency"/>
+            <ENTRY code="d" text="Modifying agency"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="042" nonrepeatable="true">
+         <NAME>Authentication Code</NAME>
+         <SHORTNAME>Authentication Code</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Authentication code"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="066" nonrepeatable="true">
+         <NAME>Character Sets Present</NAME>
+         <SHORTNAME>Character Sets Present</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Primary G0 character set"/>
+            <ENTRY code="b" nonrepeatable="true" text="Primary G1 character set"/>
+            <ENTRY code="c" text="Alternate G0 or G1 character set"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="084" nonrepeatable="true">
+         <NAME>Classification Scheme And Edition</NAME>
+         <SHORTNAME>Classification Scheme And Edition</SHORTNAME>
+         <IND position="0">
+            <NAME>Type of edition</NAME>
+            <ENTRY code="0" text="Full" defval="true"/>
+            <ENTRY code="1" text="Abridged"/>
+            <ENTRY code="8" text="Other"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Classification scheme code"/>
+            <ENTRY code="b" nonrepeatable="true" text="Edition title"/>
+            <ENTRY code="c" nonrepeatable="true" text="Edition identifier"/>
+            <ENTRY code="d" nonrepeatable="true" text="Source edition identifier"/>
+            <ENTRY code="e" text="Language code"/>
+            <ENTRY code="f" nonrepeatable="true" text="Authorization"/>
+            <ENTRY code="n" text="Variations"/>
+            <ENTRY code="q" nonrepeatable="true" text="Assigning agency"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="153" nonrepeatable="true">
+         <NAME>Classification Number</NAME>
+         <SHORTNAME>Classification Number</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Classification number--single number or beginning number of span"/>
+            <ENTRY code="c" text="Classification number--ending number of span"/>
+            <ENTRY code="e" text="Classification number hierarchy--single number or beginning number of span"/>
+            <ENTRY code="f" text="Classification number hierarchy--ending number of span"/>
+            <ENTRY code="h" text="Caption hierarchy"/>
+            <ENTRY code="j" nonrepeatable="true" text="Caption"/>
+            <ENTRY code="k" text="Summary number span caption hierarchy"/>
+            <ENTRY code="y" text="Table sequence number for internal subarrangement or add table"/>
+            <ENTRY code="z" text="Table identification"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="154" nonrepeatable="true">
+         <NAME>General Explanatory Index Term</NAME>
+         <SHORTNAME>General Explanatory Index Term</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="General explanatory index term"/>
+            <ENTRY code="b" text="General explanatory index term--succeeding level"/>
+            <ENTRY code="f" text="Schedule identification"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="253">
+         <NAME>Complex See Reference</NAME>
+         <SHORTNAME>Complex See Reference</SHORTNAME>
+         <IND position="0">
+            <NAME>Type of reference</NAME>
+            <ENTRY code="0" text="See reference" defval="true"/>
+            <ENTRY code="1" text="Standard subdivisions do-not-use reference"/>
+            <ENTRY code="2" text="Class elsewhere reference"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Classification number referred to--single number or beginning number of span"/>
+            <ENTRY code="c" text="Classification number referred to--ending number of span"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="y" text="Table sequence number for internal subarrangement or add table"/>
+            <ENTRY code="z" text="Table identification"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="353">
+         <NAME>Complex See Also Reference</NAME>
+         <SHORTNAME>Complex See Also Reference</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Classification number referred to--single number or beginning number of span"/>
+            <ENTRY code="c" text="Classification number referred to--ending number of span"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="y" text="Table sequence number for internal subarrangement or add table"/>
+            <ENTRY code="z" text="Table identification"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="453">
+         <NAME>Invalid Number Tracing</NAME>
+         <SHORTNAME>Invalid Number Tracing</SHORTNAME>
+         <IND position="0">
+            <NAME>Source of classification number</NAME>
+            <ENTRY code="0" text="Schedule" defval="true"/>
+            <ENTRY code="1" text="Table"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Classification number element--single number or beginning number of span"/>
+            <ENTRY code="c" text="Classification number element--ending number of span"/>
+            <ENTRY code="h" text="Caption hierarchy"/>
+            <ENTRY code="i" nonrepeatable="true" text="Reference instruction phrase"/>
+            <ENTRY code="j" nonrepeatable="true" text="Caption"/>
+            <ENTRY code="k" text="Summary number span caption hierarchy"/>
+            <ENTRY code="t" nonrepeatable="true" text="Topic"/>
+            <ENTRY code="w" nonrepeatable="true" text="Control subfield"/>
+            <ENTRY code="y" text="Table sequence number for internal subarrangement or add table"/>
+            <ENTRY code="z" nonrepeatable="true" text="Table identification"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="553">
+         <NAME>Valid Number Tracing</NAME>
+         <SHORTNAME>Valid Number Tracing</SHORTNAME>
+         <IND position="0">
+            <NAME>Source of classification number</NAME>
+            <ENTRY code="0" text="Schedule" defval="true"/>
+            <ENTRY code="1" text="Table"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Classification number--single number or beginning number of span"/>
+            <ENTRY code="c" text="Classification number--ending number of span"/>
+            <ENTRY code="h" text="Caption hierarchy"/>
+            <ENTRY code="i" nonrepeatable="true" text="Reference instruction phrase"/>
+            <ENTRY code="j" nonrepeatable="true" text="Caption"/>
+            <ENTRY code="k" text="Summary number span caption hierarchy"/>
+            <ENTRY code="t" nonrepeatable="true" text="Topic"/>
+            <ENTRY code="w" nonrepeatable="true" text="Control subfield"/>
+            <ENTRY code="y" text="Table sequence number for internal subarrangement or add table"/>
+            <ENTRY code="z" nonrepeatable="true" text="Table identification"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="673" nonrepeatable="true">
+         <NAME>Segmented Classification Number</NAME>
+         <SHORTNAME>Segmented Classification Number</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Classification number-single number or beginning number of span"/>
+            <ENTRY code="c" text="Classification number-ending number of span"/>
+            <ENTRY code="y" text="Table sequence number for internal subarrangement or add table"/>
+            <ENTRY code="z" text="Table identification"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="674">
+         <NAME>Segmentation Instruction</NAME>
+         <SHORTNAME>Segmentation Instruction</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Classification number-single number or beginning number of span"/>
+            <ENTRY code="c" text="Classification number-ending number of span"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="y" text="Table sequence number for internal subarrangement or add table"/>
+            <ENTRY code="z" text="Table identification"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="680">
+         <NAME>Scope Note</NAME>
+         <SHORTNAME>Scope Note</SHORTNAME>
+         <IND position="0">
+            <NAME>Hierarchical force</NAME>
+            <ENTRY code="0" text="Not applicable or no hierarchical force" defval="true"/>
+            <ENTRY code="1" text="Hierarchical force"/>
+            <ENTRY code="2" text="Semihierarchical force"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Classification number--single number or beginning number of span"/>
+            <ENTRY code="c" text="Classification number--ending number of span"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="t" text="Topic"/>
+            <ENTRY code="y" text="Table sequence number for internal subarrangement or add table"/>
+            <ENTRY code="z" text="Table identification"/>
+            <ENTRY code="5" text="Institution to which field applies"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="681">
+         <NAME>Classification Example Tracing Note</NAME>
+         <SHORTNAME>Classification Example Tracing Note</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Classification number--single number or beginning number of span"/>
+            <ENTRY code="c" text="Classification number--ending number of span"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="y" text="Table sequence number for internal subarrangement or add table"/>
+            <ENTRY code="z" text="Table identification"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="683">
+         <NAME>Application Instruction Note</NAME>
+         <SHORTNAME>Application Instruction Note</SHORTNAME>
+         <IND position="0">
+            <NAME>Type of note</NAME>
+            <ENTRY code="0" text="General application" defval="true"/>
+            <ENTRY code="1" text="Special arrangement of classification topics"/>
+            <ENTRY code="2" text="Optional classification"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Classification number--single number or beginning number of span"/>
+            <ENTRY code="c" text="Classification number--ending number of span"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="p" text="Corresponding classification field"/>
+            <ENTRY code="t" text="Topic"/>
+            <ENTRY code="y" text="Table sequence number for internal subarrangement or add table"/>
+            <ENTRY code="z" text="Table identification"/>
+            <ENTRY code="5" text="Institution to which field applies"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="684">
+         <NAME>Auxiliary Instruction Note</NAME>
+         <SHORTNAME>Auxiliary Instruction Note</SHORTNAME>
+         <IND position="0">
+            <NAME>Type of note</NAME>
+            <ENTRY code="0" text="Source entry" defval="true"/>
+            <ENTRY code="1" text="Textual note"/>
+            <ENTRY code="2" text="Reference note"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Classification number--single number or beginning number of span"/>
+            <ENTRY code="c" text="Classification number--ending number of span"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="j" nonrepeatable="true" text="Caption"/>
+            <ENTRY code="y" text="Table sequence number for internal subarrangement or add table"/>
+            <ENTRY code="z" text="Table identification"/>
+            <ENTRY code="5" text="Institution to which field applies"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="685">
+         <NAME>History Note</NAME>
+         <SHORTNAME>History Note</SHORTNAME>
+         <IND position="0">
+            <NAME>Result of change</NAME>
+            <ENTRY code="0" text="Completely new number" defval="true"/>
+            <ENTRY code="1" text="Completely vacated number"/>
+            <ENTRY code="2" text="Partially changed number"/>
+            <ENTRY code="3" text="Reused after being vacated"/>
+            <ENTRY code="4" text="Immediately reused"/>
+            <ENTRY code="8" text="Other"/>
+         </IND>
+         <IND position="1">
+            <NAME>Type of history information</NAME>
+            <ENTRY code="0" text="Relocation" defval="true"/>
+            <ENTRY code="1" text="Formerly"/>
+            <ENTRY code="2" text="Discontinuation"/>
+            <ENTRY code="3" text="Expansion"/>
+            <ENTRY code="8" text="Other"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="New number--single number or beginning number of span"/>
+            <ENTRY code="b" text="Previous number--single number or beginning number of span"/>
+            <ENTRY code="c" text="Classification number--ending number of span"/>
+            <ENTRY code="d" nonrepeatable="true" text="Date of implementation of authoritative agency"/>
+            <ENTRY code="e" nonrepeatable="true" text="Local implementation date"/>
+            <ENTRY code="f" nonrepeatable="true" text="Title and publication date"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="t" text="Topic"/>
+            <ENTRY code="y" text="Table sequence number for internal subarrangement or add table"/>
+            <ENTRY code="z" text="Table identification"/>
+            <ENTRY code="2" text="Edition number"/>
+            <ENTRY code="5" text="Institution to which field applies"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="686">
+         <NAME>Relationship to Source Note</NAME>
+         <SHORTNAME>Relationship to Source Note</SHORTNAME>
+         <IND position="0">
+            <NAME>Type of relationship</NAME>
+            <ENTRY code="0" text="Number from other source edition" defval="true"/>
+            <ENTRY code="1" text="Expansion"/>
+            <ENTRY code="2" text="Option"/>
+            <ENTRY code="3" text="Adaption, other"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Number in edition described in field 084--single number or"/>
+            <ENTRY code="b" text="Number in primary source of edition--single number or"/>
+            <ENTRY code="c" text="Ending number of span"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="o" text="Number where instructions are found--single number or beginning of number of span"/>
+            <ENTRY code="t" text="Topic"/>
+            <ENTRY code="y" text="Table sequence number for internal subarrangement or add table"/>
+            <ENTRY code="z" text="Table identification"/>
+            <ENTRY code="2" text="Edition identifier"/>
+            <ENTRY code="5" text="Institution to which field applies"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="700">
+         <NAME>Index Term--Personal Name</NAME>
+         <SHORTNAME>Index Term--Personal Name</SHORTNAME>
+         <IND position="0">
+            <NAME>Type of personal name entry element</NAME>
+            <ENTRY code="0" text="Forename" defval="true"/>
+            <ENTRY code="1" text="Surname"/>
+            <ENTRY code="2" text="Multiple surname" obsolete="true" obsoletewhen="1987" replacement="0"/>
+            <ENTRY code="3" text="Family name"/>
+         </IND>
+         <IND position="1">
+            <NAME>Thesaurus</NAME>
+            <ENTRY code="0" text="Library of Congress Subject Headings/Name authority file" defval="true"/>
+            <ENTRY code="1" text="LC subject headings for children's literature"/>
+            <ENTRY code="2" text="Medical Subject Headings/NLM name authority file"/>
+            <ENTRY code="3" text="National Agricultural Library subject authority file"/>
+            <ENTRY code="4" text="Source not specified"/>
+            <ENTRY code="5" text="Canadian Subject Headings/LAC name authority file"/>
+            <ENTRY code="6" text="RÃ?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â©pertoire de vedettes-matiÃ?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â¨re"/>
+            <ENTRY code="7" text="Source specified in subfield $2"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Personal name"/>
+            <ENTRY code="b" nonrepeatable="true" text="Numeration"/>
+            <ENTRY code="c" text="Titles and other words associated with a name"/>
+            <ENTRY code="d" nonrepeatable="true" text="Dates associated with a name"/>
+            <ENTRY code="e" text="Relator term"/>
+            <ENTRY code="f" nonrepeatable="true" text="Date of a work"/>
+            <ENTRY code="g" nonrepeatable="true" text="Miscellaneous information"/>
+            <ENTRY code="h" nonrepeatable="true" text="Medium"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="j" text="Attribution qualifier"/>
+            <ENTRY code="k" text="Form subheading"/>
+            <ENTRY code="l" nonrepeatable="true" text="Language of a work"/>
+            <ENTRY code="m" text="Medium of performance for music"/>
+            <ENTRY code="n" text="Number of part/section of a work"/>
+            <ENTRY code="o" nonrepeatable="true" text="Arranged statement for music"/>
+            <ENTRY code="p" text="Name of part/section of a work"/>
+            <ENTRY code="q" nonrepeatable="true" text="Fuller form of name"/>
+            <ENTRY code="r" nonrepeatable="true" text="Key for music"/>
+            <ENTRY code="s" nonrepeatable="true" text="Version"/>
+            <ENTRY code="t" nonrepeatable="true" text="Title of a work"/>
+            <ENTRY code="v" text="Form subdivision"/>
+            <ENTRY code="x" text="General subdivision"/>
+            <ENTRY code="y" text="Chronological subdivision"/>
+            <ENTRY code="z" text="Geographic subdivision"/>
+            <ENTRY code="0" text="Record control number"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source of heading or term"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="4" text="Relator code"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="710">
+         <NAME>Index Term--Corporate Name</NAME>
+         <SHORTNAME>Index Term--Corporate Name</SHORTNAME>
+         <IND position="0">
+            <NAME>Type of corporate name entry element</NAME>
+            <ENTRY code="0" text="Inverted name" defval="true"/>
+            <ENTRY code="1" text="Jurisdiction name"/>
+            <ENTRY code="2" text="Name in direct order"/>
+         </IND>
+         <IND position="1">
+            <NAME>Thesaurus</NAME>
+            <ENTRY code="0" text="Library of Congress Subject Headings/Name authority file" defval="true"/>
+            <ENTRY code="1" text="LC subject headings for children's literature"/>
+            <ENTRY code="2" text="Medical Subject Headings/NLM name authority file"/>
+            <ENTRY code="3" text="National Agricultural Library subject authority file"/>
+            <ENTRY code="4" text="Source not specified"/>
+            <ENTRY code="5" text="Canadian Subject Headings/LAC name authority file"/>
+            <ENTRY code="6" text="RÃ?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â©pertoire de vedettes-matiÃ?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â¨re"/>
+            <ENTRY code="7" text="Source specified in subfield $2"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Corporate name or jurisdiction name as entry element"/>
+            <ENTRY code="b" text="Subordinate unit"/>
+            <ENTRY code="c" nonrepeatable="true" text="Location of meeting"/>
+            <ENTRY code="d" text="Date of meeting or treaty signing"/>
+            <ENTRY code="e" text="Relator term"/>
+            <ENTRY code="f" nonrepeatable="true" text="Date of a work"/>
+            <ENTRY code="g" nonrepeatable="true" text="Miscellaneous information"/>
+            <ENTRY code="h" nonrepeatable="true" text="Medium"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="k" text="Form subheading"/>
+            <ENTRY code="l" nonrepeatable="true" text="Language of a work"/>
+            <ENTRY code="m" text="Medium of performance for music"/>
+            <ENTRY code="n" text="Number of part/section/meeting"/>
+            <ENTRY code="o" nonrepeatable="true" text="Arranged statement for music"/>
+            <ENTRY code="p" text="Name of part/section of a work"/>
+            <ENTRY code="r" nonrepeatable="true" text="Key for music"/>
+            <ENTRY code="s" nonrepeatable="true" text="Version"/>
+            <ENTRY code="t" nonrepeatable="true" text="Title of a work"/>
+            <ENTRY code="v" text="Form subdivision"/>
+            <ENTRY code="x" text="General subdivision"/>
+            <ENTRY code="y" text="Chronological subdivision"/>
+            <ENTRY code="z" text="Geographic subdivision"/>
+            <ENTRY code="0" text="Record control number"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source of heading or term"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="4" text="Relator code"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="711">
+         <NAME>Index Term--Meeting Name</NAME>
+         <SHORTNAME>Index Term--Meeting Name</SHORTNAME>
+         <IND position="0">
+            <NAME>Type of meeting name entry element</NAME>
+            <ENTRY code="0" text="Inverted name" defval="true"/>
+            <ENTRY code="1" text="Jurisdiction name"/>
+            <ENTRY code="2" text="Name in direct order"/>
+         </IND>
+         <IND position="1">
+            <NAME>Thesaurus</NAME>
+            <ENTRY code="0" text="Library of Congress Subject Headings/Name authority file" defval="true"/>
+            <ENTRY code="1" text="LC subject headings for children's literature"/>
+            <ENTRY code="2" text="Medical Subject Headings/NLM name authority file"/>
+            <ENTRY code="3" text="National Agricultural Library subject authority file"/>
+            <ENTRY code="4" text="Source not specified"/>
+            <ENTRY code="5" text="Canadian Subject Headings/LAC name authority file"/>
+            <ENTRY code="6" text="RÃ?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â©pertoire de vedettes-matiÃ?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â¨re"/>
+            <ENTRY code="7" text="Source specified in subfield $2"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Meeting name or jurisdiction name as entry element"/>
+            <ENTRY code="b" obsolete="true" obsoletewhen="1980" text="Number"/>
+            <ENTRY code="c" nonrepeatable="true" text="Location of meeting"/>
+            <ENTRY code="d" nonrepeatable="true" text="Date of meeting or treaty signing"/>
+            <ENTRY code="e" text="Subordinate unit"/>
+            <ENTRY code="f" nonrepeatable="true" text="Date of a work"/>
+            <ENTRY code="g" nonrepeatable="true" text="Miscellaneous information"/>
+            <ENTRY code="h" nonrepeatable="true" text="Medium"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="j" text="Relator term"/>
+            <ENTRY code="k" text="Form subheading"/>
+            <ENTRY code="l" nonrepeatable="true" text="Language of a work"/>
+            <ENTRY code="n" text="Number of part/section/meeting"/>
+            <ENTRY code="p" text="Name of part/section of a work"/>
+            <ENTRY code="q" nonrepeatable="true" text="Name of meeting following jurisdiction name entry element"/>
+            <ENTRY code="s" nonrepeatable="true" text="Version"/>
+            <ENTRY code="t" nonrepeatable="true" text="Title of a work"/>
+            <ENTRY code="v" text="Form subdivision"/>
+            <ENTRY code="x" text="General subdivision"/>
+            <ENTRY code="y" text="Chronological subdivision"/>
+            <ENTRY code="z" text="Geographic subdivision"/>
+            <ENTRY code="0" text="Record control number"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source of heading or term"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="4" text="Relator code"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="720">
+         <NAME>Index Term--Uncontrolled Name</NAME>
+         <SHORTNAME>Index Term--Uncontrolled Name</SHORTNAME>
+         <IND position="0">
+            <NAME>Type of name</NAME>
+            <ENTRY code=" " text="Not specified" defval="true"/>
+            <ENTRY code="1" text="Personal"/>
+            <ENTRY code="2" text="Other"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Name"/>
+            <ENTRY code="e" text="Relator term"/>
+            <ENTRY code="4" text="Relator code"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="730">
+         <NAME>Index Term--Uniform Title</NAME>
+         <SHORTNAME>Index Term--Uniform Title</SHORTNAME>
+         <IND position="0">
+            <NAME>Nonfiling characters</NAME>
+            <ENTRY code=" " text="Nonfiling characters not specified" defval="true"/>
+            <ENTRY code="0" text="Nonfiling characters not specified" obsolete="true" obsoletewhen="1980" replacement=" "/>
+            <ENTRY code="1" text="Nonfiling characters not specified" obsolete="true" obsoletewhen="1980" replacement=" "/>
+            <ENTRY code="2" text="Nonfiling characters not specified" obsolete="true" obsoletewhen="1980" replacement=" "/>
+            <ENTRY code="3" text="Nonfiling characters not specified" obsolete="true" obsoletewhen="1980" replacement=" "/>
+            <ENTRY code="4" text="Nonfiling characters not specified" obsolete="true" obsoletewhen="1980" replacement=" "/>
+            <ENTRY code="5" text="Nonfiling characters not specified" obsolete="true" obsoletewhen="1980" replacement=" "/>
+            <ENTRY code="6" text="Nonfiling characters not specified" obsolete="true" obsoletewhen="1980" replacement=" "/>
+            <ENTRY code="7" text="Nonfiling characters not specified" obsolete="true" obsoletewhen="1980" replacement=" "/>
+            <ENTRY code="8" text="Nonfiling characters not specified" obsolete="true" obsoletewhen="1980" replacement=" "/>
+            <ENTRY code="9" text="Nonfiling characters not specified" obsolete="true" obsoletewhen="1980" replacement=" "/>
+         </IND>
+         <IND position="1">
+            <NAME>Thesaurus</NAME>
+            <ENTRY code="0" text="Library of Congress Subject Headings/Name authority file" defval="true"/>
+            <ENTRY code="1" text="LC subject headings for children's literature"/>
+            <ENTRY code="2" text="Medical Subject Headings/NLM name authority file"/>
+            <ENTRY code="3" text="National Agricultural Library subject authority file"/>
+            <ENTRY code="4" text="Source not specified"/>
+            <ENTRY code="5" text="Canadian Subject Headings/LAC name authority file"/>
+            <ENTRY code="6" text="RÃ?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â©pertoire de vedettes-matiÃ?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â¨re"/>
+            <ENTRY code="7" text="Source specified in subfield $2"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Uniform title"/>
+            <ENTRY code="d" text="Date of treaty signing"/>
+            <ENTRY code="f" nonrepeatable="true" text="Date of a work"/>
+            <ENTRY code="g" nonrepeatable="true" text="Miscellaneous information"/>
+            <ENTRY code="h" nonrepeatable="true" text="Medium"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="k" text="Form subheading"/>
+            <ENTRY code="l" nonrepeatable="true" text="Language of a work"/>
+            <ENTRY code="m" text="Medium of performance for music"/>
+            <ENTRY code="n" text="Number of part/section of a work"/>
+            <ENTRY code="o" nonrepeatable="true" text="Arranged statement for music"/>
+            <ENTRY code="p" text="Name of part/section of a work"/>
+            <ENTRY code="r" nonrepeatable="true" text="Key for music"/>
+            <ENTRY code="s" nonrepeatable="true" text="Version"/>
+            <ENTRY code="t" nonrepeatable="true" text="Title of a work"/>
+            <ENTRY code="v" text="Form subdivision"/>
+            <ENTRY code="x" text="General subdivision"/>
+            <ENTRY code="y" text="Chronological subdivision"/>
+            <ENTRY code="z" text="Geographic subdivision"/>
+            <ENTRY code="0" text="Record control number"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source of heading or term"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="748">
+         <NAME>Index Term--Chronological</NAME>
+         <SHORTNAME>Index Term--Chronological</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Thesaurus</NAME>
+            <ENTRY code="0" text="Library of Congress Subject Headings/Name authority file" defval="true"/>
+            <ENTRY code="1" text="LC subject headings for children's literature"/>
+            <ENTRY code="2" text="Medical Subject Headings/NLM name authority file"/>
+            <ENTRY code="3" text="National Agricultural Library subject authority file"/>
+            <ENTRY code="4" text="Source not specified"/>
+            <ENTRY code="5" text="Canadian Subject Headings/LAC name authority file"/>
+            <ENTRY code="6" text="RÃ?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â©pertoire de vedettes-matiÃ?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â¨re"/>
+            <ENTRY code="7" text="Source specified in subfield $2"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Chronological term"/>
+            <ENTRY code="v" text="Form subdivision"/>
+            <ENTRY code="x" text="General subdivision"/>
+            <ENTRY code="y" text="Chronological subdivision"/>
+            <ENTRY code="z" text="Geographic subdivision"/>
+            <ENTRY code="0" text="Record control number"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source of heading or term"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="750">
+         <NAME>Index Term--Topical</NAME>
+         <SHORTNAME>Index Term--Topical</SHORTNAME>
+         <IND position="0">
+            <NAME>Level of subject</NAME>
+            <ENTRY code=" " text="No information available" defval="true"/>
+            <ENTRY code="0" text="No level specified"/>
+            <ENTRY code="1" text="Primary subject"/>
+            <ENTRY code="2" text="Secondary subject"/>
+         </IND>
+         <IND position="1">
+            <NAME>Thesaurus</NAME>
+            <ENTRY code="0" text="Library of Congress Subject Headings/Name authority file" defval="true"/>
+            <ENTRY code="1" text="LC subject headings for children's literature"/>
+            <ENTRY code="2" text="Medical Subject Headings/NLM name authority file"/>
+            <ENTRY code="3" text="National Agricultural Library subject authority file"/>
+            <ENTRY code="4" text="Source not specified"/>
+            <ENTRY code="5" text="Canadian Subject Headings/LAC name authority file"/>
+            <ENTRY code="6" text="RÃ?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â©pertoire de vedettes-matiÃ?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â¨re"/>
+            <ENTRY code="7" text="Source specified in subfield $2"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Topical term or geographic name entry element"/>
+            <ENTRY code="b" nonrepeatable="true" text="Topical term following geographic name entry element"/>
+            <ENTRY code="c" nonrepeatable="true" text="Location of event"/>
+            <ENTRY code="d" nonrepeatable="true" text="Active date"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="v" text="Form subdivision"/>
+            <ENTRY code="x" text="General subdivision"/>
+            <ENTRY code="y" text="Chronological subdivision"/>
+            <ENTRY code="z" text="Geographic subdivision"/>
+            <ENTRY code="0" text="Record control number"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source of heading or term"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="751">
+         <NAME>Index Term--Geographic Name</NAME>
+         <SHORTNAME>Index Term--Geographic Name</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Thesaurus</NAME>
+            <ENTRY code="0" text="Library of Congress Subject Headings/Name authority file" defval="true"/>
+            <ENTRY code="1" text="LC subject headings for children's literature"/>
+            <ENTRY code="2" text="Medical Subject Headings/NLM name authority file"/>
+            <ENTRY code="3" text="National Agricultural Library subject authority file"/>
+            <ENTRY code="4" text="Source not specified"/>
+            <ENTRY code="5" text="Canadian Subject Headings/LAC name authority file"/>
+            <ENTRY code="6" text="RÃ?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â©pertoire de vedettes-matiÃ?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â¨re"/>
+            <ENTRY code="7" text="Source specified in subfield $2"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Geographic name"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="v" text="Form subdivision"/>
+            <ENTRY code="x" text="General subdivision"/>
+            <ENTRY code="y" text="Chronological subdivision"/>
+            <ENTRY code="z" text="Geographic subdivision"/>
+            <ENTRY code="0" text="Record control number"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source of heading or term"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="753">
+         <NAME>Index Term--Uncontrolled</NAME>
+         <SHORTNAME>Index Term--Uncontrolled</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Type of term or name</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="0" text="Topical term"/>
+            <ENTRY code="1" text="Personal name"/>
+            <ENTRY code="2" text="Corporate name"/>
+            <ENTRY code="3" text="Meeting name"/>
+            <ENTRY code="4" text="Chronological term"/>
+            <ENTRY code="5" text="Geographic name"/>
+            <ENTRY code="6" text="Genre/form term"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Index term"/>
+            <ENTRY code="b" text="Index term--succeeding level"/>
+            <ENTRY code="d" text="Index term referred from"/>
+            <ENTRY code="e" text="Example class number"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="s" nonrepeatable="true" text="See also reference term"/>
+            <ENTRY code="t" text="See also reference term--succeeding level"/>
+            <ENTRY code="u" nonrepeatable="true" text="Use reference term"/>
+            <ENTRY code="v" text="Use reference term--succeeding level"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="754">
+         <NAME>Index Term--Faceted Topical Terms</NAME>
+         <SHORTNAME>Index Term--Faceted Topical Terms</SHORTNAME>
+         <IND position="0">
+            <NAME>Level of subject</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="0" text="No level specified"/>
+            <ENTRY code="1" text="Primary"/>
+            <ENTRY code="2" text="Secondary"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Focus term"/>
+            <ENTRY code="b" text="Non-focus term"/>
+            <ENTRY code="c" text="Facet/hierarchy designation"/>
+            <ENTRY code="v" text="Form subdivision"/>
+            <ENTRY code="y" text="Chronological subdivision"/>
+            <ENTRY code="z" text="Geographic subdivision (R"/>
+            <ENTRY code="0" text="Authority record control number"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source of heading or term"/>
+            <ENTRY code="3" nonrepeatable="true" text="Material specified"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="761">
+         <NAME>Add or Divide Like Instructions</NAME>
+         <SHORTNAME>Add or Divide Like Instructions</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Combined note types</NAME>
+            <ENTRY code="0" text="Not a combined note" defval="true"/>
+            <ENTRY code="1" text="Add or divide like portion of a combined note"/>
+            <ENTRY code="2" text="Class elsewhere portion of a combined note"/>
+            <ENTRY code="3" text="Relocation portion of a combined note"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Number where instructions are found--single number or beginning number of span"/>
+            <ENTRY code="b" nonrepeatable="true" text="Base number"/>
+            <ENTRY code="c" text="Classification number--Ending number of span"/>
+            <ENTRY code="d" text="Divided like number"/>
+            <ENTRY code="e" text="Example class number"/>
+            <ENTRY code="f" text="Facet designator"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="n" text="Negative example class number"/>
+            <ENTRY code="r" text="Root number"/>
+            <ENTRY code="t" text="Topic"/>
+            <ENTRY code="x" text="Other classification number"/>
+            <ENTRY code="y" text="Table sequence number for internal subarrangement or add table"/>
+            <ENTRY code="z" text="Table identification"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="762">
+         <NAME>Table Identification</NAME>
+         <SHORTNAME>Table Identification</SHORTNAME>
+         <IND position="0">
+            <NAME>Table application sequence</NAME>
+            <ENTRY code=" " text="First" defval="true"/>
+            <ENTRY code="2" text="Second"/>
+            <ENTRY code="3" text="Third"/>
+            <ENTRY code="4" text="Fourth"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="i" defval="true" text="Explanatory text"/>
+            <ENTRY code="y" obsolete="true" obsoletewhen="1980" nonrepeatable="true" text="Schedule"/>
+            <ENTRY code="z" nonrepeatable="true" text="Table number"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="763">
+         <NAME>Internal Subarrangement or Add Table Entry</NAME>
+         <SHORTNAME>Internal Subarrangement or Add Table Entry</SHORTNAME>
+         <IND position="0">
+            <NAME>Classification number validity</NAME>
+            <ENTRY code="0" text="Not a classification number entry" defval="true"/>
+            <ENTRY code="1" text="Standard valid classification number"/>
+            <ENTRY code="2" text="Standard invalid classification number"/>
+            <ENTRY code="3" text="Optional valid classification number"/>
+            <ENTRY code="4" text="Optional invalid classification number"/>
+            <ENTRY code="5" text="Obsolete classification number"/>
+         </IND>
+         <IND position="1">
+            <NAME>Type of classification number</NAME>
+            <ENTRY code="0" text="Single number" defval="true"/>
+            <ENTRY code="1" text="Defined number span"/>
+            <ENTRY code="2" text="Summary number span"/>
+            <ENTRY code="8" text="Other"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Classification number--single number or beginning number of span"/>
+            <ENTRY code="b" nonrepeatable="true" text="Base number"/>
+            <ENTRY code="c" text="Classification number--ending number of span"/>
+            <ENTRY code="d" text="Divided like number"/>
+            <ENTRY code="e" text="Example class number"/>
+            <ENTRY code="h" text="Caption hierarchy"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="j" nonrepeatable="true" text="Caption"/>
+            <ENTRY code="k" text="Summary number span caption hierarchy"/>
+            <ENTRY code="m" nonrepeatable="true" text="Manual note"/>
+            <ENTRY code="n" text="Number where instructions are found"/>
+            <ENTRY code="p" text="Corresponding classification field"/>
+            <ENTRY code="r" text="Root number"/>
+            <ENTRY code="s" text="See reference"/>
+            <ENTRY code="x" text="Other classification number"/>
+            <ENTRY code="y" text="Type of division"/>
+            <ENTRY code="z" text="Table identification"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="764">
+         <NAME>Rule Identification</NAME>
+         <SHORTNAME>Rule Identification</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Rule number"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="765">
+         <NAME>Synthesized Number Components</NAME>
+         <SHORTNAME>Synthesized Number Components</SHORTNAME>
+         <IND position="0">
+            <NAME>Field of number analyzed</NAME>
+            <ENTRY code="0" text="153 field" defval="true"/>
+            <ENTRY code="1" text="Other field"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Number where instructions are found--single number or beginning number of span"/>
+            <ENTRY code="b" text="Base number"/>
+            <ENTRY code="c" text="Classification number--ending number of span"/>
+            <ENTRY code="f" text="Facet designator"/>
+            <ENTRY code="r" text="Root number"/>
+            <ENTRY code="s" text="Digits added from classification number in schedule or external table"/>
+            <ENTRY code="t" text="Digits added from internal subarrangement or add table"/>
+            <ENTRY code="u" text="Number being analyzed"/>
+            <ENTRY code="v" text="Number in internal subarrangement or add table where instructions are found"/>
+            <ENTRY code="w" text="Table identification--internal subarrangement or add table"/>
+            <ENTRY code="y" text="Table sequence number for internal subarrangement or add table"/>
+            <ENTRY code="z" text="Table identification"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="766">
+         <NAME>Secondary Table Information</NAME>
+         <SHORTNAME>Secondary Table Information</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Secondary table applicability"/>
+            <ENTRY code="y" text="Type of division"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="768">
+         <NAME>Citation And Preference Order Instructions</NAME>
+         <SHORTNAME>Citation And Preference Order Instructions</SHORTNAME>
+         <IND position="0">
+            <NAME>Type of instruction</NAME>
+            <ENTRY code="0" text="Citation and preference order note" defval="true"/>
+            <ENTRY code="1" text="Table of preference"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Classification number--single number or beginning number of span"/>
+            <ENTRY code="c" text="Classification number--Ending number of span"/>
+            <ENTRY code="e" text="Example class number"/>
+            <ENTRY code="i" text="Explanatory text"/>
+            <ENTRY code="j" text="Caption"/>
+            <ENTRY code="n" text="Negative example class number"/>
+            <ENTRY code="t" text="Topic used as example of citation and preference order instruction"/>
+            <ENTRY code="x" text="Exception to table of preference"/>
+            <ENTRY code="y" text="Table sequence number for internal subarrangement or add table"/>
+            <ENTRY code="z" text="Table identification--Table number"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="856">
+         <NAME>Electronic Location And Access</NAME>
+         <SHORTNAME>Electronic Location And Access</SHORTNAME>
+         <IND position="0">
+            <NAME>Access method</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="0" text="Email"/>
+            <ENTRY code="1" text="FTP"/>
+            <ENTRY code="2" text="Remote login (Telnet)"/>
+            <ENTRY code="3" text="Dial-up"/>
+            <ENTRY code="4" text="HTTP"/>
+            <ENTRY code="7" text="Method specified in subfield $2"/>
+         </IND>
+         <IND position="1">
+            <NAME>Relationship</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="0" text="Resource"/>
+            <ENTRY code="1" text="Version of resource"/>
+            <ENTRY code="2" text="Related resource"/>
+            <ENTRY code="8" text="No display constant generated"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Host name"/>
+            <ENTRY code="b" text="Access number"/>
+            <ENTRY code="c" text="Compression information"/>
+            <ENTRY code="d" text="Path"/>
+            <ENTRY code="f" text="Electronic name"/>
+            <ENTRY code="g" obsolete="true" obsoletewhen="2000" text="Uniform Resource Name"/>
+            <ENTRY code="h" nonrepeatable="true" text="Processor of request"/>
+            <ENTRY code="i" text="Instruction"/>
+            <ENTRY code="j" nonrepeatable="true" text="Bits per second"/>
+            <ENTRY code="k" nonrepeatable="true" text="Password"/>
+            <ENTRY code="l" nonrepeatable="true" text="Logon"/>
+            <ENTRY code="m" text="Contact for access assistance"/>
+            <ENTRY code="n" nonrepeatable="true" text="Name of location of host"/>
+            <ENTRY code="o" nonrepeatable="true" text="Operating system"/>
+            <ENTRY code="p" nonrepeatable="true" text="Port"/>
+            <ENTRY code="q" nonrepeatable="true" text="Electronic format type"/>
+            <ENTRY code="r" nonrepeatable="true" text="Settings"/>
+            <ENTRY code="s" text="File size"/>
+            <ENTRY code="t" text="Terminal emulation"/>
+            <ENTRY code="u" text="Uniform Resource Identifier"/>
+            <ENTRY code="v" text="Hours access method available"/>
+            <ENTRY code="w" text="Record control number"/>
+            <ENTRY code="x" text="Nonpublic note"/>
+            <ENTRY code="y" text="Link text"/>
+            <ENTRY code="z" text="Public note"/>
+            <ENTRY code="2" nonrepeatable="true" text="Access method"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+   </MARC_TYPE>
+</MARC_RULES>

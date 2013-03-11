@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules>
+    <controlSubfield>
+        <position desc="Special relationship" offset = "0">
+            <code value="a" flag="1"><TEXT>Earlier heading</TEXT></code>
+            <code value="b" flag="2"><TEXT>Later heading</TEXT></code>
+            <code value="d" flag="3"><TEXT>Acronym</TEXT></code>
+            <code value="f" flag="4"><TEXT>Musical composition</TEXT></code>
+            <code value="g" flag="5"><TEXT>Broader term</TEXT></code>
+            <code value="h" flag="6"><TEXT>Narrower term</TEXT></code>
+            <code value="i" flag="7"><TEXT>Reference instruction phrase in sub i</TEXT></code>
+            <code value="n" flag="8"><TEXT>Not applicable</TEXT></code>
+            <code value="r" flag="9"><TEXT>Relationship designation in sub i or sub 4</TEXT></code>
+            <code value="t" flag="10"><TEXT>Immediate parent body</TEXT></code>
+        </position>
+        <position desc="Tracing use restriction" offset = "1">
+            <code value="a" flag="1"><TEXT>Name reference structure only</TEXT></code>
+            <code value="b" flag="2"><TEXT>Subject reference structure only</TEXT></code>
+            <code value="c" flag="3"><TEXT>Series reference structure only</TEXT></code>
+            <code value="d" flag="4"><TEXT>Name and subject reference structures</TEXT></code>
+            <code value="e" flag="5"><TEXT>Name and series reference structures</TEXT></code>
+            <code value="f" flag="6"><TEXT>Subject and series reference structures</TEXT></code>
+            <code value="g" flag="7"><TEXT>Name, subject and series reference structures</TEXT></code>
+            <code value="h" flag="8"><TEXT>No reference structures</TEXT></code>
+            <code value="n" flag="9"><TEXT>Not applicable</TEXT></code>
+        </position>
+        <position desc="Earlier form of heading" offset = "2">
+            <code value="a" flag="1"><TEXT>Pre-AACR 2 form</TEXT></code>
+            <code value="e" flag="2"><TEXT>Earlier national authority</TEXT></code>
+            <code value="o" flag="3"><TEXT>Earlier local authority</TEXT></code>
+            <code value="a" flag="4"><TEXT>Not applicable</TEXT></code>
+        </position>
+        <position desc="Reference display" offset = "3">
+            <code value="a" flag="1"><TEXT>Reference not displayed</TEXT></code>
+            <code value="b" flag="2"><TEXT>Reference not displayed, field 664 used</TEXT></code>
+            <code value="c" flag="3"><TEXT>Reference not displayed, field 665 used</TEXT></code>
+            <code value="d" flag="4"><TEXT>Reference not displayed, field 666 used</TEXT></code>
+            <code value="n" flag="5"><TEXT>Not applicable</TEXT></code>
+        </position>
+            
+            
+        
+    </controlSubfield>
+    <tagdefs>
+        <tag tagnumber="100" type="1" indexed="abcdejklmnpqtvxyz" repeatable="cejkmnpvxyz"></tag>
+        <tag tagnumber="110" type="1" indexed="abcdklmnptvxyz" repeatable="bdkmnpvxyz"></tag>
+        <tag tagnumber="111" type="1" indexed="acdeklnptvxyz" repeatable="eknpvxyz"></tag>
+        <tag tagnumber="130" type="1" indexed="adklmnpsvxyz" repeatable="dkmnpvxyz"></tag>
+        <tag tagnumber="148" type="1" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="150" type="1" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="151" type="1" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="155" type="1" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="400" type="2" indexed="abcdejklmnpqtvxyz" repeatable="cejkmnpvxyz"></tag>
+        <tag tagnumber="410" type="2" indexed="abcdklmnptvxyz" repeatable="bdkmnpvxyz"></tag>
+        <tag tagnumber="411" type="2" indexed="acdeklnptvxyz" repeatable="eknpvxyz"></tag>
+        <tag tagnumber="430" type="2" indexed="adklmnpsvxyz" repeatable="dkmnpvxyz"></tag>
+        <tag tagnumber="448" type="2" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="450" type="2" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="451" type="2" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="455" type="2" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="500" type="3" indexed="abcdejklmnpqtvxyz" repeatable="cejkmnpvxyz"></tag>
+        <tag tagnumber="510" type="3" indexed="abcdklmnptvxyz" repeatable="bdkmnpvxyz"></tag>
+        <tag tagnumber="511" type="3" indexed="acdeklnptvxyz" repeatable="eknpvxyz"></tag>
+        <tag tagnumber="530" type="3" indexed="adklmnpsvxyz" repeatable="dkmnpvxyz"></tag>
+        <tag tagnumber="548" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="550" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="551" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+        <tag tagnumber="555" type="3" indexed="avxyz" repeatable="vxyz"></tag>
+    </tagdefs>
+</rules>
+       

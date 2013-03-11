@@ -1,0 +1,2457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MARC_RULES>
+   <MARC_TYPE code="Holdings">
+      <LDR types="all" datalength="0">
+         <COMMENT>Leader</COMMENT>
+         <OFFSET position="5" length="1" defaultvalue="n" display="Check" validator="CheckBoxValidator">
+            <DESC>Record status</DESC>
+            <CODE code="c" text="Corrected or revised"/>
+            <CODE code="d" text="Deleted"/>
+            <CODE code="n" text="New"/>
+         </OFFSET>
+         <OFFSET position="6" length="1" defaultvalue="z" display="Check" validator="CheckBoxValidator">
+            <DESC>Type of record</DESC>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="v" text="Multipart item holdings"/>
+            <CODE code="x" text="Single-part item holdings"/>
+            <CODE code="y" text="Serial item holdings"/>
+         </OFFSET>
+         <OFFSET position="9" length="1" defaultvalue=" " display="Check" validator="CheckBoxValidator">
+            <DESC>Character coding scheme</DESC>
+            <CODE code=" " text="MARC-8"/>
+            <CODE code="a" text="UCS/Unicode"/>
+         </OFFSET>
+         <OFFSET position="17" length="1" defaultvalue="n" display="Check" validator="CheckBoxValidator">
+            <DESC>Encoding level</DESC>
+            <CODE code="1" text="Holdings level 1"/>
+            <CODE code="2" text="Holdings level 2"/>
+            <CODE code="3" text="Holdings level 3"/>
+            <CODE code="4" text="Holdings level 4"/>
+            <CODE code="5" text="Holdings level 4 with piece designation"/>
+            <CODE code="m" text="Mixed level"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other level"/>
+         </OFFSET>
+         <OFFSET position="18" length="1" defaultvalue="n" display="Check" validator="CheckBoxValidator">
+            <DESC>Item information in record</DESC>
+            <CODE code="i" text="Item information"/>
+            <CODE code="n" text="No item information"/>
+         </OFFSET>
+      </LDR>
+      <CONTROL tagnumber="001" nonrepeatable="true">
+         <NAME>Control Number</NAME>
+         <SHORTNAME>Control Number</SHORTNAME>
+      </CONTROL>
+      <CONTROL tagnumber="003" nonrepeatable="true">
+         <NAME>Control Number Identifier</NAME>
+         <SHORTNAME>Control Number Identifier</SHORTNAME>
+      </CONTROL>
+      <CONTROL tagnumber="004" nonrepeatable="true">
+         <NAME>Control Number for Related Bibliographic Record</NAME>
+         <SHORTNAME>Control Number for Related Bibliographic Record</SHORTNAME>
+      </CONTROL>
+      <CONTROL tagnumber="005" nonrepeatable="true">
+         <NAME>Date and Time of Latest Transaction</NAME>
+         <SHORTNAME>Date and Time of Latest Transaction</SHORTNAME>
+      </CONTROL>
+      <PHYSDESC types="a" datalength="8">
+         <COMMENT>Map</COMMENT>
+         <OFFSET position="1" length="1" defaultvalue="j" display="Dropdown" validator="DropDownValidator">
+            <DESC>Material designation</DESC>
+            <CODE code="d" text="Atlas"/>
+            <CODE code="g" text="Diagram"/>
+            <CODE code="j" text="Map"/>
+            <CODE code="k" text="Profile"/>
+            <CODE code="q" text="Model"/>
+            <CODE code="r" text="Remote-sensing image"/>
+            <CODE code="s" text="Section"/>
+            <CODE code="u" text="Unspecified"/>
+            <CODE code="y" text="View"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="2" length="1" defaultvalue=" " display="Dropdown" validator="DropDownValidator">
+            <DESC>Original/Reproduction</DESC>
+            <CODE code=" " text="Undefined"/>
+            <CODE code="f" text="Facsimile" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="o" text="Original" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="r" text="Reproduction" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="u" text="Unknown" obsolete="true" obsoletewhen="1997"/>
+         </OFFSET>
+         <OFFSET position="3" length="1" defaultvalue="c" display="Dropdown" validator="DropDownValidator">
+            <DESC>Color</DESC>
+            <CODE code="a" text="One color"/>
+            <CODE code="b" text="Multiple colors" obsolete="true" obsoletewhen="1982"/>
+            <CODE code="c" text="Multicolored"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="4" length="1" defaultvalue="a" display="Dropdown" validator="DropDownValidator">
+            <DESC>Physical medium</DESC>
+            <CODE code="a" text="Paper"/>
+            <CODE code="b" text="Wood"/>
+            <CODE code="c" text="Stone"/>
+            <CODE code="d" text="Metal"/>
+            <CODE code="e" text="Synthetic"/>
+            <CODE code="f" text="Skin"/>
+            <CODE code="g" text="Textile"/>
+            <CODE code="i" text="Plastic"/>
+            <CODE code="j" text="Glass"/>
+            <CODE code="l" text="Vinyl"/>
+            <CODE code="n" text="Vellum"/>
+            <CODE code="p" text="Plaster"/>
+            <CODE code="q" text="Flexible base photographic, positive"/>
+            <CODE code="r" text="Flexible base photographic, negative"/>
+            <CODE code="s" text="Non-flexible base photographic, positive"/>
+            <CODE code="t" text="Non-flexible base photographic, negative"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="v" text="Leather"/>
+            <CODE code="w" text="Parchment"/>
+            <CODE code="y" text="Other photographic medium"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="5" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Type of reproduction</DESC>
+            <CODE code="f" text="Facsimile"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="6" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Production details</DESC>
+            <CODE code="a" text="Photocopy, blueline print"/>
+            <CODE code="b" text="Photocopy"/>
+            <CODE code="c" text="Pre-production"/>
+            <CODE code="d" text="Film"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="7" length="1" defaultvalue="n" display="Dropdown" validator="DropDownValidator">
+            <DESC>Positive/negative aspect</DESC>
+            <CODE code="a" text="Positive"/>
+            <CODE code="b" text="Negative"/>
+            <CODE code="m" text="Mixed polarity"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+      </PHYSDESC>
+      <PHYSDESC types="c" datalength="14">
+         <COMMENT>Electronic resource</COMMENT>
+         <OFFSET position="1" length="1" defaultvalue="o" display="Dropdown" validator="DropDownValidator">
+            <DESC>Material designation</DESC>
+            <CODE code="a" text="Tape cartridge"/>
+            <CODE code="b" text="Chip cartridge"/>
+            <CODE code="c" text="Computer optical disc cartridge"/>
+            <CODE code="d" text="Computer disc, type unspecified"/>
+            <CODE code="e" text="Computer disc cartridge, type unspecified"/>
+            <CODE code="f" text="Tape cassette"/>
+            <CODE code="h" text="Tape reel"/>
+            <CODE code="j" text="Magnetic disk"/>
+            <CODE code="k" text="Computer card"/>
+            <CODE code="m" text="Magneto-optical disc"/>
+            <CODE code="o" text="Optical disc"/>
+            <CODE code="r" text="Remote"/>
+            <CODE code="u" text="Unspecified"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="2" length="1" defaultvalue=" " display="Undefined" validator="UndefinedValidator">
+            <DESC>Undefined</DESC>
+            <CODE code=" " text="Undefined"/>
+            <CODE code="f" text="Facsimile" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="o" text="Original" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="r" text="Reproduction" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="u" text="Unknown" obsolete="true" obsoletewhen="1997"/>
+         </OFFSET>
+         <OFFSET position="3" length="1" defaultvalue="c" display="Dropdown" validator="DropDownValidator">
+            <DESC>Color</DESC>
+            <CODE code="a" text="One color"/>
+            <CODE code="b" text="Black-and-white"/>
+            <CODE code="c" text="Multicolored"/>
+            <CODE code="g" text="Gray scale"/>
+            <CODE code="h" text="Hand colored" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="m" text="Mixed"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="4" length="1" defaultvalue="g" display="Dropdown" validator="DropDownValidator">
+            <DESC>Dimensions</DESC>
+            <CODE code="a" text="3 1/2 in."/>
+            <CODE code="e" text="12 in."/>
+            <CODE code="g" text="4 3/4 in. or 12 cm."/>
+            <CODE code="i" text="1 1/8 x 2 3/8 in."/>
+            <CODE code="j" text="3 7/8 x 2 1/2 in."/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="o" text="5 1/4 in."/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="v" text="8 in."/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="5" length="1" defaultvalue=" " display="Dropdown" validator="DropDownValidator">
+            <DESC>Sound</DESC>
+            <CODE code=" " text="No sound (silent)"/>
+            <CODE code="a" text="Sound on medium"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="6" length="3" defaultvalue="nnn" display="Text" validator="NumberValidator">
+            <DESC>Image bit depth</DESC>
+            <CODE code="---" text="Running time unknown"/>
+            <CODE code="nnn" text="Not applicable"/>
+            <CODE code="|||" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="9" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>File formats</DESC>
+            <CODE code="a" text="One"/>
+            <CODE code="m" text="Multiple"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="10" length="1" defaultvalue="a" display="Dropdown" validator="DropDownValidator">
+            <DESC>Quality assurance tgt</DESC>
+            <CODE code="a" text="Absent"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="p" text="Present"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="11" length="1" defaultvalue="c" display="Dropdown" validator="DropDownValidator">
+            <DESC>Antecedent/source</DESC>
+            <CODE code="a" text="File reproduced from original"/>
+            <CODE code="b" text="File reproduced from microform"/>
+            <CODE code="c" text="File reproduced from an electronic resource"/>
+            <CODE code="d" text="File reproduced from an intermediate (not microform)"/>
+            <CODE code="m" text="Mixed"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="12" length="1" defaultvalue="a" display="Dropdown" validator="DropDownValidator">
+            <DESC>Level of compression</DESC>
+            <CODE code="a" text="Uncompressed"/>
+            <CODE code="b" text="Lossless"/>
+            <CODE code="d" text="Lossy"/>
+            <CODE code="m" text="Mixed"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="13" length="1" defaultvalue="a" display="Dropdown" validator="DropDownValidator">
+            <DESC>Reformatting quality</DESC>
+            <CODE code="a" text="Access"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="p" text="Preservation"/>
+            <CODE code="r" text="Replacement"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+      </PHYSDESC>
+      <PHYSDESC types="d" datalength="6">
+         <COMMENT>Globe</COMMENT>
+         <OFFSET position="1" length="1" defaultvalue="c" display="Dropdown" validator="DropDownValidator">
+            <DESC>Material designation</DESC>
+            <CODE code="a" text="Celestial globe"/>
+            <CODE code="b" text="Planetary or lunar globe"/>
+            <CODE code="c" text="Terrestrial globe"/>
+            <CODE code="e" text="Earth moon globe"/>
+            <CODE code="u" text="Unspecified"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="2" length="1" defaultvalue=" " display="Undefined" validator="UndefinedValidator">
+            <DESC>Undefined</DESC>
+            <CODE code=" " text="Undefined"/>
+            <CODE code="f" text="Facsimile" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="o" text="Original" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="r" text="Reproduction" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="u" text="Unknown" obsolete="true" obsoletewhen="1997"/>
+         </OFFSET>
+         <OFFSET position="3" length="1" defaultvalue="c" display="Dropdown" validator="DropDownValidator">
+            <DESC>Color</DESC>
+            <CODE code="a" text="One color"/>
+            <CODE code="b" text="Multiple colors" obsolete="true" obsoletewhen="1982"/>
+            <CODE code="c" text="Multicolored"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="4" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Physical medium</DESC>
+            <CODE code="a" text="Paper"/>
+            <CODE code="b" text="Wood"/>
+            <CODE code="c" text="Stone"/>
+            <CODE code="d" text="Metal"/>
+            <CODE code="e" text="Synthetic"/>
+            <CODE code="f" text="Skin"/>
+            <CODE code="g" text="Textile"/>
+            <CODE code="i" text="Plastic"/>
+            <CODE code="j" text="Glass"/>
+            <CODE code="l" text="Vinyl"/>
+            <CODE code="n" text="Vellum"/>
+            <CODE code="p" text="Plaster"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="v" text="Leather"/>
+            <CODE code="w" text="Parchment"/>
+            <CODE code="y" text="Other photographic medium"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="5" length="1" defaultvalue="f" display="Dropdown" validator="DropDownValidator">
+            <DESC>Type of reproduction</DESC>
+            <CODE code="f" text="Facsimile"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+      </PHYSDESC>
+      <PHYSDESC types="f" datalength="10">
+         <COMMENT>Tactile material</COMMENT>
+         <OFFSET position="1" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Material designation</DESC>
+            <CODE code="a" text="Moon"/>
+            <CODE code="b" text="Braille"/>
+            <CODE code="c" text="Combination"/>
+            <CODE code="d" text="Tactile, with no writing system"/>
+            <CODE code="u" text="Unspecified"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="2" length="1" defaultvalue=" " display="Undefined" validator="UndefinedValidator">
+            <DESC>Undefined</DESC>
+            <CODE code=" " text="Undefined"/>
+         </OFFSET>
+         <OFFSET position="3" length="2" defaultvalue="  " display="Check" validator="CheckBoxValidator">
+            <DESC>Class of braille writing</DESC>
+            <CODE code="a" text="Literary braille"/>
+            <CODE code="b" text="Format code braille"/>
+            <CODE code="c" text="Mathematics and scientific braille"/>
+            <CODE code="d" text="Computer braille"/>
+            <CODE code="e" text="Music braille"/>
+            <CODE code="m" text="Multiple braille types"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+         </OFFSET>
+         <OFFSET position="5" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Level of contraction</DESC>
+            <CODE code="a" text="Uncontracted"/>
+            <CODE code="b" text="Contracted"/>
+            <CODE code="m" text="Combination"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="6" length="3" defaultvalue="   " display="Check" validator="CheckBoxValidator">
+            <DESC>Braille music format</DESC>
+            <CODE code="a" text="Bar over bar"/>
+            <CODE code="b" text="Bar by bar"/>
+            <CODE code="c" text="Line over line"/>
+            <CODE code="d" text="Paragraph"/>
+            <CODE code="e" text="Single line"/>
+            <CODE code="f" text="Section by section"/>
+            <CODE code="g" text="Line by line"/>
+            <CODE code="h" text="Open score"/>
+            <CODE code="i" text="Spanner short form scoring"/>
+            <CODE code="j" text="Short form scoring"/>
+            <CODE code="k" text="Outline"/>
+            <CODE code="l" text="Vertical score"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other "/>
+         </OFFSET>
+         <OFFSET position="9" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Specific characteristics</DESC>
+            <CODE code="a" text="Print/braille"/>
+            <CODE code="b" text="Jumbo or enlarged braille"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+      </PHYSDESC>
+      <PHYSDESC types="g" datalength="9">
+         <COMMENT>Projected graphic</COMMENT>
+         <OFFSET position="1" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Material designation</DESC>
+            <CODE code=" " text="Not applicable" obsolete="true" obsoletewhen="1980"/>
+            <CODE code="c" text="Filmstrip cartridge"/>
+            <CODE code="d" text="Filmslip"/>
+            <CODE code="f" text="Filmstrip, type unspecified"/>
+            <CODE code="o" text="Filmstrip roll"/>
+            <CODE code="s" text="Slide"/>
+            <CODE code="t" text="Transparency"/>
+            <CODE code="u" text="Unspecified"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="2" length="1" defaultvalue=" " display="Undefined" validator="UndefinedValidator">
+            <DESC>Undefined</DESC>
+            <CODE code=" " text="Undefined"/>
+            <CODE code="f" text="Facsimile" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="o" text="Original" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="r" text="Reproduction" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="u" text="Unknown" obsolete="true" obsoletewhen="1997"/>
+         </OFFSET>
+         <OFFSET position="3" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Color</DESC>
+            <CODE code="a" text="One color"/>
+            <CODE code="b" text="Black-and-white"/>
+            <CODE code="c" text="Multicolored"/>
+            <CODE code="h" text="Hand colored"/>
+            <CODE code="m" text="Mixed"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="4" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Base of emulsion</DESC>
+            <CODE code=" " text="Not applicable" obsolete="true" obsoletewhen="1980"/>
+            <CODE code="d" text="Glass"/>
+            <CODE code="e" text="Synthetic"/>
+            <CODE code="j" text="Safety film"/>
+            <CODE code="k" text="Film base, other than safety film"/>
+            <CODE code="m" text="Mixed collection"/>
+            <CODE code="o" text="Paper"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="5" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Sound on medium</DESC>
+            <CODE code=" " text="No sound (silent)"/>
+            <CODE code="a" text="Sound on medium"/>
+            <CODE code="b" text="Sound separate from medium"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="6" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Medium for sound</DESC>
+            <CODE code=" " text="No sound (silent)"/>
+            <CODE code="a" text="Optical sound track on motion picture film"/>
+            <CODE code="b" text="Magnetic sound track on motion picture film"/>
+            <CODE code="c" text="Magnetic audio tape in cartridge"/>
+            <CODE code="d" text="Sound disc"/>
+            <CODE code="e" text="Magnetic audio tape on reel"/>
+            <CODE code="f" text="Magnetic audio tape in cassette"/>
+            <CODE code="g" text="Optical and magnetic sound track on motion picture film"/>
+            <CODE code="h" text="Videotape"/>
+            <CODE code="i" text="Videodisc"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="7" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Dimensions</DESC>
+            <CODE code="a" text="Standard 8 mm."/>
+            <CODE code="b" text="Super 8 mm./single 8 mm."/>
+            <CODE code="c" text="9.5 mm."/>
+            <CODE code="d" text="16 mm."/>
+            <CODE code="e" text="28 mm."/>
+            <CODE code="f" text="35 mm."/>
+            <CODE code="g" text="70 mm."/>
+            <CODE code="j" text="2x2 in. or 5x5 cm."/>
+            <CODE code="k" text="2 1/4 x 2 1/4 in. or 6x6 cm."/>
+            <CODE code="s" text="4x5 in. or 10x13 cm."/>
+            <CODE code="t" text="5x7 in. or 13x18 cm."/>
+            <CODE code="u" text="Unknown" obsolete="true" obsoletewhen="1980"/>
+            <CODE code="v" text="8x10 in. or 21x26 cm."/>
+            <CODE code="w" text="9x9 in. or 23x23 cm."/>
+            <CODE code="x" text="10x10 in. or 26x26 cm."/>
+            <CODE code="y" text="7x7 in. or 18x18 cm." obsolete="true" obsoletewhen="1980"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="8" length="1" defaultvalue=" " display="Dropdown" validator="DropDownValidator">
+            <DESC>Secondary support</DESC>
+            <CODE code=" " text="No secondary support"/>
+            <CODE code="c" text="Cardboard"/>
+            <CODE code="d" text="Glass"/>
+            <CODE code="e" text="Synthetic"/>
+            <CODE code="h" text="Metal"/>
+            <CODE code="j" text="Metal and glass"/>
+            <CODE code="k" text="Synthetic and glass"/>
+            <CODE code="m" text="Mixed collection"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+      </PHYSDESC>
+      <PHYSDESC types="h" datalength="13">
+         <COMMENT>Microform</COMMENT>
+         <OFFSET position="1" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Material designation</DESC>
+            <CODE code="a" text="Aperture card"/>
+            <CODE code="b" text="Microfilm cartridge"/>
+            <CODE code="c" text="Microfilm cassette"/>
+            <CODE code="d" text="Microfilm reel"/>
+            <CODE code="e" text="Microfiche"/>
+            <CODE code="f" text="Microfiche cassette"/>
+            <CODE code="g" text="Microopaque"/>
+            <CODE code="h" text="Microfilm slip"/>
+            <CODE code="g" text="Microfilm roll"/>
+            <CODE code="u" text="Unspecified"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="2" length="1" defaultvalue=" " display="Undefined" validator="UndefinedValidator">
+            <DESC>Undefined</DESC>
+            <CODE code=" " text="Undefined"/>
+            <CODE code="f" text="Facsimile" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="o" text="Original" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="r" text="Reproduction" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="u" text="Unknown" obsolete="true" obsoletewhen="1997"/>
+         </OFFSET>
+         <OFFSET position="3" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Positive/negative aspect</DESC>
+            <CODE code="a" text="Positive"/>
+            <CODE code="b" text="Negative"/>
+            <CODE code="m" text="Mixed polarity"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="4" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Dimensions</DESC>
+            <CODE code="a" text="8 mm."/>
+            <CODE code="d" text="16 mm."/>
+            <CODE code="f" text="35 mm."/>
+            <CODE code="g" text="70 mm."/>
+            <CODE code="h" text="105 mm."/>
+            <CODE code="l" text="3x5 in. or 8x13 cm."/>
+            <CODE code="m" text="4x6 in. or 11x15 cm."/>
+            <CODE code="o" text="6x9 in. or 16x23 cm."/>
+            <CODE code="p" text="3 1/4 x 7 3/8 in. or 9x19 cm."/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="5" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Reduction ratio range</DESC>
+            <CODE code="a" text="Low reduction"/>
+            <CODE code="b" text="Normal reduction"/>
+            <CODE code="c" text="High reduction"/>
+            <CODE code="d" text="Very high reduction"/>
+            <CODE code="e" text="Ultra high reduction"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="v" text="Reduction rate varies"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="6" length="3" defaultvalue="---" display="Text" validator="NumberValidator">
+            <DESC>Reduction ratio</DESC>
+            <CODE code="---" text="Running time unknown"/>
+            <CODE code="nnn" text="Not applicable"/>
+            <CODE code="|||" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="9" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Color</DESC>
+            <CODE code="b" text="Black-and-white (or monochrome)"/>
+            <CODE code="c" text="Multicolored"/>
+            <CODE code="m" text="Mixed"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="10" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Emulsion on film</DESC>
+            <CODE code="a" text="Silver halide"/>
+            <CODE code="b" text="Diazo"/>
+            <CODE code="c" text="Vesicular"/>
+            <CODE code="m" text="Mixed emulsion"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="11" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Generation</DESC>
+            <CODE code="a" text="First generation (master)"/>
+            <CODE code="b" text="Printing master"/>
+            <CODE code="c" text="Service copy"/>
+            <CODE code="m" text="Mixed generation"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="12" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Base of film</DESC>
+            <CODE code="a" text="Safety base, undetermined"/>
+            <CODE code="b" text="Not safety base" obsolete="true" obsoletewhen="1991"/>
+            <CODE code="c" text="Safety base, acetate undetermined"/>
+            <CODE code="d" text="Safety base, diacetate"/>
+            <CODE code="p" text="Safety base, polyester"/>
+            <CODE code="r" text="Safety base, mixed"/>
+            <CODE code="t" text="Safety base, triacetate"/>
+            <CODE code="i" text="Nitrate base"/>
+            <CODE code="m" text="Mixed base (nitrate and safety)"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+      </PHYSDESC>
+      <PHYSDESC types="k" datalength="6">
+         <COMMENT>Nonprojected graphic</COMMENT>
+         <OFFSET position="1" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Material designation</DESC>
+            <CODE code="a" text="Activity card"/>
+            <CODE code="c" text="Collage"/>
+            <CODE code="d" text="Drawing"/>
+            <CODE code="e" text="Painting"/>
+            <CODE code="f" text="Photomechanical print"/>
+            <CODE code="g" text="Photonegative"/>
+            <CODE code="h" text="Photoprint"/>
+            <CODE code="i" text="Picture"/>
+            <CODE code="j" text="Print"/>
+            <CODE code="l" text="Technical drawing"/>
+            <CODE code="n" text="Chart"/>
+            <CODE code="o" text="Flash card"/>
+            <CODE code="p" text="Postcard"/>
+            <CODE code="q" text="Icon"/>
+            <CODE code="r" text="Radiograph"/>
+            <CODE code="s" text="Study print"/>
+            <CODE code="u" text="Unspecified"/>
+            <CODE code="v" text="Photograph, type unspecified"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="2" length="1" defaultvalue=" " display="Undefined" validator="UndefinedValidator">
+            <DESC>Undefined</DESC>
+            <CODE code=" " text="Undefined"/>
+            <CODE code="f" text="Facsimile" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="o" text="Original" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="r" text="Reproduction" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="u" text="Unknown" obsolete="true" obsoletewhen="1997"/>
+         </OFFSET>
+         <OFFSET position="3" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Color</DESC>
+            <CODE code="a" text="One color"/>
+            <CODE code="b" text="Black-and-white"/>
+            <CODE code="c" text="Multicolored"/>
+            <CODE code="h" text="Hand colored"/>
+            <CODE code="m" text="Mixed"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="4" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Primary support material</DESC>
+            <CODE code="a" text="Canvas"/>
+            <CODE code="b" text="Bristol board"/>
+            <CODE code="c" text="Cardboard/illustration board"/>
+            <CODE code="d" text="Glass"/>
+            <CODE code="e" text="Synthetic"/>
+            <CODE code="f" text="Skin"/>
+            <CODE code="g" text="Textile"/>
+            <CODE code="h" text="Metal"/>
+            <CODE code="i" text="Plastic"/>
+            <CODE code="l" text="Vinyl"/>
+            <CODE code="m" text="Mixed collection"/>
+            <CODE code="n" text="Vellum"/>
+            <CODE code="o" text="Paper"/>
+            <CODE code="p" text="Plaster"/>
+            <CODE code="q" text="Hardboard"/>
+            <CODE code="r" text="Porcelain"/>
+            <CODE code="s" text="Stone"/>
+            <CODE code="t" text="Wood"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="v" text="Leather"/>
+            <CODE code="w" text="Parchment"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="5" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Sec. support material</DESC>
+            <CODE code=" " text="No secondary support"/>
+            <CODE code="a" text="Canvas"/>
+            <CODE code="b" text="Bristol board"/>
+            <CODE code="c" text="Cardboard/illustration board"/>
+            <CODE code="d" text="Glass"/>
+            <CODE code="e" text="Synthetic"/>
+            <CODE code="f" text="Skin"/>
+            <CODE code="g" text="Textile"/>
+            <CODE code="h" text="Metal"/>
+            <CODE code="i" text="Plastic"/>
+            <CODE code="l" text="Vinyl"/>
+            <CODE code="m" text="Mixed collection"/>
+            <CODE code="n" text="Vellum"/>
+            <CODE code="o" text="Paper"/>
+            <CODE code="p" text="Plaster"/>
+            <CODE code="q" text="Hardboard"/>
+            <CODE code="r" text="Porcelain"/>
+            <CODE code="s" text="Stone"/>
+            <CODE code="t" text="Wood"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="v" text="Leather"/>
+            <CODE code="w" text="Parchment"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+      </PHYSDESC>
+      <PHYSDESC types="m" datalength="23">
+         <COMMENT>Motion picture</COMMENT>
+         <OFFSET position="1" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Material designation</DESC>
+            <CODE code="c" text="Film cartridge"/>
+            <CODE code="f" text="Film cassette"/>
+            <CODE code="o" text="Film roll"/>
+            <CODE code="r" text="Film reel"/>
+            <CODE code="u" text="Unspecified"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="2" length="1" defaultvalue=" " display="Undefined" validator="UndefinedValidator">
+            <DESC>Undefined</DESC>
+            <CODE code=" " text="Undefined"/>
+            <CODE code="f" text="Facsimile" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="o" text="Original" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="r" text="Reproduction" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="u" text="Unknown" obsolete="true" obsoletewhen="1997"/>
+         </OFFSET>
+         <OFFSET position="3" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Color</DESC>
+            <CODE code="b" text="Black-and-white"/>
+            <CODE code="c" text="Multicolored"/>
+            <CODE code="h" text="Hand colored"/>
+            <CODE code="m" text="Mixed"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="4" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Presentation format</DESC>
+            <CODE code="a" text="Standard sound aperture (reduced frame)"/>
+            <CODE code="b" text="Nonanamorphic (wide-screen)"/>
+            <CODE code="c" text="3D"/>
+            <CODE code="d" text="Anamorphic (wide-screen)"/>
+            <CODE code="e" text="Other wide-screen format"/>
+            <CODE code="f" text="Standard silent aperture (full frame)"/>
+            <CODE code="n" text="Not applicable" obsolete="true" obsoletewhen="1983"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="5" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Sound on medium</DESC>
+            <CODE code=" " text="No sound (silent)"/>
+            <CODE code="a" text="Sound on medium"/>
+            <CODE code="b" text="Sound separate from medium"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="6" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Medium for sound</DESC>
+            <CODE code=" " text="No sound (silent)"/>
+            <CODE code="a" text="Optical sound track on motion picture film"/>
+            <CODE code="b" text="Magnetic sound track on motion picture film"/>
+            <CODE code="c" text="Magnetic audio tape in cartridge"/>
+            <CODE code="d" text="Sound disc"/>
+            <CODE code="e" text="Magnetic audio tape on reel"/>
+            <CODE code="f" text="Magnetic audio tape in cassette"/>
+            <CODE code="g" text="Optical and magnetic sound track on motion picture film"/>
+            <CODE code="h" text="Videotape"/>
+            <CODE code="i" text="Videodisc"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="7" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Dimensions</DESC>
+            <CODE code="a" text="Standard 8 mm."/>
+            <CODE code="b" text="Super 8 mm./single 8 mm."/>
+            <CODE code="c" text="9.5 mm."/>
+            <CODE code="d" text="16 mm."/>
+            <CODE code="e" text="28 mm."/>
+            <CODE code="f" text="35 mm."/>
+            <CODE code="g" text="70 mm."/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="8" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Channel configuration</DESC>
+            <CODE code="k" text="Mixed"/>
+            <CODE code="m" text="Monaural"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="q" text="Quadraphonic, multichannel, or surround"/>
+            <CODE code="s" text="Stereophonic"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="9" length="1" defaultvalue="n" display="Dropdown" validator="DropDownValidator">
+            <DESC>Production elements</DESC>
+            <CODE code="a" text="Workprint"/>
+            <CODE code="b" text="Trims"/>
+            <CODE code="c" text="Outtakes"/>
+            <CODE code="d" text="Rushes"/>
+            <CODE code="e" text="Mixing tracks"/>
+            <CODE code="f" text="Title bands/intertitle rolls"/>
+            <CODE code="g" text="Production rolls"/>
+            <CODE code="h" text="Other" obsolete="true" obsoletewhen="1988"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="10" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Positive/negative aspect</DESC>
+            <CODE code="a" text="Positive"/>
+            <CODE code="b" text="Negative"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="11" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Generation</DESC>
+            <CODE code="d" text="Duplicate"/>
+            <CODE code="e" text="Master"/>
+            <CODE code="o" text="Original"/>
+            <CODE code="r" text="Reference print/viewing copy"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="12" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Base of film</DESC>
+            <CODE code="a" text="Safety base, undetermined"/>
+            <CODE code="c" text="Safety base, acetate undetermined"/>
+            <CODE code="d" text="Safety base, diacetate"/>
+            <CODE code="p" text="Safety base, polyester"/>
+            <CODE code="r" text="Safety base, mixed"/>
+            <CODE code="t" text="Safety base, triacetate"/>
+            <CODE code="i" text="Nitrate base"/>
+            <CODE code="m" text="Mixed base (nitrate and safety)"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="13" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Refined categories</DESC>
+            <CODE code="a" text="3 layer color"/>
+            <CODE code="b" text="2 color, single strip"/>
+            <CODE code="c" text="Undetermined 2 color"/>
+            <CODE code="d" text="Undetermined 3 color"/>
+            <CODE code="e" text="3 strip color"/>
+            <CODE code="f" text="2 strip color"/>
+            <CODE code="g" text="Red strip"/>
+            <CODE code="h" text="Blue or green strip"/>
+            <CODE code="i" text="Cyan strip"/>
+            <CODE code="j" text="Magenta strip"/>
+            <CODE code="k" text="Yellow strip"/>
+            <CODE code="l" text="S E N 2"/>
+            <CODE code="m" text="S E N 3"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="p" text="Sepia tone"/>
+            <CODE code="q" text="Other tone"/>
+            <CODE code="r" text="Tint"/>
+            <CODE code="s" text="Tinted and toned"/>
+            <CODE code="t" text="Stencil color"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="v" text="Hand colored"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="14" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Kind of color stock</DESC>
+            <CODE code="a" text="Imbibition dye transfer prints"/>
+            <CODE code="b" text="Three layer stock"/>
+            <CODE code="c" text="Three layer stock, low fade"/>
+            <CODE code="d" text="Duplitized stock"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="15" length="1" defaultvalue="a" display="Dropdown" validator="DropDownValidator">
+            <DESC>Deterioration stage</DESC>
+            <CODE code="a" text="None apparent"/>
+            <CODE code="b" text="Nitrate: suspicious odor"/>
+            <CODE code="c" text="Nitrate: pungent odor"/>
+            <CODE code="d" text="Nitrate: brownish, discoloration, fading, dusty"/>
+            <CODE code="e" text="Nitrate: sticky"/>
+            <CODE code="f" text="Nitrate: frothy, bubbles, blisters"/>
+            <CODE code="g" text="Nitrate: congealed"/>
+            <CODE code="h" text="Nitrate: powder"/>
+            <CODE code="k" text="Non-nitrate: detectable deterioration (diacetate odor)"/>
+            <CODE code="l" text="Non-nitrate: advanced deterioration"/>
+            <CODE code="m" text="Non-nitrate: disaster"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="16" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Completeness</DESC>
+            <CODE code="c" text="Complete"/>
+            <CODE code="i" text="Incomplete"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="17" length="6" defaultvalue="||||||" display="Text" validator="DateCCYYMMValidator">
+            <DESC>Film inspection date</DESC>
+            <CODE code=" " text="Undefined"/>
+         </OFFSET>
+      </PHYSDESC>
+      <PHYSDESC types="o" datalength="2">
+         <COMMENT>Kit</COMMENT>
+         <OFFSET position="1" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Material designation</DESC>
+            <CODE code="u" text="Unspecified"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+      </PHYSDESC>
+      <PHYSDESC types="q" datalength="2">
+         <COMMENT>Notated music</COMMENT>
+         <OFFSET position="1" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Material designation</DESC>
+            <CODE code="u" text="Unspecified"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+      </PHYSDESC>
+      <PHYSDESC types="r" datalength="11">
+         <COMMENT>Remote-sensing image</COMMENT>
+         <OFFSET position="1" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Material designation</DESC>
+            <CODE code="u" text="Unspecified"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="2" length="1" defaultvalue=" " display="Undefined" validator="UndefinedValidator">
+            <DESC>Undefined</DESC>
+            <CODE code=" " text="Undefined"/>
+         </OFFSET>
+         <OFFSET position="3" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Altitude of sensor</DESC>
+            <CODE code="a" text="Surface"/>
+            <CODE code="b" text="Airborne"/>
+            <CODE code="c" text="Spaceborne"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="4" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Attitude of sensor</DESC>
+            <CODE code="a" text="Low oblique"/>
+            <CODE code="b" text="High oblique"/>
+            <CODE code="c" text="Vertical"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="5" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Cloud cover</DESC>
+            <CODE code="0" text="0-9%"/>
+            <CODE code="1" text="10-19%"/>
+            <CODE code="2" text="20-29%"/>
+            <CODE code="3" text="30-39%"/>
+            <CODE code="4" text="40-49%"/>
+            <CODE code="5" text="50-59%"/>
+            <CODE code="6" text="60-69%"/>
+            <CODE code="7" text="70-79%"/>
+            <CODE code="8" text="80-89%"/>
+            <CODE code="9" text="90-100%"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="6" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Platform const. type</DESC>
+            <CODE code="a" text="Balloon"/>
+            <CODE code="b" text="Aircraft--low altitude"/>
+            <CODE code="c" text="Aircraft--medium altitude"/>
+            <CODE code="d" text="Aircraft--high altitude"/>
+            <CODE code="e" text="Manned spacecraft"/>
+            <CODE code="f" text="Unmanned spacecraft"/>
+            <CODE code="g" text="Land-based remote-sensing device"/>
+            <CODE code="h" text="Water surface-based remote-sensing device"/>
+            <CODE code="i" text="Submersible remote-sensing device"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="7" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Platform use category</DESC>
+            <CODE code="a" text="Meteorological"/>
+            <CODE code="b" text="Surface observing"/>
+            <CODE code="c" text="Space observing"/>
+            <CODE code="m" text="Mixed uses"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="8" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Sensor type</DESC>
+            <CODE code="a" text="Active"/>
+            <CODE code="b" text="Passive"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="9" length="2" defaultvalue="uu" display="Dropdown" validator="DropDownValidator">
+            <DESC>Data type</DESC>
+            <CODE code="aa" text="Visible light"/>
+            <CODE code="da" text="Near infrared"/>
+            <CODE code="db" text="Middle infrared"/>
+            <CODE code="dc" text="Far infrared"/>
+            <CODE code="dd" text="Thermal infrared"/>
+            <CODE code="de" text="Shortwave infrared (SWIR)"/>
+            <CODE code="df" text="Reflective infrared"/>
+            <CODE code="dv" text="Combinations"/>
+            <CODE code="dz" text="Other infrared data "/>
+            <CODE code="ga" text="Sidelooking airborne radar (SLAR)"/>
+            <CODE code="gb" text="Synthetic aperture radar (SAR)-Single frequency"/>
+            <CODE code="gc" text="SAR-multi-frequency (multichannel)"/>
+            <CODE code="gd" text="SAR-like polarization"/>
+            <CODE code="ge" text="SAR-cross polarization"/>
+            <CODE code="gf" text="Infometric SAR"/>
+            <CODE code="gg" text="polarmetric SAR"/>
+            <CODE code="gu" text="Passive microwave mapping"/>
+            <CODE code="gz" text="Other microwave data"/>
+            <CODE code="ja" text="Far ultraviolet"/>
+            <CODE code="jb" text="Middle ultraviolet"/>
+            <CODE code="jc" text="Near ultraviolet"/>
+            <CODE code="jv" text="Ultraviolet combinations"/>
+            <CODE code="jz" text="Other ultraviolet data"/>
+            <CODE code="ma" text="Multi-spectral, multidata"/>
+            <CODE code="mb" text="Multi-temporal"/>
+            <CODE code="mm" text="Combination of various data types"/>
+            <CODE code="nn" text="Not applicable"/>
+            <CODE code="pa" text="Sonar--water depth"/>
+            <CODE code="pb" text="Sonar--bottom topography images, sidescan"/>
+            <CODE code="pc" text="Sonar--bottom topography, near surface"/>
+            <CODE code="pd" text="Sonar--bottom topography, near bottom"/>
+            <CODE code="pe" text="Seismic surveys"/>
+            <CODE code="pz" text="Other acoustical data"/>
+            <CODE code="ra" text="Gravity anomalies (general)"/>
+            <CODE code="rb" text="Free-air"/>
+            <CODE code="rc" text="Bouger"/>
+            <CODE code="rd" text="Isostatic"/>
+            <CODE code="sa" text="Magnetic field"/>
+            <CODE code="ta" text="radiometric surveys"/>
+            <CODE code="uu" text="Unknown"/>
+            <CODE code="zz" text="Other"/>
+            <CODE code="||" text="No attempt to code"/>
+         </OFFSET>
+      </PHYSDESC>
+      <PHYSDESC types="s" datalength="14">
+         <COMMENT>Sound recording</COMMENT>
+         <OFFSET position="1" length="1" defaultvalue="s" display="Dropdown" validator="DropDownValidator">
+            <DESC>Material designation</DESC>
+            <CODE code="c" text="Cylinder" obsolete="true" obsoletewhen="1981"/>
+            <CODE code="d" text="Sound disc"/>
+            <CODE code="e" text="Cylinder"/>
+            <CODE code="f" text="Sound-track film" obsolete="true" obsoletewhen="1981"/>
+            <CODE code="g" text="Sound cartridge"/>
+            <CODE code="i" text="Sound-track film"/>
+            <CODE code="q" text="Roll"/>
+            <CODE code="r" text="Roll" obsolete="true" obsoletewhen="1981"/>
+            <CODE code="s" text="Sound cassette"/>
+            <CODE code="t" text="Sound-tape reel"/>
+            <CODE code="u" text="Unspecified"/>
+            <CODE code="w" text="Wire recording"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="2" length="1" defaultvalue=" " display="Undefined" validator="UndefinedValidator">
+            <DESC>Undefined</DESC>
+            <CODE code=" " text="Undefined"/>
+            <CODE code="f" text="Facsimile" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="o" text="Original" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="r" text="Reproduction" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="u" text="Unknown" obsolete="true" obsoletewhen="1997"/>
+         </OFFSET>
+         <OFFSET position="3" length="1" defaultvalue="l" display="Dropdown" validator="DropDownValidator">
+            <DESC>Speed</DESC>
+            <CODE code="a" text="16 rpm"/>
+            <CODE code="b" text="33 1/3 rpm"/>
+            <CODE code="c" text="45 rpm"/>
+            <CODE code="d" text="78 rpm"/>
+            <CODE code="e" text="8 rpm"/>
+            <CODE code="f" text="1.4 m. per sec."/>
+            <CODE code="h" text="120 rpm"/>
+            <CODE code="i" text="160 rpm"/>
+            <CODE code="k" text="15/16 ips"/>
+            <CODE code="l" text="1 7/8 ips"/>
+            <CODE code="m" text="3 3/4 ips"/>
+            <CODE code="o" text="7 1/2 ips"/>
+            <CODE code="p" text="15 ips"/>
+            <CODE code="r" text="30 ips"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="4" length="1" defaultvalue="m" display="Dropdown" validator="DropDownValidator">
+            <DESC>Channel configuration</DESC>
+            <CODE code="a" text="Acoustic" obsolete="true" obsoletewhen="1987"/>
+            <CODE code="f" text="Monaural digital" obsolete="true" obsoletewhen="1987"/>
+            <CODE code="g" text="Quadraphonic digital" obsolete="true" obsoletewhen="1987"/>
+            <CODE code="j" text="Steroephonic digital" obsolete="true" obsoletewhen="1987"/>
+            <CODE code="k" text="Other digital" obsolete="true" obsoletewhen="1987"/>
+            <CODE code="m" text="Monaural"/>
+            <CODE code="o" text="Other electric" obsolete="true" obsoletewhen="1987"/>
+            <CODE code="q" text="Quadraphonic"/>
+            <CODE code="s" text="Stereophonic"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="5" length="1" defaultvalue="n" display="Dropdown" validator="DropDownValidator">
+            <DESC>Groove width</DESC>
+            <CODE code="m" text="Microgroove/fine"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="s" text="Coarse/standard"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="6" length="1" defaultvalue="j" display="Dropdown" validator="DropDownValidator">
+            <DESC>Dimensions</DESC>
+            <CODE code="a" text="3 in."/>
+            <CODE code="b" text="5 in."/>
+            <CODE code="c" text="7 in."/>
+            <CODE code="d" text="10 in."/>
+            <CODE code="e" text="12 in."/>
+            <CODE code="f" text="16 in."/>
+            <CODE code="g" text="4 3/4 in. or 12 cm."/>
+            <CODE code="j" text="3 7/8 x 2 1/2 in."/>
+            <CODE code="o" text="5 1/4 x 3 7/8 in."/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="s" text="2 3/4 x 4 in."/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="7" length="1" defaultvalue="l" display="Dropdown" validator="DropDownValidator">
+            <DESC>Tape width</DESC>
+            <CODE code="a" text="1/4 in." obsolete="true" obsoletewhen="1981"/>
+            <CODE code="b" text="1/2 in." obsolete="true" obsoletewhen="1981"/>
+            <CODE code="c" text="1 in." obsolete="true" obsoletewhen="1981"/>
+            <CODE code="l" text="1/8 in."/>
+            <CODE code="m" text="1/4 in."/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="o" text="1/2 in."/>
+            <CODE code="p" text="1 in."/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="8" length="1" defaultvalue="c" display="Dropdown" validator="DropDownValidator">
+            <DESC>Tape configuration</DESC>
+            <CODE code="a" text="Full (1) track"/>
+            <CODE code="b" text="Half (2) track"/>
+            <CODE code="c" text="Quarter (4) track"/>
+            <CODE code="d" text="Eight track"/>
+            <CODE code="e" text="Twelve track"/>
+            <CODE code="f" text="Sixteen track"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="9" length="1" defaultvalue="m" display="Dropdown" validator="DropDownValidator">
+            <DESC>Kind of disc</DESC>
+            <CODE code="a" text="Master tape"/>
+            <CODE code="b" text="Tape duplication master"/>
+            <CODE code="d" text="Disc master (negative)"/>
+            <CODE code="i" text="Instantaneous (recorded on the spot)"/>
+            <CODE code="m" text="Mass produced"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="r" text="Mother (positive)"/>
+            <CODE code="s" text="Stamper (negative)"/>
+            <CODE code="t" text="Test pressing"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="10" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Kind of material</DESC>
+            <CODE code="a" text="Lacquer coating"/>
+            <CODE code="b" text="Cellulose nitrate"/>
+            <CODE code="c" text="Acetate tape with ferrous oxide"/>
+            <CODE code="g" text="Glass with lacquer"/>
+            <CODE code="i" text="Aluminum with lacquer"/>
+            <CODE code="l" text="Metal"/>
+            <CODE code="m" text="Plastic with metal"/>
+            <CODE code="n" text="Not applicable" obsolete="true" obsoletewhen="2002"/>
+            <CODE code="p" text="Plastic"/>
+            <CODE code="r" text="Paper with lacquer or ferrous oxide"/>
+            <CODE code="s" text="Shellac"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="w" text="Wax"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="11" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Kind of cutting</DESC>
+            <CODE code="h" text="Hill-and-dale cutting"/>
+            <CODE code="l" text="Lateral or combined cutting"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="12" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Special characteristics</DESC>
+            <CODE code="a" text="NAB standard"/>
+            <CODE code="b" text="CCIR standard"/>
+            <CODE code="c" text="Dolby-B encoded"/>
+            <CODE code="d" text="dbx encoded"/>
+            <CODE code="e" text="Digital recording"/>
+            <CODE code="f" text="Dolby-A encoded"/>
+            <CODE code="g" text="Dolby-C encoded"/>
+            <CODE code="h" text="CX encoded"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="13" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Storage technique</DESC>
+            <CODE code="a" text="Acoustical capture, direct storage"/>
+            <CODE code="b" text="Direct storage, not acoustical"/>
+            <CODE code="d" text="Digital storage"/>
+            <CODE code="e" text="Analog electrical storage"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+      </PHYSDESC>
+      <PHYSDESC types="t" datalength="2">
+         <COMMENT>Text</COMMENT>
+         <OFFSET position="1" length="1" defaultvalue="b" display="Dropdown" validator="DropDownValidator">
+            <DESC>Material designation</DESC>
+            <CODE code="a" text="Regular print"/>
+            <CODE code="b" text="Large print"/>
+            <CODE code="c" text="Braille"/>
+            <CODE code="d" text="Text in looseleaf binder"/>
+            <CODE code="u" text="Unspecified"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+      </PHYSDESC>
+      <PHYSDESC types="v" datalength="9">
+         <COMMENT>Videorecording</COMMENT>
+         <OFFSET position="1" length="1" defaultvalue="f" display="Dropdown" validator="DropDownValidator">
+            <DESC>Material designation</DESC>
+            <CODE code=" " text="Not applicable" obsolete="true" obsoletewhen="1980"/>
+            <CODE code="c" text="Videocartridge"/>
+            <CODE code="d" text="Videodisc"/>
+            <CODE code="f" text="Videocassette"/>
+            <CODE code="n" text="Not applicable" obsolete="true" obsoletewhen="1981"/>
+            <CODE code="r" text="Videoreel"/>
+            <CODE code="u" text="Unspecified"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="2" length="1" defaultvalue=" " display="Undefined" validator="UndefinedValidator">
+            <DESC>Undefined</DESC>
+            <CODE code=" " text="Undefined"/>
+            <CODE code="f" text="Facsimile" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="o" text="Original" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="r" text="Reproduction" obsolete="true" obsoletewhen="1997"/>
+            <CODE code="u" text="Unknown" obsolete="true" obsoletewhen="1997"/>
+         </OFFSET>
+         <OFFSET position="3" length="1" defaultvalue="c" display="Dropdown" validator="DropDownValidator">
+            <DESC>Color</DESC>
+            <CODE code="a" text="One color"/>
+            <CODE code="b" text="Black-and-white"/>
+            <CODE code="c" text="Multicolored"/>
+            <CODE code="m" text="Mixed"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="4" length="1" defaultvalue="b" display="Dropdown" validator="DropDownValidator">
+            <DESC>Videorecording format</DESC>
+            <CODE code=" " text="Not applicable" obsolete="true" obsoletewhen="1980"/>
+            <CODE code="a" text="Beta (1/2 in., videocassette)"/>
+            <CODE code="b" text="VHS (1/2 in., videocassette)"/>
+            <CODE code="c" text="U-matic (3/4 in., videocassette)"/>
+            <CODE code="d" text="EIAJ (1/2 in. reel)"/>
+            <CODE code="e" text="Type C (1 in., reel)"/>
+            <CODE code="f" text="Quadruplex (1 in. or 2 in., reel)"/>
+            <CODE code="g" text="Laserdisc"/>
+            <CODE code="h" text="CED (Capacitance Electronic Disc) videodisc"/>
+            <CODE code="i" text="Betacam (1/2 in., videocassette)"/>
+            <CODE code="j" text="Betacam SP (1/2 in., videocassette)"/>
+            <CODE code="k" text="Super-VHS (1/2 in., videocassette)"/>
+            <CODE code="m" text="M-II (1/2 in., videocassette)"/>
+            <CODE code="n" text="Not applicable" obsolete="true" obsoletewhen="1981"/>
+            <CODE code="o" text="D-2 (3/4 in., videocassette)"/>
+            <CODE code="p" text="8 mm."/>
+            <CODE code="q" text="Hi-8 mm."/>
+            <CODE code="s" text="Blu-ray disc"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="v" text="DVD"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="5" length="1" defaultvalue="a" display="Dropdown" validator="DropDownValidator">
+            <DESC>Sound on medium</DESC>
+            <CODE code=" " text="No sound (silent)"/>
+            <CODE code="a" text="Sound on medium"/>
+            <CODE code="b" text="Sound separate from medium"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="6" length="1" defaultvalue="h" display="Dropdown" validator="DropDownValidator">
+            <DESC>Medium for sound</DESC>
+            <CODE code=" " text="No sound (silent)"/>
+            <CODE code="a" text="Optical sound track on motion picture film"/>
+            <CODE code="b" text="Magnetic sound track on motion picture film"/>
+            <CODE code="c" text="Magnetic audio tape in cartridge"/>
+            <CODE code="d" text="Sound disc"/>
+            <CODE code="e" text="Magnetic audio tape on reel"/>
+            <CODE code="f" text="Magnetic audio tape in cassette"/>
+            <CODE code="g" text="Optical and magnetic sound track on motion picture film"/>
+            <CODE code="h" text="Videotape"/>
+            <CODE code="i" text="Videodisc"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="7" length="1" defaultvalue="o" display="Dropdown" validator="DropDownValidator">
+            <DESC>Dimensions</DESC>
+            <CODE code="a" text="8 mm."/>
+            <CODE code="m" text="1/4 in."/>
+            <CODE code="n" text="1/4 in." obsolete="true" obsoletewhen="1981"/>
+            <CODE code="o" text="1/2 in."/>
+            <CODE code="p" text="1 in."/>
+            <CODE code="q" text="2 in."/>
+            <CODE code="r" text="3/4 in."/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+         <OFFSET position="8" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Channel configuration</DESC>
+            <CODE code="k" text="Mixed"/>
+            <CODE code="m" text="Monaural"/>
+            <CODE code="n" text="Not applicable"/>
+            <CODE code="q" text="Quadraphonic, multichannel, or surround"/>
+            <CODE code="s" text="Stereophonic"/>
+            <CODE code="u" text="Unknown"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+      </PHYSDESC>
+      <PHYSDESC types="z" datalength="2">
+         <OFFSET position="1" length="1" defaultvalue="u" display="Dropdown" validator="DropDownValidator">
+            <DESC>Material designation</DESC>
+            <CODE code="m" text="Multiple physical forms"/>
+            <CODE code="u" text="Unspecified"/>
+            <CODE code="z" text="Other"/>
+            <CODE code="|" text="No attempt to code"/>
+         </OFFSET>
+      </PHYSDESC>
+      <TAG tagnumber="010" nonrepeatable="true">
+         <NAME>Library of Congress Control Number</NAME>
+         <SHORTNAME>Library of Congress Control Number</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="LC control number"/>
+            <ENTRY code="b" text="NUCMC control number"/>
+            <ENTRY code="z" text="Canceled or invalid LC control number"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="014">
+         <NAME>Linkage Number</NAME>
+         <SHORTNAME>Linkage Number</SHORTNAME>
+         <IND position="0">
+            <NAME>Type of linkage number</NAME>
+            <ENTRY code="0" text="Holdings record number" defval="true"/>
+            <ENTRY code="1" text="Bibliographic record number"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Linkage number"/>
+            <ENTRY code="b" nonrepeatable="true" text="Source of number"/>
+            <ENTRY code="z" text="Canceled or invalid linkage number"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="016">
+         <NAME>National Bibliographic Agency Control Number</NAME>
+         <SHORTNAME>National Bibliographic Agency Control Number</SHORTNAME>
+         <IND position="0">
+            <NAME>National bibliographic agency</NAME>
+            <ENTRY code=" " text="Library and Archives Canada" defval="true"/>
+            <ENTRY code="7" text="Agency identified in subfield $2"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Record control number"/>
+            <ENTRY code="z" text="Canceled or invalid control number"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="017">
+         <NAME>Copyright or Legal Deposit Number</NAME>
+         <SHORTNAME>Copyright or Legal Deposit Number</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Display constant controller</NAME>
+            <ENTRY code=" " text="Copyright or legal deposit number" defval="true"/>
+            <ENTRY code="8" text="No display constant controller generated"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Copyright or legal deposit number"/>
+            <ENTRY code="b" nonrepeatable="true" text="Assigning agency"/>
+            <ENTRY code="d" nonrepeatable="true" text="Date"/>
+            <ENTRY code="i" nonrepeatable="true" text="Display text"/>
+            <ENTRY code="z" text="Canceled/invalid copyright or legal deposit number"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="020">
+         <NAME>International Standard Book Number</NAME>
+         <SHORTNAME>International Standard Book Number</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="International Standard Book Number"/>
+            <ENTRY code="c" nonrepeatable="true" text="Terms of availability"/>
+            <ENTRY code="z" text="Canceled/invalid ISBN"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="022">
+         <NAME>International Standard Serial Number</NAME>
+         <SHORTNAME>International Standard Serial Number</SHORTNAME>
+         <IND position="0">
+            <NAME>Level of international interest</NAME>
+            <ENTRY code=" " text="No level specified" defval="true"/>
+            <ENTRY code="0" text="Serial of international interest"/>
+            <ENTRY code="1" text="Serial not of international interest"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="International Standard Serial Number"/>
+            <ENTRY code="l" nonrepeatable="true" text="ISSN-L"/>
+            <ENTRY code="m" text="Canceled ISSN-L"/>
+            <ENTRY code="y" text="Incorrect ISSN"/>
+            <ENTRY code="z" text="Canceled ISSN"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="024">
+         <NAME>Other Standard Identifier</NAME>
+         <SHORTNAME>Other Standard Identifier</SHORTNAME>
+         <IND position="0">
+            <NAME>Type of standard number or code</NAME>
+            <ENTRY code="0" text="International Standard Recording Code (ISRC)" defval="true"/>
+            <ENTRY code="1" text="Universal Product Code (UPC)"/>
+            <ENTRY code="2" text="International Standard Music Number (ISMN)"/>
+            <ENTRY code="3" text="International Article Number (EAN)"/>
+            <ENTRY code="4" text="Serial Item and Contribution Identifier (SICI)"/>
+            <ENTRY code="7" text="Source specified in subfield $2"/>
+            <ENTRY code="8" text="Unspecified type of standard number or code"/>
+         </IND>
+         <IND position="1">
+            <NAME>Difference indicator</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="0" text="No difference"/>
+            <ENTRY code="1" text="Difference"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Standard number or code"/>
+            <ENTRY code="c" nonrepeatable="true" text="Terms of availability"/>
+            <ENTRY code="d" nonrepeatable="true" text="Additional codes following the standard number or code"/>
+            <ENTRY code="z" text="Canceled/invalid standard number or code"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source of number or code"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="027">
+         <NAME>Standard Technical Report Number</NAME>
+         <SHORTNAME>Standard Technical Report Number</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Standard Technical Report Number"/>
+            <ENTRY code="z" text="Canceled/invalid STRN"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="030" nonrepeatable="true">
+         <NAME>Coden Designation</NAME>
+         <SHORTNAME>Coden Designation</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="CODEN"/>
+            <ENTRY code="z" text="Canceled/invalid CODEN"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="035">
+         <NAME>System Control Number</NAME>
+         <SHORTNAME>System Control Number</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="System control number"/>
+            <ENTRY code="z" text="Canceled or invalid control number"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="040" nonrepeatable="true">
+         <NAME>Record Source</NAME>
+         <SHORTNAME>Record Source</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Original cataloging agency"/>
+            <ENTRY code="b" nonrepeatable="true" text="Language of cataloging"/>
+            <ENTRY code="c" nonrepeatable="true" text="Transcribing agency"/>
+            <ENTRY code="d" text="Modifying agency"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="066" nonrepeatable="true">
+         <NAME>Character Sets Present</NAME>
+         <SHORTNAME>Character Sets Present</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Primary G0 character set"/>
+            <ENTRY code="b" nonrepeatable="true" text="Primary G1 character set"/>
+            <ENTRY code="c" text="Alternate G0 or G1 character set"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="337">
+         <NAME>Media Type</NAME>
+         <SHORTNAME>Media Type</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Media type term"/>
+            <ENTRY code="b" text="Media type code"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="338">
+         <NAME>Carrier Type</NAME>
+         <SHORTNAME>Carrier Type</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Carrier type term"/>
+            <ENTRY code="b" text="Carrier type code"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="506">
+         <NAME>Restrictions On Access Note</NAME>
+         <SHORTNAME>Restrictions On Access Note</SHORTNAME>
+         <IND position="0">
+            <NAME>Restriction</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="0" text="No restrictions"/>
+            <ENTRY code="1" text="Restrictions apply"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Terms governing access"/>
+            <ENTRY code="b" text="Jurisdiction"/>
+            <ENTRY code="c" text="Physical access provisions"/>
+            <ENTRY code="d" text="Authorized users"/>
+            <ENTRY code="e" text="Authorization"/>
+            <ENTRY code="f" text="Standardized terminology for access restriction"/>
+            <ENTRY code="u" text="Uniform Resource Identifier"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source of term"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="5" nonrepeatable="true" text="Institution to which field applies"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="538">
+         <NAME>System Details Note</NAME>
+         <SHORTNAME>System Details Note</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="System details note"/>
+            <ENTRY code="i" nonrepeatable="true" text="Display text"/>
+            <ENTRY code="u" text="Uniform Resource Identifier"/>
+            <ENTRY code="3" nonrepeatable="true" text="Material specified"/>
+            <ENTRY code="5" text="Institution to which field applies"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="541">
+         <NAME>Immediate Source of Acquisition Note</NAME>
+         <SHORTNAME>Immediate Source of Acquisition Note</SHORTNAME>
+         <IND position="0">
+            <NAME>Privacy</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="0" text="Private"/>
+            <ENTRY code="1" text="Not private"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Source of acquisition"/>
+            <ENTRY code="b" nonrepeatable="true" text="Address"/>
+            <ENTRY code="c" nonrepeatable="true" text="Method of acquisition"/>
+            <ENTRY code="d" nonrepeatable="true" text="Date of acquisition"/>
+            <ENTRY code="e" nonrepeatable="true" text="Accession number"/>
+            <ENTRY code="f" nonrepeatable="true" text="Owner"/>
+            <ENTRY code="h" nonrepeatable="true" text="Purchase price"/>
+            <ENTRY code="n" text="Extent"/>
+            <ENTRY code="o" text="Type of unit"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="5" nonrepeatable="true" text="Institution to which field applies"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="561">
+         <NAME>Ownership And Custodial History</NAME>
+         <SHORTNAME>Ownership And Custodial History</SHORTNAME>
+         <IND position="0">
+            <NAME>Privacy</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="0" text="Private"/>
+            <ENTRY code="1" text="Not private"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="History"/>
+            <ENTRY code="b" obsolete="true" obsoletewhen="1992" nonrepeatable="true" text="Time of collation"/>
+            <ENTRY code="0" text="Uniform Resource Identifier"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="5" nonrepeatable="true" text="Institution to which field applies"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="562">
+         <NAME>Copy And Version Identification Note</NAME>
+         <SHORTNAME>Copy And Version Identification Note</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Identifying markings"/>
+            <ENTRY code="b" text="Copy identification"/>
+            <ENTRY code="c" text="Version identification"/>
+            <ENTRY code="d" text="Presentation format"/>
+            <ENTRY code="e" text="Number of copies"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="5" nonrepeatable="true" text="Institution to which field applies"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="563">
+         <NAME>Binding Information</NAME>
+         <SHORTNAME>Binding Information</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Binding note"/>
+            <ENTRY code="u" text="Uniform Resource Identifier"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="5" nonrepeatable="true" text="Institution to which field applies"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="583">
+         <NAME>Action Note</NAME>
+         <SHORTNAME>Action Note</SHORTNAME>
+         <IND position="0">
+            <NAME>Privacy</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="0" text="Private"/>
+            <ENTRY code="1" text="Not private"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Action"/>
+            <ENTRY code="b" text="Action identification"/>
+            <ENTRY code="c" text="Time/date of action"/>
+            <ENTRY code="d" text="Action interval"/>
+            <ENTRY code="e" text="Contingency for action"/>
+            <ENTRY code="f" text="Authorization"/>
+            <ENTRY code="h" text="Jurisdiction"/>
+            <ENTRY code="i" text="Method of action"/>
+            <ENTRY code="j" text="Site of action"/>
+            <ENTRY code="k" text="Action agent"/>
+            <ENTRY code="l" text="Status"/>
+            <ENTRY code="n" text="Extent"/>
+            <ENTRY code="o" text="Type of unit"/>
+            <ENTRY code="u" text="Uniform Resource Identifier"/>
+            <ENTRY code="x" text="Nonpublic note"/>
+            <ENTRY code="z" text="Public note"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source of term"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="5" nonrepeatable="true" text="Institution to which field applies"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="841" nonrepeatable="true">
+         <NAME>Holdings Coded Data Values</NAME>
+         <SHORTNAME>Holdings Coded Data Values</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB/>
+      </TAG>
+      <TAG tagnumber="842" nonrepeatable="true">
+         <NAME>Textual Physical Form Designator</NAME>
+         <SHORTNAME>Textual Physical Form Designator</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="6" nonrepeatable="true" defval="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="843">
+         <NAME>Reproduction Note</NAME>
+         <SHORTNAME>Reproduction Note</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Type of reproduction"/>
+            <ENTRY code="b" text="Place of reproduction"/>
+            <ENTRY code="c" text="Agency responsible for reproduction"/>
+            <ENTRY code="d" nonrepeatable="true" text="Date of reproduction"/>
+            <ENTRY code="e" nonrepeatable="true" text="Physical description of reproduction"/>
+            <ENTRY code="f" text="Series statement of reproduction"/>
+            <ENTRY code="m" text="Dates of publication and/or sequential designation of issues reproduced"/>
+            <ENTRY code="n" text="Note about reproduction"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="5" text="Institution to which field applies"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="7" nonrepeatable="true" text="Fixed-length data elements of reproduction"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="844" nonrepeatable="true">
+         <NAME>Name of Unit</NAME>
+         <SHORTNAME>Name of Unit</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Name of unit"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="845">
+         <NAME>Terms Governing Use And Reproduction Note</NAME>
+         <SHORTNAME>Terms Governing Use And Reproduction Note</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Terms governing use and reproduction"/>
+            <ENTRY code="b" nonrepeatable="true" text="Jurisdiction"/>
+            <ENTRY code="c" nonrepeatable="true" text="Authorization"/>
+            <ENTRY code="d" nonrepeatable="true" text="Authorized users"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="5" nonrepeatable="true" text="Institution to which field applies"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="852">
+         <NAME>Location</NAME>
+         <SHORTNAME>Location</SHORTNAME>
+         <IND position="0">
+            <NAME>Shelving scheme</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="0" text="Library of Congress classification"/>
+            <ENTRY code="1" text="Dewey Decimal classification"/>
+            <ENTRY code="2" text="National Library of Medicine classification"/>
+            <ENTRY code="3" text="Superintendent of Documents classification"/>
+            <ENTRY code="4" text="Shelving control number"/>
+            <ENTRY code="5" text="Title"/>
+            <ENTRY code="6" text="Shelved separately"/>
+            <ENTRY code="7" text="Source specified in subfield $2"/>
+            <ENTRY code="8" text="Other scheme"/>
+         </IND>
+         <IND position="1">
+            <NAME>Shelving order</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="0" text="Not enumeration"/>
+            <ENTRY code="1" text="Primary enumeration"/>
+            <ENTRY code="2" text="Alternative enumeration"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Location"/>
+            <ENTRY code="b" text="Sublocation or collection"/>
+            <ENTRY code="c" text="Shelving location"/>
+            <ENTRY code="d" text="Former shelving location"/>
+            <ENTRY code="e" text="Address"/>
+            <ENTRY code="f" text="Coded location qualifier"/>
+            <ENTRY code="g" text="Non-coded location qualifier"/>
+            <ENTRY code="h" nonrepeatable="true" text="Classification part"/>
+            <ENTRY code="i" text="Item part"/>
+            <ENTRY code="j" nonrepeatable="true" text="Shelving control number"/>
+            <ENTRY code="k" text="Call number prefix"/>
+            <ENTRY code="l" nonrepeatable="true" text="Shelving form of title"/>
+            <ENTRY code="m" text="Call number suffix"/>
+            <ENTRY code="n" nonrepeatable="true" text="Country code"/>
+            <ENTRY code="p" nonrepeatable="true" text="Piece designation"/>
+            <ENTRY code="q" nonrepeatable="true" text="Piece physical condition"/>
+            <ENTRY code="s" text="Copyright article-fee code"/>
+            <ENTRY code="t" nonrepeatable="true" text="Copy number"/>
+            <ENTRY code="u" text="Uniform Resource Identifier"/>
+            <ENTRY code="x" text="Nonpublic note"/>
+            <ENTRY code="z" text="Public note"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source of classification or shelving scheme"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="856">
+         <NAME>Electronic Location And Access</NAME>
+         <SHORTNAME>Electronic Location And Access</SHORTNAME>
+         <IND position="0">
+            <NAME>Access method</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="0" text="Email"/>
+            <ENTRY code="1" text="FTP"/>
+            <ENTRY code="2" text="Remote login (Telnet)"/>
+            <ENTRY code="3" text="Dial-up"/>
+            <ENTRY code="4" text="HTTP"/>
+            <ENTRY code="7" text="Method specified in subfield $2"/>
+         </IND>
+         <IND position="1">
+            <NAME>Relationship</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="0" text="Resource"/>
+            <ENTRY code="1" text="Version of resource"/>
+            <ENTRY code="2" text="Related resource"/>
+            <ENTRY code="8" text="No display constant generated"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" defval="true" text="Host name"/>
+            <ENTRY code="b" text="Access number"/>
+            <ENTRY code="c" text="Compression information"/>
+            <ENTRY code="d" text="Path"/>
+            <ENTRY code="f" text="Electronic name"/>
+            <ENTRY code="g" obsolete="true" obsoletewhen="2000" text="Uniform Resource Name"/>
+            <ENTRY code="h" nonrepeatable="true" text="Processor of request"/>
+            <ENTRY code="i" text="Instruction"/>
+            <ENTRY code="j" nonrepeatable="true" text="Bits per second"/>
+            <ENTRY code="k" nonrepeatable="true" text="Password"/>
+            <ENTRY code="l" nonrepeatable="true" text="Logon"/>
+            <ENTRY code="m" text="Contact for access assistance"/>
+            <ENTRY code="n" nonrepeatable="true" text="Name of location of host"/>
+            <ENTRY code="o" nonrepeatable="true" text="Operating system"/>
+            <ENTRY code="p" nonrepeatable="true" text="Port"/>
+            <ENTRY code="q" nonrepeatable="true" text="Electronic format type"/>
+            <ENTRY code="r" nonrepeatable="true" text="Settings"/>
+            <ENTRY code="s" text="File size"/>
+            <ENTRY code="t" text="Terminal emulation"/>
+            <ENTRY code="u" text="Uniform Resource Identifier"/>
+            <ENTRY code="v" text="Hours access method available"/>
+            <ENTRY code="w" text="Record control number"/>
+            <ENTRY code="x" text="Nonpublic note"/>
+            <ENTRY code="y" text="Link text"/>
+            <ENTRY code="z" text="Public note"/>
+            <ENTRY code="2" nonrepeatable="true" text="Access method"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="853">
+         <NAME>Captions And Pattern--Basic Bibliographic Unit</NAME>
+         <SHORTNAME>Captions And Pattern--Basic Bibliographic Unit</SHORTNAME>
+         <IND position="0">
+            <NAME>Compressibility and expandability</NAME>
+            <ENTRY code="0" text="Cannot compress or expand" defval="true"/>
+            <ENTRY code="1" text="Can compress but not expand"/>
+            <ENTRY code="2" text="Can compress or expand"/>
+            <ENTRY code="3" text="Unknown"/>
+         </IND>
+         <IND position="1">
+            <NAME>Caption evaluation</NAME>
+            <ENTRY code="0" text="Captions verified; all levels present" defval="true"/>
+            <ENTRY code="1" text="Captions verified; all levels may not be present"/>
+            <ENTRY code="2" text="Captions unverified; all levels present"/>
+            <ENTRY code="3" text="Captions unverified; all levels may not be present"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" text="First level of enumeration"/>
+            <ENTRY code="b" nonrepeatable="true" text="Second level of enumeration"/>
+            <ENTRY code="c" nonrepeatable="true" text="Third level of enumeration"/>
+            <ENTRY code="d" nonrepeatable="true" text="Fourth level of enumeration"/>
+            <ENTRY code="e" nonrepeatable="true" text="Fifth level of enumeration"/>
+            <ENTRY code="f" nonrepeatable="true" text="Sixth level of enumeration"/>
+            <ENTRY code="g" nonrepeatable="true" text="Alternative numbering scheme, first level of enumeration"/>
+            <ENTRY code="h" nonrepeatable="true" text="Alternative numbering scheme, second level of enumeration"/>
+            <ENTRY code="i" nonrepeatable="true" text="First level of chronology"/>
+            <ENTRY code="j" nonrepeatable="true" text="Second level of chronology"/>
+            <ENTRY code="k" nonrepeatable="true" text="Third level of chronology"/>
+            <ENTRY code="l" nonrepeatable="true" text="Fourth level of chronology"/>
+            <ENTRY code="m" nonrepeatable="true" text="Alternative numbering scheme, chronology"/>
+            <ENTRY code="n" nonrepeatable="true" text="Pattern note"/>
+            <ENTRY code="o" text="Type of unit"/>
+            <ENTRY code="p" nonrepeatable="true" text="Number of pieces per issuance"/>
+            <ENTRY code="t" nonrepeatable="true" text="Copy"/>
+            <ENTRY code="u" text="Bibliographic units per next higher level"/>
+            <ENTRY code="v" text="Numbering continuity"/>
+            <ENTRY code="w" nonrepeatable="true" text="Frequency"/>
+            <ENTRY code="x" nonrepeatable="true" text="Calendar change"/>
+            <ENTRY code="y" text="Regularity pattern"/>
+            <ENTRY code="z" text="Numbering scheme"/>
+            <ENTRY code="2" text="Source of caption abbreviation"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="854">
+         <NAME>Captions And Pattern--Supplementary Material</NAME>
+         <SHORTNAME>Captions And Pattern--Supplementary Material</SHORTNAME>
+         <IND position="0">
+            <NAME>Compressibility and expandability</NAME>
+            <ENTRY code="0" text="Cannot compress or expand" defval="true"/>
+            <ENTRY code="1" text="Can compress but not expand"/>
+            <ENTRY code="2" text="Can compress or expand"/>
+            <ENTRY code="3" text="Unknown"/>
+         </IND>
+         <IND position="1">
+            <NAME>Caption evaluation</NAME>
+            <ENTRY code="0" text="Captions verified; all levels present" defval="true"/>
+            <ENTRY code="1" text="Captions verified; all levels may not be present"/>
+            <ENTRY code="2" text="Captions unverified; all levels present"/>
+            <ENTRY code="3" text="Captions unverified; all levels may not be present"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" text="First level of enumeration"/>
+            <ENTRY code="b" nonrepeatable="true" text="Second level of enumeration"/>
+            <ENTRY code="c" nonrepeatable="true" text="Third level of enumeration"/>
+            <ENTRY code="d" nonrepeatable="true" text="Fourth level of enumeration"/>
+            <ENTRY code="e" nonrepeatable="true" text="Fifth level of enumeration"/>
+            <ENTRY code="f" nonrepeatable="true" text="Sixth level of enumeration"/>
+            <ENTRY code="g" nonrepeatable="true" text="Alternative numbering scheme, first level of enumeration"/>
+            <ENTRY code="h" nonrepeatable="true" text="Alternative numbering scheme, second level of enumeration"/>
+            <ENTRY code="i" nonrepeatable="true" text="First level of chronology"/>
+            <ENTRY code="j" nonrepeatable="true" text="Second level of chronology"/>
+            <ENTRY code="k" nonrepeatable="true" text="Third level of chronology"/>
+            <ENTRY code="l" nonrepeatable="true" text="Fourth level of chronology"/>
+            <ENTRY code="m" nonrepeatable="true" text="Alternative numbering scheme, chronology"/>
+            <ENTRY code="n" nonrepeatable="true" text="Pattern note"/>
+            <ENTRY code="o" text="Type of unit"/>
+            <ENTRY code="p" nonrepeatable="true" text="Number of pieces per issuance"/>
+            <ENTRY code="t" nonrepeatable="true" text="Copy"/>
+            <ENTRY code="u" text="Bibliographic units per next higher level"/>
+            <ENTRY code="v" text="Numbering continuity"/>
+            <ENTRY code="w" nonrepeatable="true" text="Frequency"/>
+            <ENTRY code="x" nonrepeatable="true" text="Calendar change"/>
+            <ENTRY code="y" text="Regularity pattern"/>
+            <ENTRY code="z" text="Numbering scheme"/>
+            <ENTRY code="2" text="Source of caption abbreviation"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="855">
+         <NAME>Captions And Pattern--Indexes</NAME>
+         <SHORTNAME>Captions And Pattern--Indexes</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" text="First level of enumeration"/>
+            <ENTRY code="b" nonrepeatable="true" text="Second level of enumeration"/>
+            <ENTRY code="c" nonrepeatable="true" text="Third level of enumeration"/>
+            <ENTRY code="d" nonrepeatable="true" text="Fourth level of enumeration"/>
+            <ENTRY code="e" nonrepeatable="true" text="Fifth level of enumeration"/>
+            <ENTRY code="f" nonrepeatable="true" text="Sixth level of enumeration"/>
+            <ENTRY code="g" nonrepeatable="true" text="Alternative numbering scheme, first level of enumeration"/>
+            <ENTRY code="h" nonrepeatable="true" text="Alternative numbering scheme, second level of enumeration"/>
+            <ENTRY code="i" nonrepeatable="true" text="First level of chronology"/>
+            <ENTRY code="j" nonrepeatable="true" text="Second level of chronology"/>
+            <ENTRY code="k" nonrepeatable="true" text="Third level of chronology"/>
+            <ENTRY code="l" nonrepeatable="true" text="Fourth level of chronology"/>
+            <ENTRY code="m" nonrepeatable="true" text="Alternative numbering scheme, chronology"/>
+            <ENTRY code="n" nonrepeatable="true" text="Pattern note"/>
+            <ENTRY code="o" text="Type of unit"/>
+            <ENTRY code="p" nonrepeatable="true" text="Number of pieces per issuance"/>
+            <ENTRY code="t" nonrepeatable="true" text="Copy"/>
+            <ENTRY code="u" text="Bibliographic units per next higher level"/>
+            <ENTRY code="v" text="Numbering continuity"/>
+            <ENTRY code="w" nonrepeatable="true" text="Frequency"/>
+            <ENTRY code="x" nonrepeatable="true" text="Calendar change"/>
+            <ENTRY code="y" text="Regularity pattern"/>
+            <ENTRY code="z" text="Numbering scheme"/>
+            <ENTRY code="2" text="Source of caption abbreviation"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="863">
+         <NAME>Enumeration And Chronology--Basic Bibliographic Unit</NAME>
+         <SHORTNAME>Enumeration And Chronology--Basic Bibliographic Unit</SHORTNAME>
+         <IND position="0">
+            <NAME>Field encoding level</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="3" text="Holdings level 3"/>
+            <ENTRY code="4" text="Holdings level 4"/>
+            <ENTRY code="5" text="Holdings level 4 with piece designation"/>
+         </IND>
+         <IND position="1">
+            <NAME>Form of holdings</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="0" text="Compressed"/>
+            <ENTRY code="1" text="Uncompressed"/>
+            <ENTRY code="2" text="Compressed, use textual display"/>
+            <ENTRY code="3" text="Uncompressed, use textual display"/>
+            <ENTRY code="4" text="Item(s) not published"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" text="First level of enumeration"/>
+            <ENTRY code="b" nonrepeatable="true" text="Second level of enumeration"/>
+            <ENTRY code="c" nonrepeatable="true" text="Third level of enumeration"/>
+            <ENTRY code="d" nonrepeatable="true" text="Fourth level of enumeration"/>
+            <ENTRY code="e" nonrepeatable="true" text="Fifth level of enumeration"/>
+            <ENTRY code="f" nonrepeatable="true" text="Sixth level of enumeration"/>
+            <ENTRY code="g" nonrepeatable="true" text="Alternative numbering scheme, first level of enumeration"/>
+            <ENTRY code="h" nonrepeatable="true" text="Alternative numbering scheme, second level of enumeration"/>
+            <ENTRY code="i" nonrepeatable="true" text="First level of chronology"/>
+            <ENTRY code="j" nonrepeatable="true" text="Second level of chronology"/>
+            <ENTRY code="k" nonrepeatable="true" text="Third level of chronology"/>
+            <ENTRY code="l" nonrepeatable="true" text="Fourth level of chronology"/>
+            <ENTRY code="m" nonrepeatable="true" text="Alternative numbering scheme, chronology"/>
+            <ENTRY code="n" nonrepeatable="true" text="Converted Gregorian year"/>
+            <ENTRY code="o" text="Title of unit"/>
+            <ENTRY code="p" nonrepeatable="true" text="Piece designation"/>
+            <ENTRY code="q" nonrepeatable="true" text="Piece physical condition"/>
+            <ENTRY code="s" text="Copyright article-fee code"/>
+            <ENTRY code="t" nonrepeatable="true" text="Copy number"/>
+            <ENTRY code="w" nonrepeatable="true" text="Break indicator"/>
+            <ENTRY code="x" text="Nonpublic note"/>
+            <ENTRY code="z" text="Public note"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="864">
+         <NAME>Enumeration And Chronology--Supplementary Material</NAME>
+         <SHORTNAME>Enumeration And Chronology--Supplementary Material</SHORTNAME>
+         <IND position="0">
+            <NAME>Field encoding level</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="3" text="Holdings level 3"/>
+            <ENTRY code="4" text="Holdings level 4"/>
+            <ENTRY code="5" text="Holdings level 4 with piece designation"/>
+         </IND>
+         <IND position="1">
+            <NAME>Form of holdings</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="0" text="Compressed"/>
+            <ENTRY code="1" text="Uncompressed"/>
+            <ENTRY code="2" text="Compressed, use textual display"/>
+            <ENTRY code="3" text="Uncompressed, use textual display"/>
+            <ENTRY code="4" text="Item(s) not published"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" text="First level of enumeration"/>
+            <ENTRY code="b" nonrepeatable="true" text="Second level of enumeration"/>
+            <ENTRY code="c" nonrepeatable="true" text="Third level of enumeration"/>
+            <ENTRY code="d" nonrepeatable="true" text="Fourth level of enumeration"/>
+            <ENTRY code="e" nonrepeatable="true" text="Fifth level of enumeration"/>
+            <ENTRY code="f" nonrepeatable="true" text="Sixth level of enumeration"/>
+            <ENTRY code="g" nonrepeatable="true" text="Alternative numbering scheme, first level of enumeration"/>
+            <ENTRY code="h" nonrepeatable="true" text="Alternative numbering scheme, second level of enumeration"/>
+            <ENTRY code="i" nonrepeatable="true" text="First level of chronology"/>
+            <ENTRY code="j" nonrepeatable="true" text="Second level of chronology"/>
+            <ENTRY code="k" nonrepeatable="true" text="Third level of chronology"/>
+            <ENTRY code="l" nonrepeatable="true" text="Fourth level of chronology"/>
+            <ENTRY code="m" nonrepeatable="true" text="Alternative numbering scheme, chronology"/>
+            <ENTRY code="n" nonrepeatable="true" text="Converted Gregorian year"/>
+            <ENTRY code="o" text="Title of unit"/>
+            <ENTRY code="p" nonrepeatable="true" text="Piece designation"/>
+            <ENTRY code="q" nonrepeatable="true" text="Piece physical condition"/>
+            <ENTRY code="s" text="Copyright article-fee code"/>
+            <ENTRY code="t" nonrepeatable="true" text="Copy number"/>
+            <ENTRY code="w" nonrepeatable="true" text="Break indicator"/>
+            <ENTRY code="x" text="Nonpublic note"/>
+            <ENTRY code="z" text="Public note"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="865">
+         <NAME>Enumeration And Chronology--Indexes</NAME>
+         <SHORTNAME>Enumeration And Chronology--Indexes</SHORTNAME>
+         <IND position="0">
+            <NAME>Field encoding level</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="3" text="Holdings level 3"/>
+            <ENTRY code="4" text="Holdings level 4"/>
+            <ENTRY code="5" text="Holdings level 4 with piece designation"/>
+         </IND>
+         <IND position="1">
+            <NAME>Form of holdings</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="0" text="Compressed"/>
+            <ENTRY code="1" text="Uncompressed"/>
+            <ENTRY code="2" text="Compressed, use textual display"/>
+            <ENTRY code="3" text="Uncompressed, use textual display"/>
+            <ENTRY code="4" text="Item(s) not published"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" text="First level of enumeration"/>
+            <ENTRY code="b" nonrepeatable="true" text="Second level of enumeration"/>
+            <ENTRY code="c" nonrepeatable="true" text="Third level of enumeration"/>
+            <ENTRY code="d" nonrepeatable="true" text="Fourth level of enumeration"/>
+            <ENTRY code="e" nonrepeatable="true" text="Fifth level of enumeration"/>
+            <ENTRY code="f" nonrepeatable="true" text="Sixth level of enumeration"/>
+            <ENTRY code="g" nonrepeatable="true" text="Alternative numbering scheme, first level of enumeration"/>
+            <ENTRY code="h" nonrepeatable="true" text="Alternative numbering scheme, second level of enumeration"/>
+            <ENTRY code="i" nonrepeatable="true" text="First level of chronology"/>
+            <ENTRY code="j" nonrepeatable="true" text="Second level of chronology"/>
+            <ENTRY code="k" nonrepeatable="true" text="Third level of chronology"/>
+            <ENTRY code="l" nonrepeatable="true" text="Fourth level of chronology"/>
+            <ENTRY code="m" nonrepeatable="true" text="Alternative numbering scheme, chronology"/>
+            <ENTRY code="n" nonrepeatable="true" text="Converted Gregorian year"/>
+            <ENTRY code="o" text="Title of unit"/>
+            <ENTRY code="p" nonrepeatable="true" text="Piece designation"/>
+            <ENTRY code="q" nonrepeatable="true" text="Piece physical condition"/>
+            <ENTRY code="s" text="Copyright article-fee code"/>
+            <ENTRY code="t" nonrepeatable="true" text="Copy number"/>
+            <ENTRY code="v" text="Issuing date"/>
+            <ENTRY code="w" nonrepeatable="true" text="Break indicator"/>
+            <ENTRY code="x" text="Nonpublic note"/>
+            <ENTRY code="z" text="Public note"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="866">
+         <NAME>Textual Holdings--Basic Bibliographic Unit</NAME>
+         <SHORTNAME>Textual Holdings--Basic Bibliographic Unit</SHORTNAME>
+         <IND position="0">
+            <NAME>Field encoding level</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="3" text="Holdings level 3"/>
+            <ENTRY code="4" text="Holdings level 4"/>
+            <ENTRY code="5" text="Holdings level 4 with piece designation"/>
+         </IND>
+         <IND position="1">
+            <NAME>Type of notation</NAME>
+            <ENTRY code="0" text="Non-standard" defval="true"/>
+            <ENTRY code="1" text="ANSI/NISO Z39.71 or ISO 10324"/>
+            <ENTRY code="2" text="ANSI Z39.42"/>
+            <ENTRY code="7" text="Source specified in subfield $2"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Textual string"/>
+            <ENTRY code="x" text="Nonpublic note"/>
+            <ENTRY code="z" text="Public note"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source of notation"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="867">
+         <NAME>Textual Holdings--Supplementary Material</NAME>
+         <SHORTNAME>Textual Holdings--Supplementary Material</SHORTNAME>
+         <IND position="0">
+            <NAME>Field encoding level</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="3" text="Holdings level 3"/>
+            <ENTRY code="4" text="Holdings level 4"/>
+            <ENTRY code="5" text="Holdings level 4 with piece designation"/>
+         </IND>
+         <IND position="1">
+            <NAME>Type of notation</NAME>
+            <ENTRY code="0" text="Non-standard" defval="true"/>
+            <ENTRY code="1" text="ANSI/NISO Z39.71 or ISO 10324"/>
+            <ENTRY code="2" text="ANSI Z39.42"/>
+            <ENTRY code="7" text="Source specified in subfield $2"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Textual string"/>
+            <ENTRY code="x" text="Nonpublic note"/>
+            <ENTRY code="z" text="Public note"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source of notation"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="868">
+         <NAME>Textual Holdings--Indexes</NAME>
+         <SHORTNAME>Textual Holdings--Indexes</SHORTNAME>
+         <IND position="0">
+            <NAME>Field encoding level</NAME>
+            <ENTRY code=" " text="No information provided" defval="true"/>
+            <ENTRY code="3" text="Holdings level 3"/>
+            <ENTRY code="4" text="Holdings level 4"/>
+            <ENTRY code="5" text="Holdings level 4 with piece designation"/>
+         </IND>
+         <IND position="1">
+            <NAME>Type of notation</NAME>
+            <ENTRY code="0" text="Non-standard" defval="true"/>
+            <ENTRY code="1" text="ANSI/NISO Z39.71 or ISO 10324"/>
+            <ENTRY code="2" text="ANSI Z39.42"/>
+            <ENTRY code="7" text="Source specified in subfield $2"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Textual string"/>
+            <ENTRY code="x" text="Nonpublic note"/>
+            <ENTRY code="z" text="Public note"/>
+            <ENTRY code="2" nonrepeatable="true" text="Source of notation"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="876">
+         <NAME>Item Information--Basic Bibliographic Unit</NAME>
+         <SHORTNAME>Item Information--Basic Bibliographic Unit</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Internal item number"/>
+            <ENTRY code="b" text="Invalid or canceled internal item number"/>
+            <ENTRY code="c" text="Cost"/>
+            <ENTRY code="d" text="Date acquired"/>
+            <ENTRY code="e" text="Source of acquisition"/>
+            <ENTRY code="h" text="Use restrictions"/>
+            <ENTRY code="j" text="Item status"/>
+            <ENTRY code="l" text="Temporary location"/>
+            <ENTRY code="p" text="Piece designation"/>
+            <ENTRY code="r" text="Invalid or canceled piece designation"/>
+            <ENTRY code="t" nonrepeatable="true" text="Copy number"/>
+            <ENTRY code="x" text="Nonpublic note"/>
+            <ENTRY code="z" text="Public note"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="877">
+         <NAME>Item Information--Supplementary Material</NAME>
+         <SHORTNAME>Item Information--Supplementary Material</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Internal item number"/>
+            <ENTRY code="b" text="Invalid or canceled internal item number"/>
+            <ENTRY code="c" text="Cost"/>
+            <ENTRY code="d" text="Date acquired"/>
+            <ENTRY code="e" text="Source of acquisition"/>
+            <ENTRY code="h" text="Use restrictions"/>
+            <ENTRY code="j" text="Item status"/>
+            <ENTRY code="l" text="Temporary location"/>
+            <ENTRY code="p" text="Piece designation"/>
+            <ENTRY code="r" text="Invalid or canceled piece designation"/>
+            <ENTRY code="t" nonrepeatable="true" text="Copy number"/>
+            <ENTRY code="x" text="Nonpublic note"/>
+            <ENTRY code="z" text="Public note"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+      <TAG tagnumber="878">
+         <NAME>Item Information--Indexes</NAME>
+         <SHORTNAME>Item Information--Indexes</SHORTNAME>
+         <IND position="0">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <IND position="1">
+            <NAME>Undefined</NAME>
+            <ENTRY code=" " text="Undefined" defval="true"/>
+         </IND>
+         <SUB>
+            <ENTRY code="a" nonrepeatable="true" defval="true" text="Internal item number"/>
+            <ENTRY code="b" text="Invalid or canceled internal item number"/>
+            <ENTRY code="c" text="Cost"/>
+            <ENTRY code="d" text="Date acquired"/>
+            <ENTRY code="e" text="Source of acquisition"/>
+            <ENTRY code="h" text="Use restrictions"/>
+            <ENTRY code="j" text="Item status"/>
+            <ENTRY code="l" text="Temporary location"/>
+            <ENTRY code="p" text="Piece designation"/>
+            <ENTRY code="r" text="Invalid or canceled piece designation"/>
+            <ENTRY code="t" nonrepeatable="true" text="Copy number"/>
+            <ENTRY code="x" text="Nonpublic note"/>
+            <ENTRY code="z" text="Public note"/>
+            <ENTRY code="3" nonrepeatable="true" text="Materials specified"/>
+            <ENTRY code="6" nonrepeatable="true" text="Linkage"/>
+            <ENTRY code="8" nonrepeatable="true" text="Field link and sequence number"/>
+         </SUB>
+      </TAG>
+   </MARC_TYPE>
+</MARC_RULES>
