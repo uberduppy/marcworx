@@ -1,4 +1,4 @@
-package org.talwood.marcworx.locparser;
+package org.talwood.marcworx.locparser.elements;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,14 +7,15 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class CharacterSetElement {
-    
+public class GroupingElement {
+
     private String name;
-    private String isoCode;
+    private String date;
+    private String number;
+    private String note;
     private List<CodeElement> codeList = new ArrayList<CodeElement>();
-    private List<GroupingElement> groupingList = new ArrayList<GroupingElement>();
-    
-    public CharacterSetElement() {
+
+    public GroupingElement() {
         
     }
 
@@ -27,13 +28,22 @@ public class CharacterSetElement {
         this.name = name;
     }
 
-    @XmlAttribute(name="ISOcode")
-    public String getIsoCode() {
-        return isoCode;
+    @XmlAttribute(name="date")
+    public String getDate() {
+        return date;
     }
 
-    public void setIsoCode(String isoCode) {
-        this.isoCode = isoCode;
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    @XmlAttribute(name="number")
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     @XmlElement(name="code")
@@ -45,13 +55,13 @@ public class CharacterSetElement {
         this.codeList = codeList;
     }
 
-    @XmlElement(name="grouping")
-    public List<GroupingElement> getGroupingList() {
-        return groupingList;
+    @XmlElement(name="note")
+    public String getNote() {
+        return note;
     }
 
-    public void setGroupingList(List<GroupingElement> groupingList) {
-        this.groupingList = groupingList;
+    public void setNote(String note) {
+        this.note = note;
     }
     
     

@@ -1,5 +1,10 @@
 package org.talwood.marcworx.locparser;
 
+import org.talwood.marcworx.locparser.elements.CharacterSetElement;
+import org.talwood.marcworx.locparser.elements.CodeTableContainer;
+import org.talwood.marcworx.locparser.elements.CodeElement;
+import org.talwood.marcworx.locparser.elements.GroupingElement;
+import org.talwood.marcworx.locparser.elements.CodeTableElement;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -19,7 +24,7 @@ public class CodeTableParser {
             
     private CodeTableContainer container;
     
-    Map<String, List<CodeElement>> codeMap = new HashMap<String, List<CodeElement>>();
+    Map<Integer, List<CodeElement>> codeMap = new HashMap<Integer, List<CodeElement>>();
     
     private List<CodeElement> elements = new ArrayList<CodeElement>();
     
@@ -38,10 +43,10 @@ public class CodeTableParser {
     private void populateCodeMap() {
         for(CodeTableElement cte : container.getCodeTables()) {
             for(CharacterSetElement cse : cte.getCharSets()) {
-                List<CodeElement> thisList = codeMap.get(cse.getIsoCode());
+                List<CodeElement> thisList = codeMap.get(cse.makeIsoCodeAsInteger());
                 if(thisList == null) {
                     thisList = new ArrayList<CodeElement>();
-                    codeMap.put(cse.getIsoCode(), thisList);
+                    codeMap.put(cse.makeIsoCodeAsInteger(), thisList);
                 }
                 // Add every code element
                 for(CodeElement ce : cse.getCodeList()) {

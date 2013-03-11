@@ -1,4 +1,4 @@
-package org.talwood.marcworx.locparser;
+package org.talwood.marcworx.locparser.elements;
 
 public class LocCodeTable {
 

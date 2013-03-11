@@ -1,4 +1,4 @@
-package org.talwood.marcworx.locparser;
+package org.talwood.marcworx.locparser.elements;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,15 +7,15 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class GroupingElement {
-
+public class CodeTableElement {
+    
     private String name;
     private String date;
-    private String number;
+    private int number;
     private String note;
-    private List<CodeElement> codeList = new ArrayList<CodeElement>();
-
-    public GroupingElement() {
+    private List<CharacterSetElement> charSets = new ArrayList<CharacterSetElement>();
+    
+    public CodeTableElement() {
         
     }
 
@@ -38,21 +38,12 @@ public class GroupingElement {
     }
 
     @XmlAttribute(name="number")
-    public String getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(int number) {
         this.number = number;
-    }
-
-    @XmlElement(name="code")
-    public List<CodeElement> getCodeList() {
-        return codeList;
-    }
-
-    public void setCodeList(List<CodeElement> codeList) {
-        this.codeList = codeList;
     }
 
     @XmlElement(name="note")
@@ -62,6 +53,15 @@ public class GroupingElement {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @XmlElement(name="characterSet")
+    public List<CharacterSetElement> getCharSets() {
+        return charSets;
+    }
+
+    public void setCharSets(List<CharacterSetElement> charSets) {
+        this.charSets = charSets;
     }
     
     

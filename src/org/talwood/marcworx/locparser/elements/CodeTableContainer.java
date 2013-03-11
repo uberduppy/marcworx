@@ -1,4 +1,4 @@
-package org.talwood.marcworx.locparser;
+package org.talwood.marcworx.locparser.elements;
 
 import java.util.ArrayList;
 import java.util.List;
