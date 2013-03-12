@@ -17,6 +17,8 @@ import javax.xml.bind.Unmarshaller;
 import org.talwood.marcworx.exception.ConstraintException;
 import org.talwood.marcworx.exception.ConstraintExceptionType;
 import org.talwood.marcworx.helpers.MarcWorxFileHelper;
+import org.talwood.marcworx.locparser.containers.CodeElementMap;
+import org.talwood.marcworx.locparser.helpers.MarcTransformerHelper;
 
 public class CodeTableParser {
     
@@ -24,7 +26,7 @@ public class CodeTableParser {
             
     private CodeTableContainer container;
     
-    Map<Integer, List<CodeElement>> codeMap = new HashMap<Integer, List<CodeElement>>();
+    Map<Integer, CodeElementMap> codeMap = new HashMap<Integer, CodeElementMap>();
     
     private List<CodeElement> elements = new ArrayList<CodeElement>();
     
@@ -40,26 +42,26 @@ public class CodeTableParser {
         return internalParser;
     }
     
-    public List<CodeElement> findListForCodeTable(int codeTable) {
+    public CodeElementMap findListForCodeTable(int codeTable) {
         return codeMap.get(new Integer(codeTable));
     }
 
     private void populateCodeMap() {
         for(CodeTableElement cte : container.getCodeTables()) {
             for(CharacterSetElement cse : cte.getCharSets()) {
-                List<CodeElement> thisList = codeMap.get(cse.makeIsoCodeAsInteger());
+                CodeElementMap thisList = codeMap.get(MarcTransformerHelper.convertCodeToInteger(cse.getIsoCode()));
                 if(thisList == null) {
-                    thisList = new ArrayList<CodeElement>();
-                    codeMap.put(cse.makeIsoCodeAsInteger(), thisList);
+                    thisList = new CodeElementMap();
+                    codeMap.put(MarcTransformerHelper.convertCodeToInteger(cse.getIsoCode()), thisList);
                 }
                 // Add every code element
                 for(CodeElement ce : cse.getCodeList()) {
-                    thisList.add(ce);
+                    thisList.addCodeElement(ce);
                 }
                 // Add every code element in any groupings
                 for(GroupingElement ge : cse.getGroupingList()) {
                     for(CodeElement ce : ge.getCodeList()) {
-                        thisList.add(ce);
+                        thisList.addCodeElement(ce);
                     }
                 }
             }

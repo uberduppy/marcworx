@@ -3,6 +3,7 @@ package org.talwood.marcworx.locparser;
 import java.util.List;
 import org.talwood.marcworx.exception.ConstraintException;
 import org.talwood.marcworx.locparser.constants.MarcTransformerSpecs;
+import org.talwood.marcworx.locparser.containers.CodeElementMap;
 import org.talwood.marcworx.locparser.containers.MarcTransformerStats;
 import org.talwood.marcworx.locparser.elements.CodeElement;
 
@@ -123,6 +124,15 @@ public class MarcCharacterTransformer {
         return workingPosition + newAddon;
         
     }
+    
+    private static int countRemainingCharacters(byte[] buffer, int currentPosition) {
+        int result = 0;
+        if(buffer != null) {
+            result = buffer.length - currentPosition - 1;
+        }
+        return result;
+    }
+    
     public static String convertMarc8ToUnicode(byte[] data) throws ConstraintException {
         StringBuilder sb = new StringBuilder();
 
@@ -136,16 +146,42 @@ public class MarcCharacterTransformer {
         // OK, each character is either "in or it's "out".
         int workingPosition = 0;
         int workingSet = MarcTransformerSpecs.DEFAULT_G0_SET;
-        List<CodeElement> codeList = parser.findListForCodeTable(workingSet);
+        CodeElementMap codeMap = parser.findListForCodeTable(workingSet);
         while(workingPosition < data.length) {
             if(data[workingPosition] == MarcTransformerSpecs.ESCAPE) {
                 // OK, starting new character set
                 workingPosition = determineCharacterSet(data, workingPosition, stats);
-                codeList = parser.findListForCodeTable(stats.getWorkingG0Set());
+                codeMap = parser.findListForCodeTable(stats.getWorkingG0Set());
             } else {
                 // This is a character in my current working set.
+                // First, is it multiple charactered.
+                Integer i = new Integer(data[workingPosition]);
+                CodeElement ce = codeMap.findByID(i);
+                if(ce != null) {
+                    if(ce.isCombining()) {
+                        // Do combining magic here
+                    } else if (workingSet == MarcTransformerSpecs.EAST_ASIAN) {
+                        // East Asian, multiple characters. Up to 3.
+                    } else if (stats.isMultibyte()) {
+                        // Is this a multibyte character?
+                        String unicode = ce.getUtf8();
+                    } else {
+                        // Could not find Code Element in this set
+//                        char c = getChar(data[workingPosition], stats.getWorkingG0Set(), stats.getWorkingG1Set());
+//                        if (c != 0) {
+//                            sb.append(c);
+//                        } else {
+//                            String val = "0000"+Integer.toHexString((int)(data[workingPosition]));
+//                            sb.append("<U+"+ (val.substring(val.length()-4, val.length()))+ ">" );
+//                        }
+                        workingPosition++;
+                        
+                    }
+                } else {
+                    // We couldn't find it
+                }
                 // Rifle all possible characters...
-                
+                workingPosition++;
             }
         }
         

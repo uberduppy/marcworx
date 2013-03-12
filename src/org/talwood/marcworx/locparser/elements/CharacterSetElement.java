@@ -36,10 +36,6 @@ public class CharacterSetElement {
         this.isoCode = isoCode;
     }
     
-    public Integer makeIsoCodeAsInteger() {
-        return new Integer(Integer.parseInt(getIsoCode(), 16));
-    }
-
     @XmlElement(name="code")
     public List<CodeElement> getCodeList() {
         return codeList;
