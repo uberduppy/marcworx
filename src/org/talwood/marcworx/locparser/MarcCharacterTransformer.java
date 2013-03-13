@@ -16,6 +16,7 @@
 */
 package org.talwood.marcworx.locparser;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.talwood.marcworx.exception.ConstraintException;
 import org.talwood.marcworx.locparser.constants.MarcTransformerSpecs;
@@ -25,14 +26,14 @@ import org.talwood.marcworx.locparser.elements.CodeElement;
 
 public class MarcCharacterTransformer {
 
-    private static int determineCharacterSet(byte[] data, int workingPosition, MarcTransformerStats stats) {
+    private static int determineCharacterSet(char[] data, int workingPosition, MarcTransformerStats stats) {
         int newAddon = 1;
         if(data[workingPosition] == MarcTransformerSpecs.ESCAPE) {
             if(workingPosition + 1 < data.length) {
                 switch(data[workingPosition + 1]) {
                     case 0x28:
                     case 0x2c:
-                        stats.setWorkingG0Set(MarcTransformerSpecs.DEFAULT_G0_SET);
+                        stats.setWorkingSet(MarcTransformerSpecs.DEFAULT_G0_SET);
                         stats.setMultibyte(false);
                         newAddon = 2;
                         break;
@@ -40,97 +41,97 @@ public class MarcCharacterTransformer {
                         if(workingPosition + 2 < data.length) {
                             switch(data[workingPosition + 2]) {
                                 case 0x2c:
-                                    stats.setWorkingG0Set(MarcTransformerSpecs.DEFAULT_G0_SET);
+                                    stats.setWorkingSet(MarcTransformerSpecs.DEFAULT_G0_SET);
                                     stats.setMultibyte(true);
                                     newAddon = 3;
                                     break;
                                 case 0x29:
-                                    stats.setWorkingG0Set(MarcTransformerSpecs.DEFAULT_G1_SET);
+                                    stats.setWorkingSet(MarcTransformerSpecs.DEFAULT_G1_SET);
                                     stats.setMultibyte(true);
                                     newAddon = 3;
                                 case 0x2d:
-                                    stats.setWorkingG0Set(MarcTransformerSpecs.DEFAULT_G1_SET);
+                                    stats.setWorkingSet(MarcTransformerSpecs.DEFAULT_G1_SET);
                                     stats.setMultibyte(true);
                                     newAddon = 3;
                                     break;
                                 default:
-                                    stats.setWorkingG0Set(MarcTransformerSpecs.DEFAULT_G0_SET);
+                                    stats.setWorkingSet(MarcTransformerSpecs.DEFAULT_G0_SET);
                                     stats.setMultibyte(true);
                                     newAddon = 2;
                                     break;
                                 
                             }
                         } else {
-                            stats.setWorkingG0Set(MarcTransformerSpecs.DEFAULT_G0_SET);
+                            stats.setWorkingSet(MarcTransformerSpecs.DEFAULT_G0_SET);
                             stats.setMultibyte(true);
                             newAddon = 2;
                         }
                         break;
                     case 0x29:
                     case 0x2d:
-                        stats.setWorkingG0Set(MarcTransformerSpecs.DEFAULT_G1_SET);
+                        stats.setWorkingSet(MarcTransformerSpecs.DEFAULT_G1_SET);
                         stats.setMultibyte(false);
                         newAddon = 2;
                         break;
                     case 0x21:
                         if(workingPosition + 2 < data.length && data[workingPosition + 2] == 0x45) {
-                            stats.setWorkingG0Set(MarcTransformerSpecs.EXTENDED_LATIN_ANSEL);
+                            stats.setWorkingSet(MarcTransformerSpecs.EXTENDED_LATIN_ANSEL);
                             stats.setMultibyte(true);
                             newAddon = 3;
                         }
                         break;
                     case 0x45: // Extended ANSEL
-                        stats.setWorkingG0Set(MarcTransformerSpecs.EXTENDED_LATIN_ANSEL);
+                        stats.setWorkingSet(MarcTransformerSpecs.EXTENDED_LATIN_ANSEL);
                         stats.setMultibyte(true);
                         newAddon = 2;
                         break;
                     case 0x67: // Greek Symbols
-                        stats.setWorkingG0Set(MarcTransformerSpecs.GREEK_SYMBOLS);
+                        stats.setWorkingSet(MarcTransformerSpecs.GREEK_SYMBOLS);
                         stats.setMultibyte(false);
                         newAddon = 2;
                         break;
                     case 0x62: // Subscripts
-                        stats.setWorkingG0Set(MarcTransformerSpecs.SUBSCRIPTS);
+                        stats.setWorkingSet(MarcTransformerSpecs.SUBSCRIPTS);
                         stats.setMultibyte(false);
                         newAddon = 2;
                         break;
                     case 0x70: // Superscripts
-                        stats.setWorkingG0Set(MarcTransformerSpecs.SUPERSCRIPTS);
+                        stats.setWorkingSet(MarcTransformerSpecs.SUPERSCRIPTS);
                         stats.setMultibyte(false);
                         newAddon = 2;
                         break;
                     case 0x32: // Hebrew
-                        stats.setWorkingG0Set(MarcTransformerSpecs.BASIC_HEBREW);
+                        stats.setWorkingSet(MarcTransformerSpecs.BASIC_HEBREW);
                         stats.setMultibyte(true);
                         newAddon = 2;
                         break;
                     case 0x4e: // Cyrillic
-                        stats.setWorkingG0Set(MarcTransformerSpecs.BASIC_CYRILLIC);
+                        stats.setWorkingSet(MarcTransformerSpecs.BASIC_CYRILLIC);
                         stats.setMultibyte(true);
                         newAddon = 2;
                         break;
                     case 0x51: // Extended Cyrillic
-                        stats.setWorkingG0Set(MarcTransformerSpecs.EXTENDED_CYRILLIC);
+                        stats.setWorkingSet(MarcTransformerSpecs.EXTENDED_CYRILLIC);
                         stats.setMultibyte(true);
                         newAddon = 2;
                         break;
                     case 0x33: // Basic Arabic
-                        stats.setWorkingG0Set(MarcTransformerSpecs.BASIC_ARABIC);
+                        stats.setWorkingSet(MarcTransformerSpecs.BASIC_ARABIC);
                         stats.setMultibyte(true);
                         newAddon = 2;
                         break;
                     case 0x34: // Extended Arabic
-                        stats.setWorkingG0Set(MarcTransformerSpecs.EXTENDED_ARABIC);
+                        stats.setWorkingSet(MarcTransformerSpecs.EXTENDED_ARABIC);
                         stats.setMultibyte(true);
                         newAddon = 2;
                         break;
                     case 0x53: // Basic Greek
-                        stats.setWorkingG0Set(MarcTransformerSpecs.BASIC_GREEK);
+                        stats.setWorkingSet(MarcTransformerSpecs.BASIC_GREEK);
                         stats.setMultibyte(true);
                         newAddon = 2;
                         break;
                     case 0x31: // Asian
-                        stats.setWorkingG0Set(MarcTransformerSpecs.EAST_ASIAN);
+                        stats.setWorkingSet(MarcTransformerSpecs.EAST_ASIAN);
                         stats.setMultibyte(true);
                         newAddon = 2;
                         break;
@@ -141,7 +142,7 @@ public class MarcCharacterTransformer {
         
     }
     
-    private static int countRemainingCharacters(byte[] buffer, int currentPosition) {
+    private static int countRemainingCharacters(char[] buffer, int currentPosition) {
         int result = 0;
         if(buffer != null) {
             result = buffer.length - currentPosition - 1;
@@ -150,38 +151,83 @@ public class MarcCharacterTransformer {
     }
     
     public static String convertMarc8ToUnicode(byte[] data) throws ConstraintException {
+        return convertMarc8ToUnicode(new String(data).toCharArray());
+    }
+    
+//    private static CodeElement determineCodeElement(char[] data, int workingSet, Integer position, int workingPosition) {
+//        CodeElement ce = null;
+//        if(workingSet == MarcTransformerSpecs.DEFAULT_G0_SET) {
+//            if(data[workingPosition] <= 0x7e) {
+//                ce = defaultG0Map.findByID(position);
+//            } else {
+//                ce = defaultG1Map.findByID(position);
+//            }
+//        } else {
+//            ce = codeMap.findByID(position);
+//        }
+//        return ce;
+//        
+//    }
+    private static String convertMarc8ToUnicode(char[] data) throws ConstraintException {
         StringBuilder sb = new StringBuilder();
 
-        CodeTableParser parser = CodeTableParser.getCodeTableParser();
         // Use default settings
-//        CodeTracker cdt = new CodeTracker();
         MarcTransformerStats stats = new MarcTransformerStats();
-        
-//        Vector<Character> multiChars = new Vector<Character>();
         
         // OK, each character is either "in or it's "out".
         int workingPosition = 0;
         int workingSet = MarcTransformerSpecs.DEFAULT_G0_SET;
-        CodeElementMap codeMap = parser.findListForCodeTable(workingSet);
+        stats.setWorkingSet(workingSet);
+        CodeElementMap codeMap = stats.getWorkingMap();
         while(workingPosition < data.length) {
             if(data[workingPosition] == MarcTransformerSpecs.ESCAPE) {
                 // OK, starting new character set
                 workingPosition = determineCharacterSet(data, workingPosition, stats);
-                codeMap = parser.findListForCodeTable(stats.getWorkingG0Set());
+                codeMap = stats.getG0Map();
             } else {
-                // This is a character in my current working set.
-                // First, is it multiple charactered.
+                // This is a character in my current working set. (or possibly G1 if I'm in G0.)
                 Integer i = new Integer(data[workingPosition]);
-                CodeElement ce = codeMap.findByID(i);
+                CodeElement ce = stats.determineCodeElement(data[workingPosition]);
+//                if(workingSet == MarcTransformerSpecs.DEFAULT_G0_SET) {
+//                    if(data[workingPosition] <= 0x7e) {
+//                        ce = defaultG0Map.findByID(i);
+//                    } else {
+//                        ce = defaultG1Map.findByID(i);
+//                    }
+//                } else {
+//                    ce = codeMap.findByID(i);
+//                }
+                // First, is it multiple charactered?
                 if(ce != null) {
-                    if(ce.isCombining()) {
+                    if(ce.isCombining() && countRemainingCharacters(data, workingPosition) > 0) {
                         // Do combining magic here
+                        List<Character> combinedData = new ArrayList<Character>();
+                        while(ce.isCombining() && countRemainingCharacters(data, workingPosition) > 0) {
+                            char c = (char)Integer.parseInt(ce.getUcs(), 16);
+                            if(c != 0x00) {
+                                combinedData.add(new Character(c));
+                            }
+                            workingPosition++;
+                            ce = stats.determineCodeElement(data[workingPosition]);
+                        }
+                        char c2 = (char)Integer.parseInt(ce.getUcs(), 16);
+                        if(c2 != 0x00) {
+                            sb.append(c2);
+                        }
+                        for(Character ch : combinedData) {
+                            sb.append(ch.charValue());
+                        }
+                        
                     } else if (workingSet == MarcTransformerSpecs.EAST_ASIAN) {
                         // East Asian, multiple characters. Up to 3.
                     } else if (stats.isMultibyte()) {
                         // Is this a multibyte character?
                         String unicode = ce.getUtf8();
                     } else {
+                        // OK, what set am I in?
+                        char c = (char)Integer.parseInt(ce.getUcs(), 16);
+                        sb.append(c);
+                        
                         // Could not find Code Element in this set
 //                        char c = getChar(data[workingPosition], stats.getWorkingG0Set(), stats.getWorkingG1Set());
 //                        if (c != 0) {
@@ -190,7 +236,7 @@ public class MarcCharacterTransformer {
 //                            String val = "0000"+Integer.toHexString((int)(data[workingPosition]));
 //                            sb.append("<U+"+ (val.substring(val.length()-4, val.length()))+ ">" );
 //                        }
-                        workingPosition++;
+//                        workingPosition++;
                         
                     }
                 } else {

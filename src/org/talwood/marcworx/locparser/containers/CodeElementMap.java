@@ -44,6 +44,9 @@ public class CodeElementMap {
         elementMap.put(MarcTransformerHelper.convertCodeToInteger(value.getMarc()), value);
     }
     
+    public CodeElement findByID(int key) {
+        return elementMap.get(new Integer(key));
+    }
     public CodeElement findByID(Integer key) {
         return elementMap.get(key);
     }

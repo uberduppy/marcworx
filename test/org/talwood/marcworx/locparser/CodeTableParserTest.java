@@ -46,21 +46,28 @@ public class CodeTableParserTest {
         CodeTableParser result = CodeTableParser.getCodeTableParser();
         assertNotNull(result);
     }
-    /**
-     * Test of getCodeTableParser method, of class CodeTableParser.
-     */
+
     @Test
     public void testGetCodeTableParserLevelOne() throws Exception {
         CodeTableParser result = CodeTableParser.getCodeTableParser();
         assertNotNull(result);
         assertEquals(9, result.getContainer().getCodeTables().size());
     }
+    
     @Test
     public void testGetCodeTableCodeCount() throws Exception {
         CodeTableParser result = CodeTableParser.getCodeTableParser();
         assertNotNull(result);
         assertEquals(16398, result.getElements().size());
     }
+    
+    @Test
+    public void testGetDiacriticTable() throws Exception {
+        CodeTableParser result = CodeTableParser.getCodeTableParser();
+        assertNotNull(result);
+        assertEquals(0x1f4, result.findCodeForDiacritic(0x45, 0xe2, 0x47));
+    }
+    
     @Test
     public void testGetCodeTablesMaxChars() throws Exception {
         CodeTableParser result = CodeTableParser.getCodeTableParser();

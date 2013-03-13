@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.marc4j.util.AnselToUnicode;
 
 /**
  *
@@ -41,6 +42,29 @@ public class MarcCharacterTransformerTest {
         byte[] data = "abcd".getBytes();
         String result = MarcCharacterTransformer.convertMarc8ToUnicode(data);
         assertEquals("abcd", result);
+    }
+    @Test
+    public void testConvertMarc8EuroToUnicode() throws Exception {
+        byte[] data = {(byte)0xc8};
+        String result = MarcCharacterTransformer.convertMarc8ToUnicode(data);
+        assertEquals("Should find Euro", "\u20AC", result);
+    }
+    @Test
+    public void testConvertMarc8InvertedExclamationMarcToUnicode() throws Exception {
+        byte[] data = {(byte)0xc6};
+        String result = MarcCharacterTransformer.convertMarc8ToUnicode(data);
+        assertEquals("Should find Euro", "\u00A1", result);
+    }
+    @Test
+    public void testConvertMarc8ToUnicodeG1Combining() throws Exception {
+//        byte[] data = {(byte)0x1b, (byte)0x45, };
+        byte[] data = {(byte)0xe1, (byte)0x65};
+        String expected = AnselToUnicode.convert(new String(data));
+//        byte[] data = "abcd".getBytes();
+        String result = MarcCharacterTransformer.convertMarc8ToUnicode(data);
+        byte[] exp = expected.getBytes();
+        byte[] res = result.getBytes();
+        assertEquals(expected, result);
     }
     /**
      * Test of convertMarc8ToUnicode method, of class MarcCharacterTransformer.

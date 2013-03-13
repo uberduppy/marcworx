@@ -35,4 +35,10 @@ public class MarcRulesContainerTest {
     @After
     public void tearDown() {
     }
+    
+    @Test
+    public void testPlaceHolder() {
+        
+    }
+    
 }

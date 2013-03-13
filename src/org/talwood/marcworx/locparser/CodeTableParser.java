@@ -33,7 +33,12 @@ import javax.xml.bind.Unmarshaller;
 import org.talwood.marcworx.exception.ConstraintException;
 import org.talwood.marcworx.exception.ConstraintExceptionType;
 import org.talwood.marcworx.helpers.MarcWorxFileHelper;
+import org.talwood.marcworx.helpers.TupleContainer;
 import org.talwood.marcworx.locparser.containers.CodeElementMap;
+import org.talwood.marcworx.locparser.elements.DiacriticEntryElement;
+import org.talwood.marcworx.locparser.elements.DiacriticLetterElement;
+import org.talwood.marcworx.locparser.elements.DiacriticLookupContainer;
+import org.talwood.marcworx.locparser.elements.DiacriticLookupElement;
 import org.talwood.marcworx.locparser.helpers.MarcTransformerHelper;
 
 public class CodeTableParser {
@@ -41,8 +46,10 @@ public class CodeTableParser {
     private static CodeTableParser internalParser = null;
             
     private CodeTableContainer container;
+    private DiacriticLookupContainer diacContainer;
     
-    Map<Integer, CodeElementMap> codeMap = new HashMap<Integer, CodeElementMap>();
+    private Map<Integer, CodeElementMap> codeMap = new HashMap<Integer, CodeElementMap>();
+    private Map<Integer, Map<Integer, Map<Integer, DiacriticLetterElement>>> diacMap = new HashMap<Integer, Map<Integer, Map<Integer, DiacriticLetterElement>>>();
     
     private List<CodeElement> elements = new ArrayList<CodeElement>();
     
@@ -52,8 +59,10 @@ public class CodeTableParser {
         if(internalParser == null) {
             internalParser = new CodeTableParser();
             internalParser.loadFromResources("org/talwood/marcworx/data/codetables.xml");
+            internalParser.loadLookupFromResources("org/talwood/marcworx/data/diaclookup.xml");
             internalParser.populateElements();
             internalParser.populateCodeMap();
+            internalParser.populateDiacriticsMap();
         }
         return internalParser;
     }
@@ -61,7 +70,48 @@ public class CodeTableParser {
     public CodeElementMap findListForCodeTable(int codeTable) {
         return codeMap.get(new Integer(codeTable));
     }
+    
+    public int findCodeForDiacritic(int isoCode, int firstCode, int secondCode) {
+        int code = 0;
+        Map<Integer, Map<Integer, DiacriticLetterElement>> isoMap = diacMap.get(new Integer(isoCode));
+        if(isoMap != null) {
+            Map<Integer, DiacriticLetterElement> firstMap = isoMap.get(new Integer(firstCode));
+            if(firstMap != null) {
+                DiacriticLetterElement element = firstMap.get(new Integer(secondCode));
+                if(element != null) {
+                    code = Integer.parseInt(element.getReplacement(), 16);
+                }
+            }
+        }
+        return code;
+    }
 
+    private void populateDiacriticsMap() {
+        for(DiacriticLookupElement element : diacContainer.getElements()) {
+            int iso = Integer.parseInt(element.getIsoCode(), 16);
+            Map<Integer, Map<Integer, DiacriticLetterElement>> isomap = diacMap.get(new Integer(iso));
+            if(isomap == null) {
+                isomap = new HashMap<Integer, Map<Integer, DiacriticLetterElement>>();
+                diacMap.put(new Integer(iso), isomap);
+            }
+            for(DiacriticEntryElement entry : element.getEntries()) {
+                int first = Integer.parseInt(entry.getFirst(), 16);
+                Map<Integer, DiacriticLetterElement> firstmap = isomap.get(new Integer(first));
+                if(firstmap == null) {
+                    firstmap = new HashMap<Integer, DiacriticLetterElement>();
+                    isomap.put(new Integer(first), firstmap);
+                }
+                for(DiacriticLetterElement letters : entry.getLetters()) {
+                    int second = Integer.parseInt(letters.getSecond(), 16);
+                    if(firstmap.get(new Integer(second)) == null) {
+                        firstmap.put(new Integer(second), letters);
+                    }
+                }
+            }
+            
+        }
+    }
+    
     private void populateCodeMap() {
         for(CodeTableElement cte : container.getCodeTables()) {
             for(CharacterSetElement cse : cte.getCharSets()) {
@@ -105,6 +155,16 @@ public class CodeTableParser {
             JAXBContext context = JAXBContext.newInstance(CodeTableContainer.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
             container = (CodeTableContainer)unmarshaller.unmarshal(findResource(className));
+        } catch (JAXBException ex) {
+            throw new ConstraintException(ConstraintExceptionType.JAXB_EXCEPTION, ex);
+        }
+    }
+
+    private void loadLookupFromResources(String className) throws ConstraintException {
+        try {
+            JAXBContext context = JAXBContext.newInstance(DiacriticLookupContainer.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            diacContainer = (DiacriticLookupContainer)unmarshaller.unmarshal(findResource(className));
         } catch (JAXBException ex) {
             throw new ConstraintException(ConstraintExceptionType.JAXB_EXCEPTION, ex);
         }
