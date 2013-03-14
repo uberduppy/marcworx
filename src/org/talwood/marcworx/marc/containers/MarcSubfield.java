@@ -16,6 +16,7 @@
 */
 package org.talwood.marcworx.marc.containers;
 
+import org.talwood.marcworx.helpers.MarcWorxDataHelper;
 import org.talwood.marcworx.marc.constants.MarcSubfieldConstants;
 
 public class MarcSubfield {
@@ -41,6 +42,10 @@ public class MarcSubfield {
 
     public String getData() {
         return data;
+    }
+
+    public String getDataUnpunctuated() {
+        return MarcWorxDataHelper.stripStandardPunctuation(data);
     }
 
     public void setData(String data) {

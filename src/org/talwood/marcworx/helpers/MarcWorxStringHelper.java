@@ -804,5 +804,25 @@ public class MarcWorxStringHelper {
         return( result.toString() );
     }
     
+    public static String stripTrailingData(String source, String charsToStrip) {
+        if(isNotEmpty(source) && isNotEmpty(charsToStrip)) {
+            StringBuilder sb = new StringBuilder(source);
+            while(sb.length() > 0 && charsToStrip.indexOf(sb.charAt(sb.length() - 1)) >= 0) {
+                sb.deleteCharAt(sb.length() - 1);
+            }
+            source = sb.toString();
+        }
+        return source;
+    }
     
+    public static String stripLeadingData(String source, String charsToStrip) {
+        if(isNotEmpty(source) && isNotEmpty(charsToStrip)) {
+            StringBuilder sb = new StringBuilder(source);
+            while(sb.length() > 0 && charsToStrip.indexOf(sb.charAt(0)) >= 0) {
+                sb.deleteCharAt(0);
+            }
+            source = sb.toString();
+        }
+        return source;
+    }
 }

@@ -62,13 +62,6 @@ public class CodeTableParserTest {
     }
     
     @Test
-    public void testGetDiacriticTable() throws Exception {
-        CodeTableParser result = CodeTableParser.getCodeTableParser();
-        assertNotNull(result);
-        assertEquals(0x1f4, result.findCodeForDiacritic(0x45, 0xe2, 0x47));
-    }
-    
-    @Test
     public void testGetCodeTablesMaxChars() throws Exception {
         CodeTableParser result = CodeTableParser.getCodeTableParser();
         assertNotNull(result);

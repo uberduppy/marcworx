@@ -31,6 +31,7 @@ import org.talwood.marcworx.exception.MarcExceptionType;
 import org.talwood.marcworx.helpers.MarcWorxDataHelper;
 import org.talwood.marcworx.helpers.MarcWorxFileHelper;
 import org.talwood.marcworx.helpers.MarcWorxStringHelper;
+import org.talwood.marcworx.marc.constants.MarcLeaderConstants;
 
 public class MarcReader {
 
@@ -217,6 +218,11 @@ public class MarcReader {
                 badTagFound = true;
             }
         }
+        // Since I will ALWAYS be exporting UNICODE, change the encoding now
+        MarcLeader ldr = record.getLeader();
+        ldr.setCharacterCodingScheme(MarcLeaderConstants.CHARACTER_CODING_SCHEME_UTF8);
+        record.setLeader(leader);
+        
         if (badTagFound == true) {
             recordsWithBadTags++;
         }

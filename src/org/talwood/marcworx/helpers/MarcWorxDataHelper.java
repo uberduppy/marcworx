@@ -22,8 +22,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.List;
-import org.marc4j.util.AnselToUnicode;
-import org.marc4j.util.UnicodeToAnsel;
+import org.talwood.marcworx.exception.ConstraintException;
 import org.talwood.marcworx.marc.constants.MarcLeaderConstants;
 import org.talwood.marcworx.marc.constants.MarcRecordConstants;
 import org.talwood.marcworx.marc.containers.MarcLeader;
@@ -33,6 +32,8 @@ import org.talwood.marcworx.marc.containers.MarcTag;
 import org.talwood.marcworx.marc.enums.RecordType;
 import org.talwood.marcworx.exception.MarcException;
 import org.talwood.marcworx.exception.MarcExceptionType;
+import org.talwood.marcworx.locparser.MarcCharacterTransformer;
+import org.talwood.marcworx.marc.constants.DataWorkConstants;
 import org.talwood.marcworx.xmlgen.XMLBuilder;
 import org.talwood.marcworx.xmlgen.XMLEntry;
 
@@ -95,14 +96,7 @@ public class MarcWorxDataHelper {
             byte[] chunk = null;
             if( item.getTagNumber() < 10) {
                 // Process Control (Fixed) tags
-                int questionMarks = MarcWorxStringHelper.countNumberOfOccurances(item.getCurrentTagData(), "?");
                 chunk = convertToCharacterEncoding(record.getLeader().getPosition09(), item.getCurrentTagData());
-                int questionMarksInResult = 0;
-                for ( int x = 0; x < chunk.length; x++ ) {
-                    if ( chunk[x] == '?') {
-                        questionMarksInResult++;
-                    }
-                }
             } else { // Tags > 10
                 chunk = convertTagToExportData(item, record.getLeader().getPosition09());
             }
@@ -144,14 +138,10 @@ public class MarcWorxDataHelper {
 
         byte[] retVal = null;
 
-        if(encoding == MarcRecordConstants.CHARACTER_CODING_SCHEME_MARC_8) {
-            retVal = UnicodeToAnsel.convert(tagData).getBytes();
-        } else {
-            try {
-                retVal = tagData.getBytes("UTF-8");
-            } catch (UnsupportedEncodingException ex) {
-                // Should never get here since we have hard-coded a valid value for the encoding.
-            }
+        try {
+            retVal = tagData.getBytes("UTF-8");
+        } catch (UnsupportedEncodingException ex) {
+            // Should never get here since we have hard-coded a valid value for the encoding.
         }
         return retVal;
     }
@@ -166,19 +156,12 @@ public class MarcWorxDataHelper {
         List<MarcSubfield> subs = tag.getSubfields();
         Iterator<MarcSubfield> iter = subs.iterator();
 
-        while ((iter.hasNext()) &&  baos.size() <= (MarcRecordConstants.TAG_MAX_SIZE - 3) ) {  //9998 is max without EndOfTag - 3 min for next subfield (2 Ind + 1 Data)
+        while ((iter.hasNext()) &&  baos.size() <= (MarcRecordConstants.TAG_MAX_SIZE - 3) ) {  
             MarcSubfield sub = iter.next();
             if (sub.getData() != null) {
                 baos.write(0x1f);
                 baos.write(sub.getCode());
-
-                if (encoding == MarcRecordConstants.CHARACTER_CODING_SCHEME_MARC_8) {
-                    String s = sub.getData();
-                    String s2 = UnicodeToAnsel.convert(s);
-                    baos.write(s2.getBytes());
-                } else {
-                    baos.write(sub.getData().getBytes("UTF-8"));
-                }
+                baos.write(sub.getData().getBytes("UTF-8"));
             }
         }
         byte[] retVal = baos.toByteArray();
@@ -205,7 +188,9 @@ public class MarcWorxDataHelper {
         String unicode = null;
         
         try {
-            unicode = AnselToUnicode.convert(new String(marcData, offset, length, "windows-1252"));
+            unicode = new String(marcData, offset, length, "windows-1252");
+            unicode = MarcCharacterTransformer.convertMarc8ToUnicode(unicode);
+        } catch (ConstraintException ex) {
         } catch (UnsupportedEncodingException ex) {
             // we are passing in known good UTF-8, so this should never happen...
         }
@@ -286,4 +271,7 @@ public class MarcWorxDataHelper {
         return sb.toString();
     }
     
+    public static String stripStandardPunctuation(String source) {
+        return MarcWorxStringHelper.stripTrailingData(MarcWorxStringHelper.stripLeadingData(source, DataWorkConstants.STANDARD_FRONT_PUNCT_TO_STRIP), DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP);
+    }
 }

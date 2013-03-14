@@ -36,4 +36,7 @@ public class MarcLeaderConstants {
     public static final char CHARACTER_CODING_SCHEME_MARC_8 = ' ';
     public static final char CHARACTER_CODING_SCHEME_UTF8 = 'a';
     
+    public static final char DESC_CAT_FORM_ISBD_NO_PUNCT = 'c';
+    public static final char DESC_CAT_FORM_ISBD_PUNCT = 'i';
+    
 }

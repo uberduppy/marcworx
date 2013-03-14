@@ -20,28 +20,42 @@ import org.talwood.marcworx.locparser.elements.CodeElement;
 import org.talwood.marcworx.exception.ConstraintException;
 import org.talwood.marcworx.locparser.CodeTableParser;
 import org.talwood.marcworx.locparser.constants.MarcTransformerSpecs;
+import org.talwood.marcworx.locparser.helpers.MarcTransformerHelper;
 
 public class MarcTransformerStats {
     private CodeTableParser parser = null;
    
     private int workingSet;
-    private boolean multibyte;
     private int workingOffset;
     
     public MarcTransformerStats() throws ConstraintException {
-        this.multibyte = false;
         this.workingOffset = 0;
         this.parser = CodeTableParser.getCodeTableParser();
     }
     
     public MarcTransformerStats(boolean multibyte, int startingOffset) throws ConstraintException {
-        this.multibyte = multibyte;
         this.workingOffset = startingOffset;
         this.parser = CodeTableParser.getCodeTableParser();
     }
 
+    public char determineEastAsianCodeElement(char checkData1, char checkData2, char checkData3) {
+        // Compose a String with these three pieces
+        char result = 0;
+        StringBuilder sb = new StringBuilder();
+        sb.append(Integer.toHexString(checkData1));
+        sb.append(Integer.toHexString(checkData2));
+        sb.append(Integer.toHexString(checkData3));
+        int checkData = MarcTransformerHelper.convertCodeToInteger(sb.toString());
+        CodeElement ce = getWorkingMap().findByID(checkData);
+        if(ce != null) {
+            ce.getUcs();
+            result = (char)Integer.parseInt(ce.getUcs(), 16);
+        }
+        return result;
+    }
+    
     public CodeElement determineCodeElement(char checkData) {
-        CodeElement ce = null;
+        CodeElement ce;
         if(workingSet == MarcTransformerSpecs.DEFAULT_G0_SET) {
             if(checkData <= 0x7e) {
                 ce = getG0Map().findByID(checkData);
@@ -66,14 +80,6 @@ public class MarcTransformerStats {
         return parser.findListForCodeTable(workingSet);
     }
     
-    public boolean isMultibyte() {
-        return multibyte;
-    }
-
-    public void setMultibyte(boolean multibyte) {
-        this.multibyte = multibyte;
-    }
-
     public int getWorkingOffset() {
         return workingOffset;
     }

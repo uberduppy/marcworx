@@ -15,42 +15,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package org.talwood.marcworx.locparser.elements;
-
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+package org.talwood.marcworx.marc.constants;
 
 /**
  *
  * @author twalker
  */
-@XmlRootElement
-public class DiacriticLetterElement {
-    private String second;
-    private String replacement;
-    
-    public DiacriticLetterElement() {
-        
-    }
-
-    @XmlAttribute(name="second")
-    public String getSecond() {
-        return second;
-    }
-
-    public void setSecond(String second) {
-        this.second = second;
-    }
-
-    @XmlAttribute(name="rep")
-    public String getReplacement() {
-        return replacement;
-    }
-
-    public void setReplacement(String replacement) {
-        this.replacement = replacement;
-    }
-    
-    
+public class DataWorkConstants {
+    public static final String STANDARD_BACK_PUNCT_TO_STRIP = ".:,;/] ";
+    public static final String STANDARD_FRONT_PUNCT_TO_STRIP = ".:,;/[ ";
 
 }

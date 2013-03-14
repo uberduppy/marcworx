@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.marc4j.util.AnselToUnicode;
 
 /**
  *
@@ -57,40 +56,24 @@ public class MarcCharacterTransformerTest {
     }
     @Test
     public void testConvertMarc8ToUnicodeG1Combining() throws Exception {
-//        byte[] data = {(byte)0x1b, (byte)0x45, };
         byte[] data = {(byte)0xe1, (byte)0x65};
-        String expected = AnselToUnicode.convert(new String(data));
-//        byte[] data = "abcd".getBytes();
+        String expected = "\u00E8";
         String result = MarcCharacterTransformer.convertMarc8ToUnicode(data);
         byte[] exp = expected.getBytes();
         byte[] res = result.getBytes();
         assertEquals(expected, result);
     }
-    /**
-     * Test of convertMarc8ToUnicode method, of class MarcCharacterTransformer.
-     */
+
     @Test
-    public void testConvertMarc8ToUnicode() throws Exception {
-//        System.out.println("convertMarc8ToUnicode");
-//        byte[] data = null;
-//        String expResult = "";
-//        String result = MarcCharacterTransformer.convertMarc8ToUnicode(data);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+    public void testConvertMarc8ToUnicodeHebrew() throws Exception {
+        
+    }
+    @Test
+    public void testConvertMarc8ToUnicodeEastAsian() throws Exception {
+        byte[] data = {(byte)0x61, (byte)0x1b, (byte)0x31, (byte)0x21, (byte)0x30, (byte)0x23, (byte)0x21, (byte)0x30, (byte)0x25, (byte)0x1b, (byte)0x42, (byte)0x65};
+        String expected = "a\u4E03\u4E0Be";
+        String result = MarcCharacterTransformer.convertMarc8ToUnicode(data);
+        assertEquals(expected, result);
     }
 
-    /**
-     * Test of convertUnicodeToMarc8 method, of class MarcCharacterTransformer.
-     */
-    @Test
-    public void testConvertUnicodeToMarc8() {
-//        System.out.println("convertUnicodeToMarc8");
-//        byte[] data = null;
-//        String expResult = "";
-//        String result = MarcCharacterTransformer.convertUnicodeToMarc8(data);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-    }
 }

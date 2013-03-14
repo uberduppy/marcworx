@@ -14,38 +14,36 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-package org.talwood.marcworx.locparser.elements;
+package org.talwood.marcworx.containers.elements;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlValue;
 
 /**
  *
  * @author twalker
  */
-@XmlRootElement(name="Diacritics")
-public class DiacriticLookupContainer {
-
-    private List<DiacriticLookupElement> elements = new ArrayList<DiacriticLookupElement>();
+@XmlRootElement(name="data")
+public class ListedDataEntry {
     
-    public DiacriticLookupContainer() {
+    private String data;
+    
+    public ListedDataEntry() {
         
     }
 
-    @XmlElement(name="DiacriticSet")
-    public List<DiacriticLookupElement> getElements() {
-        return elements;
+    public ListedDataEntry(String data) {
+        this.data = data;
     }
 
-    public void setElements(List<DiacriticLookupElement> elements) {
-        this.elements = elements;
+    @XmlValue
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
     
     
