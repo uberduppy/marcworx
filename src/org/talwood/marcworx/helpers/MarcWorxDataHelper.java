@@ -29,7 +29,6 @@ import org.talwood.marcworx.marc.containers.MarcLeader;
 import org.talwood.marcworx.marc.containers.MarcRecord;
 import org.talwood.marcworx.marc.containers.MarcSubfield;
 import org.talwood.marcworx.marc.containers.MarcTag;
-import org.talwood.marcworx.marc.enums.RecordType;
 import org.talwood.marcworx.exception.MarcException;
 import org.talwood.marcworx.exception.MarcExceptionType;
 import org.talwood.marcworx.locparser.MarcCharacterTransformer;
@@ -52,16 +51,16 @@ public class MarcWorxDataHelper {
     }
 
     public static MarcRecord createMarcRecord(MarcLeader leader) throws MarcException {
-        MarcRecord baseRecord = createMarcRecord(leader.getRecordTypeEnum());
+        MarcRecord baseRecord = createMarcRecord(leader.getRecordType());
         baseRecord.setLeader(leader);
         return baseRecord;
     }
-    public static MarcRecord createMarcRecord(RecordType rt) throws MarcException {
-        MarcRecord baseRecord = new MarcRecord(rt);
+    public static MarcRecord createMarcRecord(char recordType) throws MarcException {
+        MarcRecord baseRecord = new MarcRecord(recordType);
         return baseRecord;
     }
     
-    public static MarcLeader createLeader(RecordType recordType) throws MarcException {
+    public static MarcLeader createLeader(char recordType) throws MarcException {
         MarcLeader leader = new MarcLeader(recordType);
         return leader;
     }

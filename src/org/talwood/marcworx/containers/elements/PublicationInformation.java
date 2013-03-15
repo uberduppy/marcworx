@@ -76,7 +76,7 @@ public class PublicationInformation extends BaseTagDataElement {
     }
     
     private void populateFrom008(MarcTag tag) {
-        
+        // Create a decorated 008 tag.
     }
     private void populateFrom260(MarcTag tag) {
         

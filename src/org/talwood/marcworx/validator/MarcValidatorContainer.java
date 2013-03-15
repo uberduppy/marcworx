@@ -101,7 +101,7 @@ public class MarcValidatorContainer {
     
     public MarcValidatorValue getElementForRecord(MarcRecord record) {
         MarcValidatorValue e = null;
-        RecordType rt = record.getLeader().getRecordTypeEnum();
+        RecordType rt = RecordType.findByRecordTypeCode(record.getLeader().getRecordType(), RecordType.RECORD_TYPE_UNKNOWN);
         FormatType ft = rt.getFormatType();
         e = marcValidatorMap.get(ft);
         if(e == null) {

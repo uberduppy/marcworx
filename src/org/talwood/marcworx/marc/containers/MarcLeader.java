@@ -19,9 +19,7 @@ package org.talwood.marcworx.marc.containers;
 import java.text.DecimalFormat;
 import org.talwood.marcworx.marc.constants.MarcLeaderConstants;
 import org.talwood.marcworx.marc.enums.DataType;
-import org.talwood.marcworx.marc.enums.FormatType;
 import org.talwood.marcworx.marc.enums.RecordStatus;
-import org.talwood.marcworx.marc.enums.RecordType;
 
 public class MarcLeader {
     private String originalLeaderData;
@@ -44,23 +42,20 @@ public class MarcLeader {
     private int recordLength;
     private int baseAddressOfData;
     
-    private RecordType recordType = RecordType.RECORD_TYPE_UNKNOWN;
     
     private MarcLeader() {}
     
-    public MarcLeader(RecordType recordType) {
-        this.recordType = recordType;
+    public MarcLeader(char recordType) {
         populateLeader(recordType);
     }
 
     public MarcLeader(String data) {
         assignData(data);
-        recordType = RecordType.findByRecordTypeCode(position05, RecordType.RECORD_TYPE_UNKNOWN);
     }
     
-    private void populateLeader(RecordType recordType) {
+    private void populateLeader(char recordType) {
         String leaderData = "00000" + RecordStatus.NEW.getCode() +
-                recordType.getCode() +
+                recordType +
                 DataType.UNKNOWN.getCode() +
                 "  2200000   4500";
         
@@ -223,14 +218,6 @@ public class MarcLeader {
         this.baseAddressOfData = baseAddressOfData;
     }
 
-    public RecordType getRecordTypeEnum() {
-        return recordType;
-    }
-    
-    public FormatType getFormatTypeEnum() {
-        return recordType.getFormatType();
-    }
-    
     public String getCurrentLeaderData() {
         DecimalFormat formatStart = new DecimalFormat("00000");
         StringBuilder result = new StringBuilder();

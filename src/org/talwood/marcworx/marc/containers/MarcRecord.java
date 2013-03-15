@@ -21,10 +21,12 @@ import java.util.List;
 import org.talwood.marcworx.marc.constants.MarcTagConstants;
 import org.talwood.marcworx.marc.enums.FormatType;
 import org.talwood.marcworx.marc.enums.MarcFileReadStatus;
-import org.talwood.marcworx.marc.enums.RecordType;
 import org.talwood.marcworx.exception.MarcException;
 import org.talwood.marcworx.helpers.MarcWorxDataHelper;
 import org.talwood.marcworx.helpers.MarcWorxObjectHelper;
+import org.talwood.marcworx.marc.constants.RecordTypeConstants;
+import org.talwood.marcworx.marc.enums.RecordType;
+import org.talwood.marcworx.marc.enums.RecordType;
 
 public class MarcRecord {
 
@@ -35,7 +37,7 @@ public class MarcRecord {
   
     private MarcRecord() {}
 
-    public MarcRecord(RecordType recordType) throws MarcException {
+    public MarcRecord(char recordType) throws MarcException {
         leader = new MarcLeader(recordType);
         tags = new ArrayList<MarcTag>();
     }
@@ -167,6 +169,6 @@ public class MarcRecord {
     }
 
     public FormatType getFormatType() {
-        return leader.getFormatTypeEnum();
+        return FormatType.findByFormatType(RecordType.findByRecordTypeCode(leader.getRecordType(), RecordType.RECORD_TYPE_UNKNOWN).getCode());
     }
 }

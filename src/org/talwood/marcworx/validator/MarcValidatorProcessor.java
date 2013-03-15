@@ -110,7 +110,7 @@ public class MarcValidatorProcessor {
         while(tag008Iter.hasNext()) {
             MarcTag thisTag = tag008Iter.next();
             if(MarcWorxStringHelper.isNotEmpty(thisTag.getCurrentTagData())) {
-                MarcFixedLengthDataValue mrflde = value.findDataElementByTagAndCode(8, leader.getRecordTypeEnum().getCode());
+                MarcFixedLengthDataValue mrflde = value.findDataElementByTagAndCode(8, leader.getRecordType());
                 if(mrflde == null || (mrflde.getDatalength() > 0 && mrflde.getDatalength() != thisTag.getCurrentTagData().length())) {
                     result.add(new MarcValidatorResultRow(MarcValidatorResultType.INVALID_008_LENGTH, thisTag.getTagNumber()));
                 } else {

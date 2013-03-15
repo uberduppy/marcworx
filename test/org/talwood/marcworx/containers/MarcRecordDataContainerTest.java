@@ -15,9 +15,9 @@ import org.talwood.marcworx.containers.elements.ListedDataEntry;
 import org.talwood.marcworx.containers.elements.StudyProgramNote;
 import org.talwood.marcworx.containers.elements.TargetAudienceNote;
 import org.talwood.marcworx.marc.constants.MarcSubfieldConstants;
+import org.talwood.marcworx.marc.constants.RecordTypeConstants;
 import org.talwood.marcworx.marc.containers.MarcRecord;
 import org.talwood.marcworx.marc.containers.MarcTag;
-import org.talwood.marcworx.marc.enums.RecordType;
 
 /**
  *
@@ -49,7 +49,7 @@ public class MarcRecordDataContainerTest {
      */
     @Test
     public void testGetTargetAudience() throws Exception {
-        MarcRecord record = new MarcRecord(RecordType.BIBLIOGRAPHIC_BOOK);
+        MarcRecord record = new MarcRecord(RecordTypeConstants.RECORD_TYPE_BIBLIOGRAPHIC_BOOK);
         record.addOrUpdateTag(new MarcTag(521, "0 " + MarcSubfieldConstants.SUBFIELD_CODE + "a3.1." + MarcSubfieldConstants.SUBFIELD_CODE + "bFollett"));
         record.addOrUpdateTag(new MarcTag(521, "3 " + MarcSubfieldConstants.SUBFIELD_CODE + "a[Green,.]" + MarcSubfieldConstants.SUBFIELD_CODE + "bSpecial"));
         MarcRecordDataContainer instance = new MarcRecordDataContainer(record);
@@ -75,7 +75,7 @@ public class MarcRecordDataContainerTest {
      */
     @Test
     public void testGetStudyPrograms() throws Exception {
-        MarcRecord record = new MarcRecord(RecordType.BIBLIOGRAPHIC_BOOK);
+        MarcRecord record = new MarcRecord(RecordTypeConstants.RECORD_TYPE_BIBLIOGRAPHIC_BOOK);
         record.addOrUpdateTag(new MarcTag(526, "0 " + MarcSubfieldConstants.SUBFIELD_CODE + "aProgramName" + MarcSubfieldConstants.SUBFIELD_CODE + "b5-10." + MarcSubfieldConstants.SUBFIELD_CODE + "c6.0"+ MarcSubfieldConstants.SUBFIELD_CODE + "d75."+ MarcSubfieldConstants.SUBFIELD_CODE + "5FOLLY" + MarcSubfieldConstants.SUBFIELD_CODE + "zNote 1" + MarcSubfieldConstants.SUBFIELD_CODE + "zNote 2" + MarcSubfieldConstants.SUBFIELD_CODE + "zNote 3" ));
         record.addOrUpdateTag(new MarcTag(526, "0 " + MarcSubfieldConstants.SUBFIELD_CODE + "aAnotherName" + MarcSubfieldConstants.SUBFIELD_CODE + "b8-12." + MarcSubfieldConstants.SUBFIELD_CODE + "c6.0"+ MarcSubfieldConstants.SUBFIELD_CODE + "d75."+ MarcSubfieldConstants.SUBFIELD_CODE + "5FOL" + MarcSubfieldConstants.SUBFIELD_CODE + "zNote 4" + MarcSubfieldConstants.SUBFIELD_CODE + "zNote 5" ));
         MarcRecordDataContainer instance = new MarcRecordDataContainer(record);

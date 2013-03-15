@@ -25,13 +25,13 @@ import org.talwood.marcworx.marc.containers.MarcLeader;
 import org.talwood.marcworx.marc.containers.MarcRecord;
 import org.talwood.marcworx.marc.containers.MarcTag;
 import org.talwood.marcworx.marc.enums.MarcFileReadStatus;
-import org.talwood.marcworx.marc.enums.RecordType;
 import org.talwood.marcworx.exception.MarcException;
 import org.talwood.marcworx.exception.MarcExceptionType;
 import org.talwood.marcworx.helpers.MarcWorxDataHelper;
 import org.talwood.marcworx.helpers.MarcWorxFileHelper;
 import org.talwood.marcworx.helpers.MarcWorxStringHelper;
 import org.talwood.marcworx.marc.constants.MarcLeaderConstants;
+import org.talwood.marcworx.marc.constants.RecordTypeConstants;
 
 public class MarcReader {
 
@@ -187,7 +187,7 @@ public class MarcReader {
             status = MarcFileReadStatus.ERROR;
         }
         if(status == MarcFileReadStatus.ERROR) {
-            MarcRecord recordx = MarcWorxDataHelper.createMarcRecord(RecordType.BIBLIOGRAPHIC_BOOK);
+            MarcRecord recordx = MarcWorxDataHelper.createMarcRecord(RecordTypeConstants.RECORD_TYPE_BIBLIOGRAPHIC_BOOK);
             recordx.setReadStatus(status);
             return recordx;
         }
@@ -309,7 +309,7 @@ public class MarcReader {
     }
 
     public MarcRecord getNthRecord(int newRecordNumber) throws MarcException {
-        MarcRecord rec = MarcWorxDataHelper.createMarcRecord(RecordType.BIBLIOGRAPHIC_BOOK);
+        MarcRecord rec = MarcWorxDataHelper.createMarcRecord(RecordTypeConstants.RECORD_TYPE_BIBLIOGRAPHIC_BOOK);
         moveToPosition(newRecordNumber);
         while(recordNumber < newRecordNumber) {
             rec = getNextRecord();
@@ -321,7 +321,7 @@ public class MarcReader {
     }
 
     public MarcRecord getNextRecord() throws MarcException {
-        MarcRecord rec = MarcWorxDataHelper.createMarcRecord(RecordType.BIBLIOGRAPHIC_BOOK);
+        MarcRecord rec = MarcWorxDataHelper.createMarcRecord(RecordTypeConstants.RECORD_TYPE_BIBLIOGRAPHIC_BOOK);
         if (objectStatus != 0) {
             rec.setReadStatus(MarcFileReadStatus.ERROR);
             return rec;
