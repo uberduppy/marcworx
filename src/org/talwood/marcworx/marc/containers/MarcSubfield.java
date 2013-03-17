@@ -18,50 +18,29 @@ package org.talwood.marcworx.marc.containers;
 
 import org.talwood.marcworx.helpers.MarcWorxDataHelper;
 import org.talwood.marcworx.marc.constants.MarcSubfieldConstants;
+import org.talwood.marcworx.marc.iface.BaseMarcSubfield;
 
-public class MarcSubfield {
-    private char code;
-    private String data;
-    private int subfieldIndex;
+public class MarcSubfield extends BaseMarcSubfield {
     
     private MarcSubfield() {}
     
     public MarcSubfield(char code, String data) {
-        this.code = code;
-        this.data = data;
-        this.subfieldIndex = MarcSubfieldConstants.UNKNOWN_SUBFIELD_INDEX;
-    }
-
-    public char getCode() {
-        return code;
-    }
-
-    public void setCode(char code) {
-        this.code = code;
-    }
-
-    public String getData() {
-        return data;
+        super(code, data);
     }
 
     public String getDataUnpunctuated() {
-        return MarcWorxDataHelper.stripStandardPunctuation(data);
+        return MarcWorxDataHelper.stripStandardPunctuation(getData());
     }
 
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public int getSubfieldIndex() {
-        return subfieldIndex;
-    }
-
-    public void setSubfieldIndex(int subfieldIndex) {
-        this.subfieldIndex = subfieldIndex;
-    }
     
-    public boolean isIndexed() {
-        return subfieldIndex != MarcSubfieldConstants.UNKNOWN_SUBFIELD_INDEX;
+    @Override
+    public void preConstruction() {
+        // Nothing required for preConstruction for MarcSubfield
     }
-    
+
+    @Override
+    public void postConstruction() {
+        // Nothing required for postConstruction for MarcSubfield
+    }
+
 }
