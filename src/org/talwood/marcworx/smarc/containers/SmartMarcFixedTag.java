@@ -23,14 +23,10 @@ import org.talwood.marcworx.marc.containers.MarcTag;
  *
  * @author twalker
  */
-public class SmartMarcFixedTag extends SmartMarcBaseTag {
-
+public class SmartMarcFixedTag extends MarcTag {
+    
     public SmartMarcFixedTag(MarcTag tag) {
-        super(tag);
+        super(tag.getTagNumber(), tag.getCurrentTagData());
     }
 
-    @Override
-    public void repopulateData(MarcTag tag) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

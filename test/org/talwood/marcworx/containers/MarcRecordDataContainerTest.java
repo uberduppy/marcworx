@@ -12,11 +12,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.talwood.marcworx.containers.elements.ListedDataEntry;
+import org.talwood.marcworx.containers.elements.PublicationInformation;
 import org.talwood.marcworx.containers.elements.StudyProgramNote;
 import org.talwood.marcworx.containers.elements.TargetAudienceNote;
+import org.talwood.marcworx.helpers.MarcWorxTestHelper;
 import org.talwood.marcworx.marc.constants.MarcSubfieldConstants;
 import org.talwood.marcworx.marc.constants.RecordTypeConstants;
 import org.talwood.marcworx.marc.containers.MarcRecord;
+import org.talwood.marcworx.marc.containers.MarcSubfield;
 import org.talwood.marcworx.marc.containers.MarcTag;
 
 /**
@@ -44,6 +47,20 @@ public class MarcRecordDataContainerTest {
     public void tearDown() {
     }
 
+    @Test
+    public void testGetPublicationInformationAACR2() throws Exception {
+        MarcRecord record = new MarcRecord(RecordTypeConstants.RECORD_TYPE_BIBLIOGRAPHIC_BOOK);
+        record.addOrUpdateTag(new MarcTag(8, "121299s1990                             "));
+        record.addOrUpdateTag(MarcWorxTestHelper.buildMarcTag(260, ' ', ' ', new MarcSubfield('a', "New York :"), new MarcSubfield('b', "George Publishing"), new MarcSubfield('c', "1957, c1995")));
+        MarcRecordDataContainer instance = new MarcRecordDataContainer(record);
+
+        PublicationInformation pi = instance.getPubInfo();
+        assertNotNull(pi);
+        assertEquals("1990", pi.getDateOfPublication());
+        assertEquals("1995", pi.getDateOfCopyright());
+        assertEquals("New York", pi.getPlaceOfPublication());
+        assertEquals("George Publishing", pi.getNameOfPublisher());
+    }
     /**
      * Test of getTargetAudience method, of class MarcRecordDataContainer.
      */

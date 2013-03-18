@@ -17,33 +17,23 @@
 
 package org.talwood.marcworx.smarc.containers;
 
-import org.talwood.marcworx.marc.containers.MarcLeader;
-import org.talwood.marcworx.marc.enums.FormatType;
-import org.talwood.marcworx.marc.enums.RecordType;
-
 /**
  *
  * @author twalker
  */
-public class SmartMarcLeader extends MarcLeader {
+public class SmartMarc006Base {
+    private String data;
+    
+    public SmartMarc006Base(String data) {
+        this.data = data;
+    }
 
-    private RecordType recordType = RecordType.RECORD_TYPE_UNKNOWN;
-    
-    public SmartMarcLeader(MarcLeader leader) {
-        super(leader.getCurrentLeaderData());
+    public String getData() {
+        return data;
     }
-    
-    public SmartMarcLeader(String leaderData) {
-        super(leaderData);
-        recordType = RecordType.findByRecordTypeCode(getPosition05(), RecordType.RECORD_TYPE_UNKNOWN);
-    }
-    
-    public RecordType getRecordTypeEnum() {
-        return recordType;
-    }
-    
-    public FormatType getFormatTypeEnum() {
-        return recordType.getFormatType();
+
+    public void setData(String data) {
+        this.data = data;
     }
     
     

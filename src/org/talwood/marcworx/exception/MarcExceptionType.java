@@ -35,6 +35,7 @@ public enum MarcExceptionType {
     BUILD_TAG_MATCH_PROBLEM("To and from tag numbers must be different"),
     JAXB_EXCEPTION("Unable to parse XML via JAXB"),
     WRITE_ERROR("Unable to write to output file."),
+    INVALID_TAG_LENGTH("Tag is incorrect length."),
     ;
 
     private String type;

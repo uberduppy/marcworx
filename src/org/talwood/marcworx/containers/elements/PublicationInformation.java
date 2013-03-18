@@ -18,8 +18,15 @@
 package org.talwood.marcworx.containers.elements;
 
 import java.util.List;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.talwood.marcworx.exception.MarcException;
+import org.talwood.marcworx.helpers.MarcWorxDataHelper;
+import org.talwood.marcworx.helpers.MarcWorxStringHelper;
 import org.talwood.marcworx.marc.containers.MarcTag;
+import org.talwood.marcworx.smarc.containers.SmartMarc008Tag;
+import org.talwood.marcworx.smarc.containers.SmartMarc260Tag;
+import org.talwood.marcworx.smarc.containers.SmartMarc264Tag;
 
 /**
  *
@@ -39,7 +46,7 @@ public class PublicationInformation extends BaseTagDataElement {
     private String dateOfPublication;
     private String dateOfCopyright;
     private String placeOfManufacture;
-    private String manufacturer;
+    private String nameOfManufacturer;
     private String dateOfManufacture;
     
     
@@ -76,117 +83,237 @@ public class PublicationInformation extends BaseTagDataElement {
     }
     
     private void populateFrom008(MarcTag tag) {
-        // Create a decorated 008 tag.
+        try {
+            // Create a decorated 008 tag.
+            SmartMarc008Tag workTag = new SmartMarc008Tag(tag);
+            if("epst".indexOf(workTag.getTypeOfDate()) >= 0) {
+                setDateOfPublication(MarcWorxDataHelper.gimmePublicationYear(workTag.getDate1()));
+            }
+        } catch (MarcException ex) {
+            // Do nothing, just don't parse the date from it!
+        }
     }
     private void populateFrom260(MarcTag tag) {
-        
+        SmartMarc260Tag tag260 = new SmartMarc260Tag(tag);
+        for(String data : tag260.getPlaceOfPublication()) {
+            setPlaceOfPublication(data);
+        }
+        for(String data : tag260.getCopyrightDate()) {
+            setDateOfCopyright(data);
+        }
+        for(String data : tag260.getDateOfManufacture()) {
+            setDateOfManufacture(data);
+        }
+        for(String data : tag260.getManufacturer()) {
+            setNameOfManufacturer(data);
+        }
+        for(String data : tag260.getNameOfPublisher()) {
+            setNameOfPublisher(data);
+        }
+        for(String data : tag260.getPlaceOfManufacture()) {
+            setPlaceOfManufacture(data);
+        }
+        for(String data : tag260.getPublicationDate()) {
+            setDateOfPublication(data);
+        }
     }
     private void populateFrom264(MarcTag tag) {
-        
+        SmartMarc264Tag tag264 = new SmartMarc264Tag(tag);
+        for(String data : tag264.getCopyrightDate()) {
+            setDateOfCopyright(data);
+        }
+        for(String data : tag264.getDistributionDate()) {
+            setDateOfDistribution(data);
+        }
+        for(String data : tag264.getManufactureDate()) {
+            setDateOfManufacture(data);
+        }
+        for(String data : tag264.getNameOfDistributor()) {
+            setNameOfDistributer(data);
+        }
+        for(String data : tag264.getNameOfManufacturer()) {
+            setNameOfManufacturer(data);
+        }
+        for(String data : tag264.getNameOfProducer()) {
+            setNameOfProducer(data);
+        }
+        for(String data : tag264.getNameOfPublisher()) {
+            setNameOfPublisher(data);
+        }
+        for(String data : tag264.getPlaceOfDistribution()) {
+            setPlaceOfDistribution(data);
+        }
+        for(String data : tag264.getPlaceOfManufacture()) {
+            setPlaceOfManufacture(data);
+        }
+        for(String data : tag264.getPlaceOfProduction()) {
+            setPlaceOfProduction(data);
+        }
+        for(String data : tag264.getPlaceOfPublication()) {
+            setPlaceOfPublication(data);
+        }
+        for(String data : tag264.getProductionDate()) {
+            setDateOfProduction(data);
+        }
+        for(String data : tag264.getPublicationDate()) {
+            setDateOfPublication(data);
+        }
     }
-    
+
+    @XmlElement(name="productionPlace")
     public String getPlaceOfProduction() {
         return placeOfProduction;
     }
 
     public void setPlaceOfProduction(String placeOfProduction) {
-        this.placeOfProduction = placeOfProduction;
+        // Each setter will only take the first attempt
+        if(MarcWorxStringHelper.isEmpty(this.placeOfProduction)) {
+            this.placeOfProduction = placeOfProduction;
+        }
     }
 
+    @XmlElement(name="producerName")
     public String getNameOfProducer() {
         return nameOfProducer;
     }
 
     public void setNameOfProducer(String nameOfProducer) {
-        this.nameOfProducer = nameOfProducer;
+        // Each setter will only take the first attempt
+        if(MarcWorxStringHelper.isEmpty(this.nameOfProducer)) {
+            this.nameOfProducer = nameOfProducer;
+        }
     }
 
+    @XmlElement(name="productionDate")
     public String getDateOfProduction() {
         return dateOfProduction;
     }
 
     public void setDateOfProduction(String dateOfProduction) {
-        this.dateOfProduction = dateOfProduction;
+        // Each setter will only take the first attempt
+        if(MarcWorxStringHelper.isEmpty(this.dateOfProduction)) {
+            this.dateOfProduction = dateOfProduction;
+        }
     }
 
+    @XmlElement(name="distributionPlace")
     public String getPlaceOfDistribution() {
         return placeOfDistribution;
     }
 
     public void setPlaceOfDistribution(String placeOfDistribution) {
-        this.placeOfDistribution = placeOfDistribution;
+        // Each setter will only take the first attempt
+        if(MarcWorxStringHelper.isEmpty(this.placeOfDistribution)) {
+            this.placeOfDistribution = placeOfDistribution;
+        }
     }
 
+    @XmlElement(name="distributerName")
     public String getNameOfDistributer() {
         return nameOfDistributer;
     }
 
     public void setNameOfDistributer(String nameOfDistributer) {
-        this.nameOfDistributer = nameOfDistributer;
+        // Each setter will only take the first attempt
+        if(MarcWorxStringHelper.isEmpty(this.nameOfDistributer)) {
+            this.nameOfDistributer = nameOfDistributer;
+        }
     }
 
+    @XmlElement(name="distributionDate")
     public String getDateOfDistribution() {
         return dateOfDistribution;
     }
 
     public void setDateOfDistribution(String dateOfDistribution) {
-        this.dateOfDistribution = dateOfDistribution;
+        // Each setter will only take the first attempt
+        if(MarcWorxStringHelper.isEmpty(this.dateOfDistribution)) {
+            this.dateOfDistribution = dateOfDistribution;
+        }
     }
 
+    @XmlElement(name="publicationPlace")
     public String getPlaceOfPublication() {
         return placeOfPublication;
     }
 
     public void setPlaceOfPublication(String placeOfPublication) {
-        this.placeOfPublication = placeOfPublication;
+        // Each setter will only take the first attempt
+        if(MarcWorxStringHelper.isEmpty(this.placeOfPublication)) {
+            this.placeOfPublication = placeOfPublication;
+        }
     }
 
+    @XmlElement(name="publisherName")
     public String getNameOfPublisher() {
         return nameOfPublisher;
     }
 
     public void setNameOfPublisher(String nameOfPublisher) {
-        this.nameOfPublisher = nameOfPublisher;
+        // Each setter will only take the first attempt
+        if(MarcWorxStringHelper.isEmpty(this.nameOfPublisher)) {
+            this.nameOfPublisher = nameOfPublisher;
+        }
     }
 
+    @XmlElement(name="publicationDate")
     public String getDateOfPublication() {
         return dateOfPublication;
     }
 
     public void setDateOfPublication(String dateOfPublication) {
-        this.dateOfPublication = dateOfPublication;
+        // Each setter will only take the first attempt
+        if(MarcWorxStringHelper.isEmpty(this.dateOfPublication)) {
+            this.dateOfPublication = dateOfPublication;
+        }
     }
 
+    @XmlElement(name="copyrightDate")
     public String getDateOfCopyright() {
         return dateOfCopyright;
     }
 
     public void setDateOfCopyright(String dateOfCopyright) {
-        this.dateOfCopyright = dateOfCopyright;
+        // Each setter will only take the first attempt
+        if(MarcWorxStringHelper.isEmpty(this.dateOfCopyright)) {
+            this.dateOfCopyright = dateOfCopyright;
+        }
     }
 
+    @XmlElement(name="mannufacturePlace")
     public String getPlaceOfManufacture() {
         return placeOfManufacture;
     }
 
     public void setPlaceOfManufacture(String placeOfManufacture) {
-        this.placeOfManufacture = placeOfManufacture;
+        // Each setter will only take the first attempt
+        if(MarcWorxStringHelper.isEmpty(this.placeOfManufacture)) {
+            this.placeOfManufacture = placeOfManufacture;
+        }
     }
 
-    public String getManufacturer() {
-        return manufacturer;
+    @XmlElement(name="manufacturerName")
+    public String getNameOfManufacturer() {
+        return nameOfManufacturer;
     }
 
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
+    public void setNameOfManufacturer(String nameOfManufacturer) {
+        // Each setter will only take the first attempt
+        if(MarcWorxStringHelper.isEmpty(this.nameOfManufacturer)) {
+            this.nameOfManufacturer = nameOfManufacturer;
+        }
     }
 
+    @XmlElement(name="manufacturePlace")
     public String getDateOfManufacture() {
         return dateOfManufacture;
     }
 
     public void setDateOfManufacture(String dateOfManufacture) {
-        this.dateOfManufacture = dateOfManufacture;
+        // Each setter will only take the first attempt
+        if(MarcWorxStringHelper.isEmpty(this.dateOfManufacture)) {
+            this.dateOfManufacture = dateOfManufacture;
+        }
     }
     
     

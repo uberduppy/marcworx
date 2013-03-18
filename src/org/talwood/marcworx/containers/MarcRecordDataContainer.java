@@ -21,8 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.talwood.marcworx.containers.elements.PublicationInformation;
 import org.talwood.marcworx.containers.elements.StudyProgramNote;
 import org.talwood.marcworx.containers.elements.TargetAudienceNote;
+import org.talwood.marcworx.helpers.MarcWorxRecordHelper;
 import org.talwood.marcworx.marc.containers.MarcRecord;
 import org.talwood.marcworx.marc.containers.MarcTag;
 /**
@@ -35,7 +37,8 @@ public class MarcRecordDataContainer {
     // Initial offering of data
     private List<TargetAudienceNote> targetAudience = new ArrayList<TargetAudienceNote>();
     private List<StudyProgramNote> studyPrograms = new ArrayList<StudyProgramNote>();
-    
+    private PublicationInformation pubInfo;
+
     
     private MarcRecordDataContainer() {}
     
@@ -49,6 +52,13 @@ public class MarcRecordDataContainer {
         // Parse name entries
         
         // Parse publication info
+        List<MarcTag> pubTags = new ArrayList<MarcTag>();
+        if(MarcWorxRecordHelper.doesRecordConformToRda(record)) {
+            pubTags.addAll(record.getAllTags(new int[]{264, 8, 260}));
+        } else {
+            pubTags.addAll(record.getAllTags(new int[]{8, 260}));
+        }
+        pubInfo = new PublicationInformation(pubTags);
         
         // Parse target audience
         for(MarcTag tag521 : record.getAllTags(521)) {
@@ -85,6 +95,15 @@ public class MarcRecordDataContainer {
         this.studyPrograms = studyPrograms;
     }
 
+    @XmlElement(name="PublicationInfo")
+    public PublicationInformation getPubInfo() {
+        return pubInfo;
+    }
+
+    public void setPubInfo(PublicationInformation pubInfo) {
+        this.pubInfo = pubInfo;
+    }
+    
     
     
 }

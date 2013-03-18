@@ -17,6 +17,9 @@
 package org.talwood.marcworx.helpers;
 
 import java.io.File;
+import org.talwood.marcworx.marc.constants.MarcSubfieldConstants;
+import org.talwood.marcworx.marc.containers.MarcSubfield;
+import org.talwood.marcworx.marc.containers.MarcTag;
 
 public class MarcWorxTestHelper {
     public static File getTestFile(String filename) {
@@ -30,5 +33,14 @@ public class MarcWorxTestHelper {
             ex.printStackTrace(System.out);
         }
         return file;
+    }
+    
+    public static MarcTag buildMarcTag(int tagNumber, char ind1, char ind2, MarcSubfield... subs) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(ind1).append(ind2);
+        for(MarcSubfield sub : subs) {
+            sb.append(MarcSubfieldConstants.SUBFIELD_CODE).append(sub.getCode()).append(sub.getData());
+        }
+        return new MarcTag(tagNumber, sb.toString());
     }
 }

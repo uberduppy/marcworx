@@ -22,6 +22,8 @@ import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.talwood.marcworx.exception.ConstraintException;
 import org.talwood.marcworx.marc.constants.MarcLeaderConstants;
 import org.talwood.marcworx.marc.constants.MarcRecordConstants;
@@ -38,6 +40,43 @@ import org.talwood.marcworx.xmlgen.XMLEntry;
 
 public class MarcWorxDataHelper {
     // Static implementations of Helper methods.
+    private static Pattern pubYearPattern = Pattern.compile("(\\b\\d{4}\\b)");
+    private static Pattern phonogramYearPattern = Pattern.compile("\\b[Pp](\\d{4})\\b");
+    private static Pattern copyrightYearPattern = Pattern.compile("\\b[Cc](\\d{4})\\b");
+    
+    public static String gimmePublicationYear(String data) {
+        String value = null;
+        if(MarcWorxStringHelper.isNotEmpty(data)) {
+            Matcher yearMatcher = pubYearPattern.matcher(data);
+            if(yearMatcher.find()) {
+                value = yearMatcher.group(1);
+            }
+        }
+        return value;
+    }
+    
+    public static String gimmePhonogramYear(String data) {
+        String value = null;
+        if(MarcWorxStringHelper.isNotEmpty(data)) {
+            Matcher yearMatcher = phonogramYearPattern.matcher(data);
+            if(yearMatcher.find()) {
+                value = yearMatcher.group(1);
+            }
+        }
+        return value;
+    }
+    
+    public static String gimmeCopyrightYear(String data) {
+        String value = null;
+        if(MarcWorxStringHelper.isNotEmpty(data)) {
+            data = data.replace('\u00A9','C');
+            Matcher yearMatcher = copyrightYearPattern.matcher(data);
+            if(yearMatcher.find()) {
+                value = yearMatcher.group(1);
+            }
+        }
+        return value;
+    }
     
     public static MarcSubfield cloneSubfield(MarcSubfield subfield) {
         MarcSubfield newSubfield = new MarcSubfield(subfield.getCode(), subfield.getData());
@@ -221,6 +260,7 @@ public class MarcWorxDataHelper {
         entry.setParameter("marc:leader", leader.getCurrentLeaderData());
     }
 
+    
     public static String convertMarcRecordToMarcXml(MarcRecord record) {
         XMLBuilder builder = new XMLBuilder("marc:collection", MarcWorxFileHelper.ENCODING_UTF8);
         builder.setAttribute("xmlns:marc", "http://www.loc.gov/MARC21/slim");

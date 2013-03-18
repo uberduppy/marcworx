@@ -19,30 +19,22 @@ package org.talwood.marcworx.marc.containers;
 import java.util.ArrayList;
 import java.util.List;
 import org.talwood.marcworx.marc.enums.FormatType;
-import org.talwood.marcworx.marc.enums.MarcFileReadStatus;
 import org.talwood.marcworx.exception.MarcException;
 import org.talwood.marcworx.helpers.MarcWorxDataHelper;
 import org.talwood.marcworx.helpers.MarcWorxObjectHelper;
+import org.talwood.marcworx.helpers.MarcWorxRecordHelper;
+import org.talwood.marcworx.marc.constants.MarcTagConstants;
+import org.talwood.marcworx.marc.enums.MarcFileReadStatus;
 import org.talwood.marcworx.marc.enums.RecordType;
-import org.talwood.marcworx.marc.iface.BaseMarcRecord;
 
-public class MarcRecord extends BaseMarcRecord {
-
+public class MarcRecord {
+    private MarcLeader leader = null;
+    private List<MarcTag> tags = new ArrayList<MarcTag>();
+    private MarcFileReadStatus readStatus = MarcFileReadStatus.VALID;
+    private int nextTagIndex = MarcTagConstants.FIRST_TAG_INDEX;
   
     public MarcRecord(char recordType) throws MarcException {
-        super(recordType);
-    }
-
-
-    
-    public List<MarcTag> getAllTags(int[] tagNumbers) {
-        List<MarcTag> results = new ArrayList<MarcTag>();
-        for(MarcTag marcTag : getTags()) {
-            if(MarcWorxObjectHelper.intInArray(tagNumbers, marcTag.getTagNumber())) {
-                results.add(marcTag);
-            }
-        }
-        return results;
+        leader = new MarcLeader(recordType);
     }
 
     public static MarcTag createFixedTag(int tagNumber, String tagData) throws MarcException {
@@ -55,7 +47,9 @@ public class MarcRecord extends BaseMarcRecord {
         MarcTag result = new MarcTag(tagNumber);
         result.setFirstIndicator(ind1);
         result.setSecondIndicator(ind2);
-        result.addOrUpdateSubfields(subs);
+        for(MarcSubfield sub : subs) {
+            result.addOrUpdateSubfield(sub);
+        }
         return result;
     }
 
@@ -76,6 +70,63 @@ public class MarcRecord extends BaseMarcRecord {
         result.setSecondIndicator(ind2);
         result.addOrUpdateSubfield(new MarcSubfield(subInd, subData));
         return result;
+    }
+
+
+    public FormatType getFormatType() {
+        return FormatType.findByFormatType(RecordType.findByRecordTypeCode(getLeader().getRecordType(), RecordType.RECORD_TYPE_UNKNOWN).getCode());
+    }
+
+    public MarcLeader getLeader() {
+        return leader;
+    }
+
+    public void setLeader(MarcLeader leader) {
+        this.leader = leader;
+    }
+
+    public List<MarcTag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<MarcTag> tags) {
+        this.tags = tags;
+    }
+    
+    public MarcFileReadStatus getReadStatus() {
+        return readStatus;
+    }
+
+    public void setReadStatus(MarcFileReadStatus readStatus) {
+        this.readStatus = readStatus;
+    }
+
+    public MarcTag getTag(int tagNumber, int occurrenceOneBased) {
+        MarcTag tag = null;
+        List<MarcTag> results = getAllTags(tagNumber);
+        if(results.size() <= occurrenceOneBased) {
+            tag = results.get(occurrenceOneBased - 1);
+        }
+        return tag;
+    }
+    public List<MarcTag> getAllTags(int tagNumber) {
+        List<MarcTag> results = new ArrayList<MarcTag>();
+        for(MarcTag marcTag : getTags()) {
+            if(marcTag.getTagNumber() == tagNumber) {
+                results.add(MarcWorxDataHelper.cloneTag(marcTag));
+            }
+        }
+        return results;
+    }
+    
+    public List<MarcTag> getAllTags(int[] tagNumbers) {
+        List<MarcTag> results = new ArrayList<MarcTag>();
+        for(MarcTag marcTag : getTags()) {
+            if(MarcWorxObjectHelper.intInArray(tagNumbers, marcTag.getTagNumber())) {
+                results.add(MarcWorxDataHelper.cloneTag(marcTag));
+            }
+        }
+        return results;
     }
 
     public void addOrUpdateTags(List<MarcTag> tags) {
@@ -117,9 +168,5 @@ public class MarcRecord extends BaseMarcRecord {
             }
         }
         return result;
-    }
-
-    public FormatType getFormatType() {
-        return FormatType.findByFormatType(RecordType.findByRecordTypeCode(leader.getRecordType(), RecordType.RECORD_TYPE_UNKNOWN).getCode());
     }
 }

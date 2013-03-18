@@ -23,14 +23,11 @@ import org.talwood.marcworx.marc.containers.MarcTag;
  *
  * @author twalker
  */
-public class SmartMarcSubfieldTag extends SmartMarcBaseTag {
+public class SmartMarcSubfieldTag extends MarcTag {
 
+    
     public SmartMarcSubfieldTag(MarcTag tag) {
-        super(tag);
+        super(tag.getTagNumber(), tag.getCurrentTagData());
     }
 
-    @Override
-    public void repopulateData(MarcTag tag) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

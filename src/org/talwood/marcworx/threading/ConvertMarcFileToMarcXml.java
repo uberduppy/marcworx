@@ -24,7 +24,7 @@ import org.talwood.marcworx.exception.MarcException;
 import org.talwood.marcworx.exception.MarcExceptionType;
 import org.talwood.marcworx.helpers.MarcWorxDataHelper;
 import org.talwood.marcworx.marc.containers.MarcRecord;
-import org.talwood.marcworx.xmlgen.XMLEntry;
+import org.talwood.marcworx.xmlgen.XMLBase;
 
 public class ConvertMarcFileToMarcXml implements IMarcWorxThreadProcessor {
 
@@ -41,7 +41,7 @@ public class ConvertMarcFileToMarcXml implements IMarcWorxThreadProcessor {
     public void processRecord(MarcRecord record) throws MarcException {
         if(fos != null) {
             try {
-                XMLEntry marcXml = MarcWorxDataHelper.convertSingletonMarcRecordToMarcXmlEntry(record);
+                XMLBase marcXml = MarcWorxDataHelper.convertSingletonMarcRecordToMarcXmlEntry(record); // MarcWorxDataHelper.convertSingletonMarcRecordToMarcXmlEntry(record);
                 fos.write(marcXml.toXML().getBytes());
                 fos.flush();
             } catch (IOException ex) {
