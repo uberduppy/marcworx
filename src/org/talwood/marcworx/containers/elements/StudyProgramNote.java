@@ -17,6 +17,7 @@
 
 package org.talwood.marcworx.containers.elements;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
@@ -32,7 +33,7 @@ import org.talwood.marcworx.marc.containers.MarcTag;
  * @author twalker
  */
 @XmlRootElement(name="StudyProgram")
-public class StudyProgramNote extends BaseTagDataElement {
+public class StudyProgramNote extends BaseTagDataElement implements Serializable {
     private String programName;
     private String interestLevel;
     private String readingLevel;

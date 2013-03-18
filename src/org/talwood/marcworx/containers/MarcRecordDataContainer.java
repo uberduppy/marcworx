@@ -17,8 +17,12 @@
 
 package org.talwood.marcworx.containers;
 
+import java.io.Serializable;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.talwood.marcworx.containers.elements.PublicationInformation;
@@ -27,12 +31,13 @@ import org.talwood.marcworx.containers.elements.TargetAudienceNote;
 import org.talwood.marcworx.helpers.MarcWorxRecordHelper;
 import org.talwood.marcworx.marc.containers.MarcRecord;
 import org.talwood.marcworx.marc.containers.MarcTag;
+import org.talwood.marcworx.xform.XMLFormatter;
 /**
  *
  * @author twalker
  */
 @XmlRootElement(name="marcdata")
-public class MarcRecordDataContainer {
+public class MarcRecordDataContainer implements Serializable {
     
     // Initial offering of data
     private List<TargetAudienceNote> targetAudience = new ArrayList<TargetAudienceNote>();
@@ -104,6 +109,13 @@ public class MarcRecordDataContainer {
         this.pubInfo = pubInfo;
     }
     
-    
+    public String toXml() throws Exception {
+        JAXBContext context = JAXBContext.newInstance(MarcRecordDataContainer.class);
+        Marshaller marshaller = context.createMarshaller();
+        StringWriter sw = new StringWriter();
+        marshaller.marshal(this, sw);
+        XMLFormatter xmlf = new XMLFormatter();
+        return xmlf.format(sw.toString());
+    }
     
 }

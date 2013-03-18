@@ -17,6 +17,7 @@
 
 package org.talwood.marcworx.containers.elements;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -33,7 +34,7 @@ import org.talwood.marcworx.smarc.containers.SmartMarc264Tag;
  * @author twalker
  */
 @XmlRootElement
-public class PublicationInformation extends BaseTagDataElement {
+public class PublicationInformation extends BaseTagDataElement implements Serializable {
     
     private String placeOfProduction;
     private String nameOfProducer;

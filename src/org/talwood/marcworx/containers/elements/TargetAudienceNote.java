@@ -17,6 +17,7 @@
 
 package org.talwood.marcworx.containers.elements;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.talwood.marcworx.containers.enums.TargetAudienceEnum;
@@ -30,7 +31,7 @@ import org.talwood.marcworx.marc.containers.MarcTag;
  * @author twalker
  */
 @XmlRootElement(name="TargetAudience")
-public class TargetAudienceNote extends BaseTagDataElement {
+public class TargetAudienceNote extends BaseTagDataElement implements Serializable {
     
     private String description;
     private String targetAudienceNote;

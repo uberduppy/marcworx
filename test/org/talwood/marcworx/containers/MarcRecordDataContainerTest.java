@@ -4,7 +4,10 @@
  */
 package org.talwood.marcworx.containers;
 
+import java.io.StringWriter;
 import java.util.List;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -22,6 +25,7 @@ import org.talwood.marcworx.marc.containers.MarcLeader;
 import org.talwood.marcworx.marc.containers.MarcRecord;
 import org.talwood.marcworx.marc.containers.MarcSubfield;
 import org.talwood.marcworx.marc.containers.MarcTag;
+import org.talwood.marcworx.xform.XMLFormatter;
 
 /**
  *
@@ -48,6 +52,34 @@ public class MarcRecordDataContainerTest {
     public void tearDown() {
     }
 
+    @Test
+    public void testGetAllInfo() throws Exception {
+        MarcRecord record = new MarcRecord(RecordTypeConstants.RECORD_TYPE_BIBLIOGRAPHIC_BOOK);
+        MarcLeader leader = record.getLeader();
+        leader.setPosition18('i');
+        record.setLeader(leader);
+        record.addOrUpdateTag(new MarcTag(8, "121299s1990                             "));
+        record.addOrUpdateTag(MarcWorxTestHelper.buildMarcTag(40, ' ', ' ', new MarcSubfield('e', "rda")));
+        record.addOrUpdateTag(MarcWorxTestHelper.buildMarcTag(264, ' ', '1', new MarcSubfield('a', "New York :"), new MarcSubfield('b', "George Publishing"), new MarcSubfield('c', "1957")));
+        record.addOrUpdateTag(MarcWorxTestHelper.buildMarcTag(264, ' ', '4', new MarcSubfield('c', "1995")));
+        record.addOrUpdateTag(new MarcTag(521, "0 " + MarcSubfieldConstants.SUBFIELD_CODE + "a3.1." + MarcSubfieldConstants.SUBFIELD_CODE + "bFollett"));
+        record.addOrUpdateTag(new MarcTag(521, "3 " + MarcSubfieldConstants.SUBFIELD_CODE + "a[Green,.]" + MarcSubfieldConstants.SUBFIELD_CODE + "bSpecial"));
+        record.addOrUpdateTag(new MarcTag(526, "0 " + MarcSubfieldConstants.SUBFIELD_CODE + "aProgramName" + MarcSubfieldConstants.SUBFIELD_CODE + "b5-10." + MarcSubfieldConstants.SUBFIELD_CODE + "c6.0"+ MarcSubfieldConstants.SUBFIELD_CODE + "d75."+ MarcSubfieldConstants.SUBFIELD_CODE + "5FOLLY" + MarcSubfieldConstants.SUBFIELD_CODE + "zNote 1" + MarcSubfieldConstants.SUBFIELD_CODE + "zNote 2" + MarcSubfieldConstants.SUBFIELD_CODE + "zNote 3" ));
+        record.addOrUpdateTag(new MarcTag(526, "0 " + MarcSubfieldConstants.SUBFIELD_CODE + "aAnotherName" + MarcSubfieldConstants.SUBFIELD_CODE + "b8-12." + MarcSubfieldConstants.SUBFIELD_CODE + "c6.0"+ MarcSubfieldConstants.SUBFIELD_CODE + "d75."+ MarcSubfieldConstants.SUBFIELD_CODE + "5FOL" + MarcSubfieldConstants.SUBFIELD_CODE + "zNote 4" + MarcSubfieldConstants.SUBFIELD_CODE + "zNote 5" ));
+        MarcRecordDataContainer instance = new MarcRecordDataContainer(record);
+        
+//        JAXBContext context = JAXBContext.newInstance(MarcRecordDataContainer.class);
+//        Marshaller marshaller = context.createMarshaller();
+//        StringWriter sw = new StringWriter();
+//        marshaller.marshal(marshaller, sw);
+//        XMLFormatter xmlf = new XMLFormatter();
+//        xmlf.format(sw.toString());
+//        System.out.println(xmlf.format(sw.toString()));
+        System.out.println(instance.toXml());
+//        result = (T) marshaller.unmarshal(new StringReader(xml));
+        
+        
+    }
     @Test
     public void testGetPublicationInformationAACR2() throws Exception {
         MarcRecord record = new MarcRecord(RecordTypeConstants.RECORD_TYPE_BIBLIOGRAPHIC_BOOK);

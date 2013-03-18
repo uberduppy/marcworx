@@ -17,6 +17,7 @@
 
 package org.talwood.marcworx.containers.elements;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
@@ -25,7 +26,7 @@ import javax.xml.bind.annotation.XmlValue;
  * @author twalker
  */
 @XmlRootElement(name="data")
-public class ListedDataEntry {
+public class ListedDataEntry implements Serializable {
     
     private String data;
     
