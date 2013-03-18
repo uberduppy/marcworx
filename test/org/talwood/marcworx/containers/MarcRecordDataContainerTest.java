@@ -18,6 +18,7 @@ import org.talwood.marcworx.containers.elements.TargetAudienceNote;
 import org.talwood.marcworx.helpers.MarcWorxTestHelper;
 import org.talwood.marcworx.marc.constants.MarcSubfieldConstants;
 import org.talwood.marcworx.marc.constants.RecordTypeConstants;
+import org.talwood.marcworx.marc.containers.MarcLeader;
 import org.talwood.marcworx.marc.containers.MarcRecord;
 import org.talwood.marcworx.marc.containers.MarcSubfield;
 import org.talwood.marcworx.marc.containers.MarcTag;
@@ -57,6 +58,25 @@ public class MarcRecordDataContainerTest {
         PublicationInformation pi = instance.getPubInfo();
         assertNotNull(pi);
         assertEquals("1990", pi.getDateOfPublication());
+        assertEquals("1995", pi.getDateOfCopyright());
+        assertEquals("New York", pi.getPlaceOfPublication());
+        assertEquals("George Publishing", pi.getNameOfPublisher());
+    }
+    @Test
+    public void testGetPublicationInformationRDA() throws Exception {
+        MarcRecord record = new MarcRecord(RecordTypeConstants.RECORD_TYPE_BIBLIOGRAPHIC_BOOK);
+        MarcLeader leader = record.getLeader();
+        leader.setPosition18('i');
+        record.setLeader(leader);
+        record.addOrUpdateTag(new MarcTag(8, "121299s1990                             "));
+        record.addOrUpdateTag(MarcWorxTestHelper.buildMarcTag(40, ' ', ' ', new MarcSubfield('e', "rda")));
+        record.addOrUpdateTag(MarcWorxTestHelper.buildMarcTag(264, ' ', '1', new MarcSubfield('a', "New York :"), new MarcSubfield('b', "George Publishing"), new MarcSubfield('c', "1957")));
+        record.addOrUpdateTag(MarcWorxTestHelper.buildMarcTag(264, ' ', '4', new MarcSubfield('c', "1995")));
+        MarcRecordDataContainer instance = new MarcRecordDataContainer(record);
+
+        PublicationInformation pi = instance.getPubInfo();
+        assertNotNull(pi);
+        assertEquals("1957", pi.getDateOfPublication());
         assertEquals("1995", pi.getDateOfCopyright());
         assertEquals("New York", pi.getPlaceOfPublication());
         assertEquals("George Publishing", pi.getNameOfPublisher());
