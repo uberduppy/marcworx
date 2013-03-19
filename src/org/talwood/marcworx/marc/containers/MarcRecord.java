@@ -104,7 +104,7 @@ public class MarcRecord {
     public MarcTag getTag(int tagNumber, int occurrenceOneBased) {
         MarcTag tag = null;
         List<MarcTag> results = getAllTags(tagNumber);
-        if(results.size() <= occurrenceOneBased) {
+        if(results.size() >= occurrenceOneBased) {
             tag = results.get(occurrenceOneBased - 1);
         }
         return tag;
@@ -113,6 +113,16 @@ public class MarcRecord {
         List<MarcTag> results = new ArrayList<MarcTag>();
         for(MarcTag marcTag : getTags()) {
             if(marcTag.getTagNumber() == tagNumber) {
+                results.add(MarcWorxDataHelper.cloneTag(marcTag));
+            }
+        }
+        return results;
+    }
+    
+    public List<MarcTag> getAllTagsInRange(int startingTagNumber, int endingTagNumber) {
+        List<MarcTag> results = new ArrayList<MarcTag>();
+        for(MarcTag marcTag : getTags()) {
+            if(marcTag.getTagNumber() >= startingTagNumber && marcTag.getTagNumber() <= endingTagNumber) {
                 results.add(MarcWorxDataHelper.cloneTag(marcTag));
             }
         }

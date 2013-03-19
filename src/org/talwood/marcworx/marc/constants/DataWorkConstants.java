@@ -23,6 +23,7 @@ package org.talwood.marcworx.marc.constants;
  */
 public class DataWorkConstants {
     public static final String STANDARD_BACK_PUNCT_TO_STRIP = ".:,;/] ";
+    public static final String STANDARD_BACK_PUNCT_TO_STRIP_NO_PERIOD = ":,;/] ";
     public static final String STANDARD_FRONT_PUNCT_TO_STRIP = ".:,;/[ ";
 
 }

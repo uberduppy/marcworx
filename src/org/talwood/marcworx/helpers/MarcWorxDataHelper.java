@@ -78,6 +78,23 @@ public class MarcWorxDataHelper {
         return value;
     }
     
+    public static String pullDataFromSubfield(MarcTag tag, char subfield, int occurrenceOneBased, String punctuationToStrip) {
+        String result = null;
+        if(tag != null) {
+            MarcSubfield sub = tag.getSubfield(subfield, occurrenceOneBased);
+            if(sub != null) {
+                if(punctuationToStrip != null) {
+                    result = MarcWorxStringHelper.stripTrailingData(MarcWorxStringHelper.stripLeadingData(sub.getData(), DataWorkConstants.STANDARD_FRONT_PUNCT_TO_STRIP), punctuationToStrip);
+                    
+                    result = sub.getDataUnpunctuated(); 
+                } else {
+                    result = sub.getData(); 
+                }
+            }
+        }
+        return result;
+    }
+    
     public static MarcSubfield cloneSubfield(MarcSubfield subfield) {
         MarcSubfield newSubfield = new MarcSubfield(subfield.getCode(), subfield.getData());
         return newSubfield;
@@ -313,4 +330,24 @@ public class MarcWorxDataHelper {
     public static String stripStandardPunctuation(String source) {
         return MarcWorxStringHelper.stripTrailingData(MarcWorxStringHelper.stripLeadingData(source, DataWorkConstants.STANDARD_FRONT_PUNCT_TO_STRIP), DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP);
     }
+    
+    public static TupleContainer<String, String> splitString(String source, char nonfiling) {
+        TupleContainer<String, String> output = new TupleContainer<String, String>("", "");
+        if(MarcWorxStringHelper.isNotEmpty(source)) {
+            if(Character.isDigit(nonfiling)) {
+                int charCount = Integer.parseInt(String.valueOf(nonfiling));
+                if(charCount < source.length()) {
+                    output.setLeftSide(MarcWorxDataHelper.stripStandardPunctuation(source.substring(0, charCount)));
+                    output.setRightSide(MarcWorxDataHelper.stripStandardPunctuation(source.substring(charCount)));
+                } else {
+                    output.setRightSide(MarcWorxDataHelper.stripStandardPunctuation(source));
+                }
+            } else {
+                output.setRightSide(MarcWorxDataHelper.stripStandardPunctuation(source));
+            }
+        }
+        
+        return output;
+    }
+    
 }

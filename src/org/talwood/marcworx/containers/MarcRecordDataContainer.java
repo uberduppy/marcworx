@@ -25,9 +25,12 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.talwood.marcworx.containers.elements.ControlNumbers;
+import org.talwood.marcworx.containers.elements.MainEntryElement;
 import org.talwood.marcworx.containers.elements.PublicationInformation;
 import org.talwood.marcworx.containers.elements.StudyProgramNote;
 import org.talwood.marcworx.containers.elements.TargetAudienceNote;
+import org.talwood.marcworx.containers.elements.TitleElement;
 import org.talwood.marcworx.helpers.MarcWorxRecordHelper;
 import org.talwood.marcworx.marc.containers.MarcRecord;
 import org.talwood.marcworx.marc.containers.MarcTag;
@@ -42,7 +45,10 @@ public class MarcRecordDataContainer implements Serializable {
     // Initial offering of data
     private List<TargetAudienceNote> targetAudience = new ArrayList<TargetAudienceNote>();
     private List<StudyProgramNote> studyPrograms = new ArrayList<StudyProgramNote>();
+    private List<MainEntryElement> mainEntries = new ArrayList<MainEntryElement>();
     private PublicationInformation pubInfo;
+    private TitleElement titleElement;
+    private ControlNumbers controlNumbers;
 
     
     private MarcRecordDataContainer() {}
@@ -52,9 +58,23 @@ public class MarcRecordDataContainer implements Serializable {
     }
     
     private void parseData(MarcRecord record) {
-        // Parse title entries
+        // Parse control entries
+        List<MarcTag> controlTags = record.getAllTagsInRange(10, 99);
+        controlNumbers = new ControlNumbers(controlTags);
         
+        // Parse title entries
+        MarcTag tag245 = record.getTag(245, 1);
+        if(tag245 != null) {
+            titleElement = new TitleElement(tag245);
+        }
         // Parse name entries
+        List<MarcTag> mainEntryTags = record.getAllTags(new int[]{100, 110, 111, 130});
+        for(MarcTag mainEntry : mainEntryTags) {
+            MainEntryElement mee = new MainEntryElement(mainEntry);
+            if(mee.isValid()) {
+                mainEntries.add(mee);
+            }
+        }
         
         // Parse publication info
         List<MarcTag> pubTags = new ArrayList<MarcTag>();
@@ -108,6 +128,36 @@ public class MarcRecordDataContainer implements Serializable {
     public void setPubInfo(PublicationInformation pubInfo) {
         this.pubInfo = pubInfo;
     }
+
+    @XmlElement(name="ControlNumbers")
+    public ControlNumbers getControlNumbers() {
+        return controlNumbers;
+    }
+
+    public void setControlNumbers(ControlNumbers controlNumbers) {
+        this.controlNumbers = controlNumbers;
+    }
+
+    @XmlElement(name="Names")
+    public List<MainEntryElement> getMainEntries() {
+        return mainEntries;
+    }
+
+    public void setMainEntries(List<MainEntryElement> mainEntries) {
+        this.mainEntries = mainEntries;
+    }
+
+    @XmlElement(name="Title")
+    public TitleElement getTitleElement() {
+        return titleElement;
+    }
+
+    public void setTitleElement(TitleElement titleElement) {
+        this.titleElement = titleElement;
+    }
+    
+    
+    
     
     public String toXml() throws Exception {
         JAXBContext context = JAXBContext.newInstance(MarcRecordDataContainer.class);
