@@ -30,12 +30,15 @@ import org.talwood.marcworx.marc.containers.MarcTag;
  *
  * @author twalker
  */
-@XmlRootElement(name="Names")
+@XmlRootElement(name="MainEntry")
 public class MainEntryElement extends BaseTagDataElement implements Serializable {
     
     private String type;
     private String name;
     private String numeration;
+    private String title;
+    private String date;
+    private String relatorTerm;
     
     public MainEntryElement() {
         
@@ -51,6 +54,9 @@ public class MainEntryElement extends BaseTagDataElement implements Serializable
                 type="Personal";
                 setName(MarcWorxDataHelper.pullDataFromSubfield(tag, 'a', 1, DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP_NO_PERIOD));
                 setNumeration(MarcWorxDataHelper.pullDataFromSubfield(tag, 'b', 1, DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP));
+                setTitle(MarcWorxDataHelper.pullAppendedDataFromSubfields(tag, "c", " ", DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP));
+                setDate(MarcWorxDataHelper.pullDataFromSubfield(tag, 'd', 1, DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP));
+                setRelatorTerm(MarcWorxDataHelper.pullAppendedDataFromSubfields(tag, "e", " ", DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP));
                 break;
             case 110:
                 type="Corporate";
@@ -93,6 +99,33 @@ public class MainEntryElement extends BaseTagDataElement implements Serializable
 
     public void setNumeration(String numeration) {
         this.numeration = numeration;
+    }
+
+    @XmlElement(name="Title")
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @XmlElement(name="Date")
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    @XmlElement(name="Relator")
+    public String getRelatorTerm() {
+        return relatorTerm;
+    }
+
+    public void setRelatorTerm(String relatorTerm) {
+        this.relatorTerm = relatorTerm;
     }
     
     

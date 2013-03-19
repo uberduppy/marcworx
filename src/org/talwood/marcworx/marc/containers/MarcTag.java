@@ -220,7 +220,7 @@ public class MarcTag {
         StringBuilder result = new StringBuilder();
         for(MarcSubfield marcSubfield : getSubfields()) {
             if(MarcWorxStringHelper.contains(selectedSubs, marcSubfield.getCode())) {
-                if(result.length() > 0 && MarcWorxStringHelper.isNotEmpty(marcSubfield.getData())) {
+                if(result.length() > 0 && MarcWorxStringHelper.isNotEmpty(marcSubfield.getData()) && MarcWorxStringHelper.isNotEmpty(delimiter)) {
                     result.append(delimiter);
                 }
                 result.append(marcSubfield.getData());

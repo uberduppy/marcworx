@@ -78,6 +78,16 @@ public class MarcWorxDataHelper {
         return value;
     }
     
+    public static String pullAppendedDataFromSubfields(MarcTag tag, String subfields, String delimiter, String punctuationToStrip) {
+        String result = null;
+        if(tag != null) {
+            result = tag.getSubfieldData(subfields, delimiter);
+            if(punctuationToStrip != null && MarcWorxStringHelper.isNotEmpty(result)) {
+                result = MarcWorxStringHelper.stripTrailingData(MarcWorxStringHelper.stripLeadingData(result, DataWorkConstants.STANDARD_FRONT_PUNCT_TO_STRIP), punctuationToStrip);
+            }
+        }
+        return result;
+    }
     public static String pullDataFromSubfield(MarcTag tag, char subfield, int occurrenceOneBased, String punctuationToStrip) {
         String result = null;
         if(tag != null) {
@@ -85,8 +95,6 @@ public class MarcWorxDataHelper {
             if(sub != null) {
                 if(punctuationToStrip != null) {
                     result = MarcWorxStringHelper.stripTrailingData(MarcWorxStringHelper.stripLeadingData(sub.getData(), DataWorkConstants.STANDARD_FRONT_PUNCT_TO_STRIP), punctuationToStrip);
-                    
-                    result = sub.getDataUnpunctuated(); 
                 } else {
                     result = sub.getData(); 
                 }

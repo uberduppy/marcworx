@@ -138,7 +138,7 @@ public class MarcRecordDataContainer implements Serializable {
         this.controlNumbers = controlNumbers;
     }
 
-    @XmlElement(name="Names")
+    @XmlElement(name="MainEntry")
     public List<MainEntryElement> getMainEntries() {
         return mainEntries;
     }
