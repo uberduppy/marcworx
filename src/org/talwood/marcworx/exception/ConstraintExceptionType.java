@@ -24,7 +24,9 @@ public enum ConstraintExceptionType {
     INVOCATION_TARGET,
     INPUT_FILE_NOT_FOUND,
     OUTPUT_FILE_NOT_CREATED,
-    JAXB_EXCEPTION
+    JAXB_EXCEPTION,
+    SECURITY_EXCEPTION,
+    NO_SUCH_METHOD,
     ;
     
     private ConstraintExceptionType() {

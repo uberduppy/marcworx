@@ -49,7 +49,7 @@ public class MarcWorxProcessingThread extends Thread {
                 processor.preProcess();
                 record = reader.getNextRecord();
                 while(isAlive() && keepAlive && record.getReadStatus() == MarcFileReadStatus.VALID) {
-                    processor.processRecord(record);
+                    keepAlive = processor.processRecord(record);
                     record = reader.getNextRecord();
                 }
                 processor.postProcess();

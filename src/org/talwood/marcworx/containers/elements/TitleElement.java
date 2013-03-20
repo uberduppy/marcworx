@@ -38,6 +38,13 @@ public class TitleElement extends BaseTagDataElement implements Serializable {
     private String title;
     private String titleRemainder;
     private String stmtOfResponsibility;
+    private String inclusiveDates;
+    private String bulkDates;
+    private String medium;
+    private String form;
+    private String version;
+    private String partNumber;
+    private String partName;
             
     
     public TitleElement() {
@@ -59,6 +66,13 @@ public class TitleElement extends BaseTagDataElement implements Serializable {
         }
         setTitleRemainder(MarcWorxDataHelper.pullDataFromSubfield(tag, 'b', 1, DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP));
         setStmtOfResponsibility(MarcWorxDataHelper.pullDataFromSubfield(tag, 'c', 1, DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP));
+        setInclusiveDates(MarcWorxDataHelper.pullDataFromSubfield(tag, 'f', 1, DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP));
+        setBulkDates(MarcWorxDataHelper.pullDataFromSubfield(tag, 'g', 1, DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP));
+        setMedium(MarcWorxDataHelper.pullDataFromSubfield(tag, 'h', 1, DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP));
+        setForm(MarcWorxDataHelper.pullAppendedDataFromSubfields(tag, "k", " ", DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP));
+        setPartNumber(MarcWorxDataHelper.pullAppendedDataFromSubfields(tag, "n", " ", DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP));
+        setPartName(MarcWorxDataHelper.pullAppendedDataFromSubfields(tag, "p", " ", DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP));
+        setVersion(MarcWorxDataHelper.pullDataFromSubfield(tag, 's', 1, DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP));
     }
 
     @XmlElement(name="Article")
@@ -95,6 +109,69 @@ public class TitleElement extends BaseTagDataElement implements Serializable {
 
     public void setStmtOfResponsibility(String stmtOfResponsibility) {
         this.stmtOfResponsibility = stmtOfResponsibility;
+    }
+
+    @XmlElement(name="InclusiveDates")
+    public String getInclusiveDates() {
+        return inclusiveDates;
+    }
+
+    public void setInclusiveDates(String inclusiveDates) {
+        this.inclusiveDates = inclusiveDates;
+    }
+
+    @XmlElement(name="BulkDates")
+    public String getBulkDates() {
+        return bulkDates;
+    }
+
+    public void setBulkDates(String bulkDates) {
+        this.bulkDates = bulkDates;
+    }
+
+    @XmlElement(name="Medium")
+    public String getMedium() {
+        return medium;
+    }
+
+    public void setMedium(String medium) {
+        this.medium = medium;
+    }
+
+    @XmlElement(name="Form")
+    public String getForm() {
+        return form;
+    }
+
+    public void setForm(String form) {
+        this.form = form;
+    }
+
+    @XmlElement(name="Version")
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    @XmlElement(name="PartNumber")
+    public String getPartNumber() {
+        return partNumber;
+    }
+
+    public void setPartNumber(String partNumber) {
+        this.partNumber = partNumber;
+    }
+
+    @XmlElement(name="PartName")
+    public String getPartName() {
+        return partName;
+    }
+
+    public void setPartName(String partName) {
+        this.partName = partName;
     }
     
     

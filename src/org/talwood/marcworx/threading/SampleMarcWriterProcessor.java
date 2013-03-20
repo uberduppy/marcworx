@@ -25,7 +25,7 @@ public class SampleMarcWriterProcessor implements IMarcWorxThreadProcessor {
     }
 
     @Override
-    public void processRecord(MarcRecord record) throws MarcException {
+    public boolean processRecord(MarcRecord record) throws MarcException {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 

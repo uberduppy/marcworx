@@ -38,7 +38,7 @@ public class ConvertMarcFileToMarcXml implements IMarcWorxThreadProcessor {
     }
     
     @Override
-    public void processRecord(MarcRecord record) throws MarcException {
+    public boolean processRecord(MarcRecord record) throws MarcException {
         if(fos != null) {
             try {
                 XMLBase marcXml = MarcWorxDataHelper.convertSingletonMarcRecordToMarcXmlEntry(record); // MarcWorxDataHelper.convertSingletonMarcRecordToMarcXmlEntry(record);
@@ -48,6 +48,7 @@ public class ConvertMarcFileToMarcXml implements IMarcWorxThreadProcessor {
                 throw new MarcException(MarcExceptionType.WRITE_ERROR, ex);
             }
         }
+        return true;
     }
 
     @Override
