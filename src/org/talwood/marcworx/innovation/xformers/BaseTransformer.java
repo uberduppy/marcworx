@@ -18,11 +18,18 @@
 package org.talwood.marcworx.innovation.xformers;
 
 import java.lang.reflect.Field;
+import java.util.List;
 import org.talwood.marcworx.exception.ConstraintException;
+import org.talwood.marcworx.helpers.MarcWorxDataHelper;
+import org.talwood.marcworx.helpers.MarcWorxStringHelper;
+import org.talwood.marcworx.helpers.TupleContainer;
+import org.talwood.marcworx.innovation.annotation.CompositeFieldString;
+import org.talwood.marcworx.innovation.annotation.NonFilingIndicatorFieldString;
 import org.talwood.marcworx.innovation.annotation.NonRepeatableFieldString;
-import org.talwood.marcworx.innovation.annotation.RootMarcFieldAnnotation;
+import org.talwood.marcworx.innovation.annotation.RepeatableFieldString;
 import org.talwood.marcworx.innovation.containers.BaseTransformerElement;
 import org.talwood.marcworx.innovation.helpers.TransformerGeneralHelper;
+import org.talwood.marcworx.marc.containers.MarcSubfield;
 import org.talwood.marcworx.marc.containers.MarcTag;
 
 /**
@@ -42,9 +49,18 @@ public abstract class BaseTransformer {
     public <T extends BaseTransformerElement> T processTagData() throws ConstraintException {
         BaseTransformerElement element = buildElement();
         for(Field fld : element.getClass().getDeclaredFields()) {
-            if(fld.isAnnotationPresent(RootMarcFieldAnnotation.class)) {
-                // Loop through each type of annotation and process it
-                processNonRepeatableFieldString(fld);
+            // Loop through each type of annotation and process it
+            if(fld.isAnnotationPresent(NonRepeatableFieldString.class)) {
+                processNonRepeatableFieldString(element, fld);
+            }
+            if(fld.isAnnotationPresent(RepeatableFieldString.class)) {
+                processRepeatableFieldString(element, fld);
+            }
+            if(fld.isAnnotationPresent(NonFilingIndicatorFieldString.class)) {
+                processNonFilingIndicatorFieldString(element, fld);
+            }
+            if(fld.isAnnotationPresent(CompositeFieldString.class)) {
+                processCompositeFieldString(element, fld);
             }
             
         }
@@ -52,12 +68,99 @@ public abstract class BaseTransformer {
         return (T)element;
     }
     
-    private void processNonRepeatableFieldString(Field fld) throws ConstraintException {
-        if(fld.isAnnotationPresent(NonRepeatableFieldString.class)) {
-            NonRepeatableFieldString nrfs = fld.getAnnotation(NonRepeatableFieldString.class);
-            String getterResult = TransformerGeneralHelper.invokeStringGetterOnField(fld, this);
+    private void processCompositeFieldString(BaseTransformerElement element, Field fld) throws ConstraintException {
+        CompositeFieldString cfs = fld.getAnnotation(CompositeFieldString.class);
+        StringBuilder sb = new StringBuilder();
+        for(MarcSubfield sub : tag.getSubfields(cfs.subfields())) {
+            String fieldData = sub.getData();
+            if(MarcWorxStringHelper.isEmpty(fieldData) && cfs.stripPunctuation()) {
+                if(MarcWorxStringHelper.isNotEmpty(cfs.leadingPunctuation())) {
+                    fieldData = MarcWorxStringHelper.stripLeadingData(fieldData, cfs.leadingPunctuation());
+                }
+                if(MarcWorxStringHelper.isNotEmpty(cfs.trailingPunctuation())) {
+                    fieldData = MarcWorxStringHelper.stripTrailingData(fieldData, cfs.trailingPunctuation());
+                }
+            }
+            if(sb.length() > 0 && fieldData.length() > 0) {
+                sb.append(cfs.divider());
+            }
+            sb.append(fieldData);
             
         }
+        String dataToAdd = sb.length() > 0 ? sb.toString() : null;
+        TransformerGeneralHelper.invokeStringSetterOnField(fld, element, dataToAdd);
+    }
+    
+    private void processNonFilingIndicatorFieldString(BaseTransformerElement element, Field fld) throws ConstraintException {
+        NonFilingIndicatorFieldString nfifs = fld.getAnnotation(NonFilingIndicatorFieldString.class);
+        char nonfiling = nfifs.indicatorToUse() == 1 ? tag.getFirstIndicator() : tag.getSecondIndicator();
+    
+        MarcSubfield suba = tag.getSubfield(nfifs.subfield(), 1);
+        if(suba != null) {
+            String subdata = suba.getData();
+            TupleContainer<String, String> splitData = MarcWorxDataHelper.splitString(subdata, nonfiling);
+            String fieldData = "";
+            if(nfifs.before()) {
+                fieldData = splitData.getLeftSide();
+            } else {
+                fieldData = splitData.getRightSide();
+            }
+            if(MarcWorxStringHelper.isEmpty(fieldData) && nfifs.stripPunctuation()) {
+                if(MarcWorxStringHelper.isNotEmpty(nfifs.leadingPunctuation())) {
+                    fieldData = MarcWorxStringHelper.stripLeadingData(fieldData, nfifs.leadingPunctuation());
+                }
+                if(MarcWorxStringHelper.isNotEmpty(nfifs.trailingPunctuation())) {
+                    fieldData = MarcWorxStringHelper.stripTrailingData(fieldData, nfifs.trailingPunctuation());
+                }
+            }
+            TransformerGeneralHelper.invokeStringSetterOnField(fld, element, fieldData);
+        }
+    }
+    
+    
+    private void processNonRepeatableFieldString(BaseTransformerElement element, Field fld) throws ConstraintException {
+        NonRepeatableFieldString nrfs = fld.getAnnotation(NonRepeatableFieldString.class);
+        MarcSubfield sub = tag.getSubfield(nrfs.subfield(), 1);
+        if(sub != null) {
+            String subData = sub.getData();
+            if(MarcWorxStringHelper.isNotEmpty(subData)) {
+                if(nrfs.stripPunctuation()) {
+                    if(MarcWorxStringHelper.isNotEmpty(nrfs.leadingPunctuation())) {
+                        subData = MarcWorxStringHelper.stripLeadingData(subData, nrfs.leadingPunctuation());
+                    }
+                    if(MarcWorxStringHelper.isNotEmpty(nrfs.trailingPunctuation())) {
+                        subData = MarcWorxStringHelper.stripTrailingData(subData, nrfs.trailingPunctuation());
+                    }
+                }
+                TransformerGeneralHelper.invokeStringSetterOnField(fld, element, subData);
+            }
+        }
+        
+    }
+
+    private void processRepeatableFieldString(BaseTransformerElement element, Field fld) throws ConstraintException {
+        RepeatableFieldString rfs = fld.getAnnotation(RepeatableFieldString.class);
+        List<MarcSubfield> subs = tag.getSubfields(rfs.subfield());
+        StringBuilder data = new StringBuilder();
+        for(MarcSubfield sub : subs) {
+            String subData = sub.getData();
+            if(MarcWorxStringHelper.isNotEmpty(subData)) {
+                if(rfs.stripPunctuation()) {
+                    if(MarcWorxStringHelper.isNotEmpty(rfs.leadingPunctuation())) {
+                        subData = MarcWorxStringHelper.stripLeadingData(subData, rfs.leadingPunctuation());
+                    }
+                    if(MarcWorxStringHelper.isNotEmpty(rfs.trailingPunctuation())) {
+                        subData = MarcWorxStringHelper.stripTrailingData(subData, rfs.trailingPunctuation());
+                    }
+                }
+            }
+            if(data.length() > 0 && subData.length() > 0) {
+                data.append(rfs.divider());
+            }
+            data.append(subData);
+        }
+        String dataToAdd = data.length() > 0 ? data.toString() : null;
+        TransformerGeneralHelper.invokeStringSetterOnField(fld, element, dataToAdd);
         
     }
 

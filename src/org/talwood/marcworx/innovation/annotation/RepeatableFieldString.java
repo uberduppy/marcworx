@@ -21,12 +21,24 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import org.talwood.marcworx.marc.constants.DataWorkConstants;
 
 /**
  *
  * @author twalker
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.ANNOTATION_TYPE)
-public @interface RootMarcFieldAnnotation {}
+@Target(ElementType.FIELD)
+public @interface RepeatableFieldString {
+    // What subfield (or subfields) are required for this object
+    char subfield();
+    // Do I need to strip punctuation?
+    boolean stripPunctuation() default true;
+    // Leading punctuation to strip
+    String leadingPunctuation() default DataWorkConstants.STANDARD_FRONT_PUNCT_TO_STRIP;
+    // Trailing punctuation to strip
+    String trailingPunctuation() default DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP;
+    // Trailing punctuation to strip
+    String divider() default " ";
 
+}

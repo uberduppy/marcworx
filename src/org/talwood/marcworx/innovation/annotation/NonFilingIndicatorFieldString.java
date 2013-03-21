@@ -29,7 +29,10 @@ import org.talwood.marcworx.marc.constants.DataWorkConstants;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface NonRepeatableFieldString {
+public @interface NonFilingIndicatorFieldString {
+    int indicatorToUse();
+    // What subfield (or subfields) are required for this object
+    boolean before();
     // What subfield (or subfields) are required for this object
     char subfield();
     // Do I need to strip punctuation?
@@ -38,4 +41,5 @@ public @interface NonRepeatableFieldString {
     String leadingPunctuation() default DataWorkConstants.STANDARD_FRONT_PUNCT_TO_STRIP;
     // Trailing punctuation to strip
     String trailingPunctuation() default DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP;
+
 }

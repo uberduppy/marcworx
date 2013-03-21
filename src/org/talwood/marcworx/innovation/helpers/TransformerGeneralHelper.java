@@ -55,5 +55,23 @@ public class TransformerGeneralHelper {
         buffer.insert( 0, prefix);
         return buffer.toString();
     }
+
+    public static void invokeStringSetterOnField(Field fld, Object objToInvokeOn, String dataToSet) throws ConstraintException {
+        try {
+            String setMethodName = makeMethodName("set", fld);
+            Method str = objToInvokeOn.getClass().getMethod(setMethodName, new Class[] { String.class} );
+            str.invoke(objToInvokeOn, new Object[] { dataToSet } );
+        } catch (SecurityException ex) {
+            throw new ConstraintException(ConstraintExceptionType.SECURITY_EXCEPTION, "Unable to locate setter methods for " + fld.getName());
+        } catch (NoSuchMethodException ex) {
+            throw new ConstraintException(ConstraintExceptionType.NO_SUCH_METHOD, "No getter methods for " + fld.getName());
+        } catch (IllegalArgumentException ex) {
+            throw new ConstraintException(ConstraintExceptionType.ILLEGAL_ARGUMENT, "Invalid argument for " + fld.getName());
+        } catch (IllegalAccessException ex) {
+            throw new ConstraintException(ConstraintExceptionType.ILLEGAL_ACCESS, "Invalid argument for " + fld.getName());
+        } catch (InvocationTargetException ex) {
+            throw new ConstraintException(ConstraintExceptionType.INVOCATION_TARGET, "Invalid argument for " + fld.getName());
+        }
+    }
     
 }

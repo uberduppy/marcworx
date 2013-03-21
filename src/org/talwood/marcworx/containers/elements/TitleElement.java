@@ -21,7 +21,6 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.talwood.marcworx.helpers.MarcWorxDataHelper;
-import org.talwood.marcworx.helpers.MarcWorxStringHelper;
 import org.talwood.marcworx.helpers.TupleContainer;
 import org.talwood.marcworx.marc.constants.DataWorkConstants;
 import org.talwood.marcworx.marc.containers.MarcSubfield;
@@ -45,6 +44,7 @@ public class TitleElement extends BaseTagDataElement implements Serializable {
     private String version;
     private String partNumber;
     private String partName;
+    private String displayableTitle;
             
     
     public TitleElement() {
@@ -73,6 +73,9 @@ public class TitleElement extends BaseTagDataElement implements Serializable {
         setPartNumber(MarcWorxDataHelper.pullAppendedDataFromSubfields(tag, "n", " ", DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP));
         setPartName(MarcWorxDataHelper.pullAppendedDataFromSubfields(tag, "p", " ", DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP));
         setVersion(MarcWorxDataHelper.pullDataFromSubfield(tag, 's', 1, DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP));
+        
+        // TODO sA displayable title is requested "abnp"
+        setDisplayableTitle(tag.getSubfieldData("abnp", " "));
     }
 
     @XmlElement(name="Article")
@@ -172,6 +175,15 @@ public class TitleElement extends BaseTagDataElement implements Serializable {
 
     public void setPartName(String partName) {
         this.partName = partName;
+    }
+
+    @XmlElement(name="DisplayableTitle")
+    public String getDisplayableTitle() {
+        return displayableTitle;
+    }
+
+    public void setDisplayableTitle(String displayableTitle) {
+        this.displayableTitle = displayableTitle;
     }
     
     

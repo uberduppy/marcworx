@@ -19,12 +19,21 @@ package org.talwood.marcworx.innovation;
 
 import java.io.Serializable;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.talwood.marcworx.containers.MarcRecordDataContainer;
+import org.talwood.marcworx.exception.ConstraintException;
+import org.talwood.marcworx.exception.ConstraintExceptionType;
+import org.talwood.marcworx.helpers.TupleContainer;
 import org.talwood.marcworx.innovation.containers.TitleTransformerElement;
+import org.talwood.marcworx.innovation.xformers.TitleTransformer;
 import org.talwood.marcworx.marc.containers.MarcRecord;
+import org.talwood.marcworx.marc.containers.MarcTag;
 import org.talwood.marcworx.xform.XMLFormatter;
 
 /**
@@ -35,6 +44,7 @@ import org.talwood.marcworx.xform.XMLFormatter;
 public class MarcRecordTransformer implements Serializable {
 
     private TitleTransformerElement title;
+    private List<TupleContainer<ConstraintExceptionType, String>> processingErrors = new ArrayList<TupleContainer<ConstraintExceptionType, String>>();
     
     private MarcRecordTransformer() {}
     
@@ -44,11 +54,26 @@ public class MarcRecordTransformer implements Serializable {
 
     private void parseData(MarcRecord record) {
         // Let's get the 245 going.
-        
+        processTitle(record.getTag(245, 1));
+    }
+    
+    private void processTitle(MarcTag tag245) {
+        if(tag245 != null) {
+            TitleTransformer tt = new TitleTransformer(tag245);
+            try {
+                title = tt.processTagData();
+            } catch (ConstraintException ex) {
+                handleException(ex);
+            }
+        }
+    }
+    
+    private void handleException(ConstraintException ex) {
+        processingErrors.add(new TupleContainer<ConstraintExceptionType, String>(ex.getType(), ex.getLocalizedMessage())) ;
     }
 
     public String toXml() throws Exception {
-        JAXBContext context = JAXBContext.newInstance(MarcRecordDataContainer.class);
+        JAXBContext context = JAXBContext.newInstance(MarcRecordTransformer.class);
         Marshaller marshaller = context.createMarshaller();
         StringWriter sw = new StringWriter();
         marshaller.marshal(this, sw);
@@ -56,6 +81,10 @@ public class MarcRecordTransformer implements Serializable {
         return xmlf.format(sw.toString());
     }
 
+    public boolean hasProcessingErrors() {
+        return (processingErrors.size() > 0);
+    }
+    
     public TitleTransformerElement getTitle() {
         return title;
     }

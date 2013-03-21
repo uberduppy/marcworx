@@ -216,6 +216,15 @@ public class MarcTag {
         return returnData;
     }
     
+    public List<MarcSubfield> getSubfields(String selectedSubs) {
+        List<MarcSubfield> result = new ArrayList<MarcSubfield>();
+        for(MarcSubfield marcSubfield : subfields) {
+            if(MarcWorxStringHelper.contains(selectedSubs, marcSubfield.getCode())) {
+                result.add(marcSubfield);
+            }
+        }
+        return result;
+    }
     public String getSubfieldData(String selectedSubs, String delimiter) {
         StringBuilder result = new StringBuilder();
         for(MarcSubfield marcSubfield : getSubfields()) {

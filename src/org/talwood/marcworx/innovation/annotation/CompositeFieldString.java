@@ -29,13 +29,15 @@ import org.talwood.marcworx.marc.constants.DataWorkConstants;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface NonRepeatableFieldString {
-    // What subfield (or subfields) are required for this object
-    char subfield();
+public @interface CompositeFieldString {
+    // Which subfields are used.
+    String subfields();
     // Do I need to strip punctuation?
-    boolean stripPunctuation() default true;
+    boolean stripPunctuation() default false;
     // Leading punctuation to strip
     String leadingPunctuation() default DataWorkConstants.STANDARD_FRONT_PUNCT_TO_STRIP;
     // Trailing punctuation to strip
     String trailingPunctuation() default DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP;
+    
+    String divider() default " ";
 }
