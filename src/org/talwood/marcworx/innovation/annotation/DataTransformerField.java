@@ -15,29 +15,28 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package org.talwood.marcworx.innovation.containers;
+package org.talwood.marcworx.innovation.annotation;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import org.talwood.marcworx.marc.constants.DataWorkConstants;
 
 /**
  *
  * @author twalker
  */
-public abstract class BaseTransformerElement {
-    
-    private boolean valid;
-    
-    public boolean checkValidity() {
-        return valid;
-    }
-    
-    protected boolean isValid() {
-        return valid;
-    }
-    
-    public void setValid(boolean valid) {
-        this.valid = valid;
-    }
-    
-    public BaseTransformerElement() {
-        
-    }
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface DataTransformerField {
+    // What subfield (or subfields) are required for this object
+    char subfield();
+    // Do I need to strip punctuation?
+    boolean stripPunctuation() default true;
+    // Leading punctuation to strip
+    String leadingPunctuation() default DataWorkConstants.STANDARD_FRONT_PUNCT_TO_STRIP;
+    // Trailing punctuation to strip
+    String trailingPunctuation() default DataWorkConstants.STANDARD_BACK_PUNCT_TO_STRIP;
+
 }

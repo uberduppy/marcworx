@@ -15,29 +15,31 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package org.talwood.marcworx.innovation.containers;
+package org.talwood.marcworx.innovation.xformers;
+
+import java.io.Serializable;
+import org.talwood.marcworx.innovation.containers.BaseTransformerElement;
+import org.talwood.marcworx.innovation.containers.StudyProgramTransformerElement;
+import org.talwood.marcworx.marc.containers.MarcTag;
 
 /**
  *
  * @author twalker
  */
-public abstract class BaseTransformerElement {
-    
-    private boolean valid;
-    
-    public boolean checkValidity() {
-        return valid;
+public class StudyProgramTransformer extends BaseTransformer implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    public StudyProgramTransformer(MarcTag tag) {
+        super(tag);
     }
-    
-    protected boolean isValid() {
-        return valid;
+
+    @Override
+    public BaseTransformerElement buildElement() {
+        return new StudyProgramTransformerElement();
     }
-    
-    public void setValid(boolean valid) {
-        this.valid = valid;
-    }
-    
-    public BaseTransformerElement() {
-        
+
+    @Override
+    public void doSpecialProcessing(BaseTransformerElement element) {
+        // Nothing to do yet
     }
 }

@@ -24,10 +24,12 @@ import org.talwood.marcworx.helpers.MarcWorxDataHelper;
 import org.talwood.marcworx.helpers.MarcWorxStringHelper;
 import org.talwood.marcworx.helpers.TupleContainer;
 import org.talwood.marcworx.innovation.annotation.CompositeFieldString;
+import org.talwood.marcworx.innovation.annotation.DataTransformerField;
 import org.talwood.marcworx.innovation.annotation.NonFilingIndicatorFieldString;
 import org.talwood.marcworx.innovation.annotation.NonRepeatableFieldString;
 import org.talwood.marcworx.innovation.annotation.RepeatableFieldString;
 import org.talwood.marcworx.innovation.containers.BaseTransformerElement;
+import org.talwood.marcworx.innovation.containers.listobjects.DataTransformerElement;
 import org.talwood.marcworx.innovation.helpers.TransformerGeneralHelper;
 import org.talwood.marcworx.marc.containers.MarcSubfield;
 import org.talwood.marcworx.marc.containers.MarcTag;
@@ -40,7 +42,9 @@ public abstract class BaseTransformer {
     
     public abstract <T extends BaseTransformerElement> T buildElement();
     
-    private MarcTag tag;
+    public abstract void doSpecialProcessing(BaseTransformerElement element);
+    
+    protected MarcTag tag;
 
     public BaseTransformer(MarcTag tag) {
         this.tag = tag;
@@ -62,18 +66,43 @@ public abstract class BaseTransformer {
             if(fld.isAnnotationPresent(CompositeFieldString.class)) {
                 processCompositeFieldString(element, fld);
             }
+            if(fld.isAnnotationPresent(DataTransformerField.class)) {
+                processDataTransformerField(element, fld);
+            }
             
         }
+        
+        doSpecialProcessing(element);
         
         return (T)element;
     }
     
+    private void processDataTransformerField(BaseTransformerElement element, Field fld) throws ConstraintException {
+        DataTransformerField dtf = fld.getAnnotation(DataTransformerField.class);
+        List<DataTransformerElement> list = TransformerGeneralHelper.invokeDataTransformerElementListGetterOnField(fld, element);
+        if(list != null) {
+            for(MarcSubfield sub : tag.getSubfields(dtf.subfield())) {
+                String fieldData = sub.getData();
+                if(MarcWorxStringHelper.isNotEmpty(fieldData) && dtf.stripPunctuation()) {
+                    if(MarcWorxStringHelper.isNotEmpty(dtf.leadingPunctuation())) {
+                        fieldData = MarcWorxStringHelper.stripLeadingData(fieldData, dtf.leadingPunctuation());
+                    }
+                    if(MarcWorxStringHelper.isNotEmpty(dtf.trailingPunctuation())) {
+                        fieldData = MarcWorxStringHelper.stripTrailingData(fieldData, dtf.trailingPunctuation());
+                    }
+                }
+                if(MarcWorxStringHelper.isNotEmpty(fieldData)) {
+                    list.add(new DataTransformerElement(fieldData));
+                }
+            }
+        }
+    }
     private void processCompositeFieldString(BaseTransformerElement element, Field fld) throws ConstraintException {
         CompositeFieldString cfs = fld.getAnnotation(CompositeFieldString.class);
         StringBuilder sb = new StringBuilder();
         for(MarcSubfield sub : tag.getSubfields(cfs.subfields())) {
             String fieldData = sub.getData();
-            if(MarcWorxStringHelper.isEmpty(fieldData) && cfs.stripPunctuation()) {
+            if(MarcWorxStringHelper.isNotEmpty(fieldData) && cfs.stripPunctuation()) {
                 if(MarcWorxStringHelper.isNotEmpty(cfs.leadingPunctuation())) {
                     fieldData = MarcWorxStringHelper.stripLeadingData(fieldData, cfs.leadingPunctuation());
                 }

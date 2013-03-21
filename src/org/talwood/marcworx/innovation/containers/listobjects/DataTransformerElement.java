@@ -15,29 +15,37 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package org.talwood.marcworx.innovation.containers;
+package org.talwood.marcworx.innovation.containers.listobjects;
+
+import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlValue;
 
 /**
  *
  * @author twalker
  */
-public abstract class BaseTransformerElement {
+@XmlRootElement(name="data")
+public class DataTransformerElement implements Serializable {
     
-    private boolean valid;
+    private String data;
     
-    public boolean checkValidity() {
-        return valid;
-    }
-    
-    protected boolean isValid() {
-        return valid;
-    }
-    
-    public void setValid(boolean valid) {
-        this.valid = valid;
-    }
-    
-    public BaseTransformerElement() {
+    public DataTransformerElement() {
         
     }
+
+    public DataTransformerElement(String data) {
+        this.data = data;
+    }
+
+    @XmlValue
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+    
+
 }

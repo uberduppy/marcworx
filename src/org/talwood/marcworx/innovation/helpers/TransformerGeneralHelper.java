@@ -20,8 +20,10 @@ package org.talwood.marcworx.innovation.helpers;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
 import org.talwood.marcworx.exception.ConstraintException;
 import org.talwood.marcworx.exception.ConstraintExceptionType;
+import org.talwood.marcworx.innovation.containers.listobjects.DataTransformerElement;
 
 /**
  *
@@ -29,6 +31,26 @@ import org.talwood.marcworx.exception.ConstraintExceptionType;
  */
 public class TransformerGeneralHelper {
 
+    public static List<DataTransformerElement> invokeDataTransformerElementListGetterOnField(Field fld, Object objToInvokeOn) throws ConstraintException {
+        List<DataTransformerElement> result = null;
+        try {
+            String methodName = makeMethodName("get", fld);
+            Method m = objToInvokeOn.getClass().getMethod(methodName, (Class[])null);
+            result = (List<DataTransformerElement>) m.invoke(objToInvokeOn, (Object[])null);
+        } catch (SecurityException ex) {
+            throw new ConstraintException(ConstraintExceptionType.SECURITY_EXCEPTION, "Unable to locate getter methods for " + fld.getName());
+        } catch (NoSuchMethodException ex) {
+            throw new ConstraintException(ConstraintExceptionType.NO_SUCH_METHOD, "No getter methods for " + fld.getName());
+        } catch (IllegalArgumentException ex) {
+            throw new ConstraintException(ConstraintExceptionType.ILLEGAL_ARGUMENT, "Invalid argument for " + fld.getName());
+        } catch (IllegalAccessException ex) {
+            throw new ConstraintException(ConstraintExceptionType.ILLEGAL_ACCESS, "Invalid argument for " + fld.getName());
+        } catch (InvocationTargetException ex) {
+            throw new ConstraintException(ConstraintExceptionType.INVOCATION_TARGET, "Invalid argument for " + fld.getName());
+        }
+        return result;
+    }
+    
     public static String invokeStringGetterOnField(Field fld, Object objToInvokeOn) throws ConstraintException {
         String result = null;
         try {

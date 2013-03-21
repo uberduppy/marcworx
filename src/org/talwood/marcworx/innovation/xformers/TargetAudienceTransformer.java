@@ -18,30 +18,48 @@
 package org.talwood.marcworx.innovation.xformers;
 
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import org.talwood.marcworx.containers.enums.TargetAudienceEnum;
+import org.talwood.marcworx.helpers.MarcWorxStringHelper;
 import org.talwood.marcworx.innovation.containers.BaseTransformerElement;
-import org.talwood.marcworx.innovation.containers.TitleTransformerElement;
+import org.talwood.marcworx.innovation.containers.TargetAudienceTransformerElement;
+import org.talwood.marcworx.marc.containers.MarcSubfield;
 import org.talwood.marcworx.marc.containers.MarcTag;
 
 /**
  *
  * @author twalker
  */
-
-public class TitleTransformer extends BaseTransformer implements Serializable {
+@XmlRootElement(name="TargetAudience")
+public class TargetAudienceTransformer extends BaseTransformer implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public TitleTransformer(MarcTag tag) {
+    
+    public TargetAudienceTransformer(MarcTag tag) {
         super(tag);
     }
-
+    
     @Override
     public BaseTransformerElement buildElement() {
-        return new TitleTransformerElement();
+        return new TargetAudienceTransformerElement();
     }
 
     @Override
     public void doSpecialProcessing(BaseTransformerElement element) {
         // No special processing required for title tags
+        if(element instanceof TargetAudienceTransformerElement) {
+            TargetAudienceTransformerElement tate = (TargetAudienceTransformerElement) element;
+            TargetAudienceEnum e = TargetAudienceEnum.findByIndicatorCode(tag.getFirstIndicator());
+            if(e.getIndicatorCode() == tag.getFirstIndicator()) {
+                MarcSubfield subfield = tag.getSubfield('a', 1);
+                if(subfield != null) {
+                    tate.setDescription(e.getDescription());
+                    tate.setValid(true);
+                }
+            }
+        }
     }
 
+    
 }

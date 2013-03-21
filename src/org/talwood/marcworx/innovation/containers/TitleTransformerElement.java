@@ -20,6 +20,7 @@ package org.talwood.marcworx.innovation.containers;
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.talwood.marcworx.helpers.MarcWorxStringHelper;
 import org.talwood.marcworx.innovation.annotation.CompositeFieldString;
 import org.talwood.marcworx.innovation.annotation.NonFilingIndicatorFieldString;
 import org.talwood.marcworx.innovation.annotation.NonRepeatableFieldString;
@@ -66,6 +67,7 @@ public class TitleTransformerElement extends BaseTransformerElement implements S
 
     public void setTitle(String title) {
         this.title = title;
+       setValid(MarcWorxStringHelper.isNotEmpty(title));
     }
 
     @XmlElement(name="TitleRemainder")
